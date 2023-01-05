@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { SignIn } from "./SignIn";
+import { SignUp } from "./SignUp";
 
 export const Lobby = () => {
   const [flag, setFlag] = useState(true);
@@ -8,12 +10,6 @@ export const Lobby = () => {
       <div className="container-lobby d-flex align-items-center justify-content-center row">
         <div className="wrap-lobby d-flex col-10 col-md-6 col-l-4 col-xl-4  flex-column align-items-center border-black-rs bs-white-rs justify-content-center">
           <div className="head-lobby text-white justify-self-start d-flex flex-column align-items-center mb-4">
-            <img
-              src={logo}
-              width={100}
-              className="d-inline-block align-top mt-5"
-              alt="Overland NInja Logo"
-            />
             <h1 className="rs-lettering text-center my-3 st-back-rs">
               Rocker Stocker
             </h1>
@@ -33,7 +29,7 @@ export const Lobby = () => {
             </div>
           </div>
           <div className="body-lobby mt-3 d-flex flex-column text-white">
-            {flag ? <Signin /> : <Signup />}
+            {flag ? <SignIn /> : <SignUp />}
           </div>
         </div>
       </div>
