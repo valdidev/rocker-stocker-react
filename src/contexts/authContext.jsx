@@ -1,32 +1,27 @@
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { createContext, useState } from "react";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-const ROCKER_STOCKER = 'RS_JWT';
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(false);
 
-export function AuthContextProvider({ children }) {
+  const handleAuth = (e) => {
+    if (user) {
+      setUser(user);
+      setAuth(true);
+      console.log('user exists', user)
+    } else {
+      setUser(null);
+      setAuth(true);
+      console.log('user no exits', user)
+    }
+  };
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const data = {auth, handleAuth};
 
-    const signIn = useCallback(() => {
-        localStorage.setItem(ROCKER_STOCKER, true);
-        setIsAuthenticated(true);
-    }, []);
-
-    const signOut = useCallback(() => {
-        localStorage.removeItem(ROCKER_STOCKER);
-        setIsAuthenticated(false);
-    }, []);
-
-    const value = useMemo(() => ({
-        signIn,
-        signOut,
-        isAuthenticated
-    }), [signIn, signOut, isAuthenticated]);
-
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
 
-export function useAuthContext() {
-    return useContext(AuthContext);
-};
+export { AuthProvider };
+export default AuthContext;

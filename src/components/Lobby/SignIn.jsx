@@ -9,9 +9,11 @@ export const SignIn = () => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
 
+      let user = res.data.user;
+
       if (res.status === 200) {
         localStorage.setItem("RS_JWT", res.data.jwt);
-        isAuthenticated(true);
+        setUser(user)
       } 
     } catch (error) {
       console.log(error);
@@ -20,6 +22,8 @@ export const SignIn = () => {
   };
 
   // HOOKS
+
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
