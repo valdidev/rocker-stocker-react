@@ -10,7 +10,6 @@ export const SignUp = () => {
       console.log(res);
     } catch (error) {
       setUserError(error.response.data.message);
-      console.log(error);
     }
   };
 
