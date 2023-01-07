@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./components/Home/Home";
 import { Lobby } from "./components/Lobby/Lobby";
-import { AuthContextProvider } from "./contexts/authContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 

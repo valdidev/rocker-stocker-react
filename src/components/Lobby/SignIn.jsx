@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { apiCall } from "../../api/axios";
-import { AuthContextProvider } from "../../contexts/authContext";
 import "./signin-signup.css";
 
 export const SignIn = () => {
-
-  const { isAuthenticated } = AuthContextProvider();
 
   // API
   const trySignIn = async (body) => {
