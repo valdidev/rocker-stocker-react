@@ -24,4 +24,8 @@ export function AuthContextProvider({ children }) {
     }), [signIn, signOut, isAuthenticated]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+
+    AuthContextProvider.propTypes = {
+        children: propTypes.object
+    };
 };
