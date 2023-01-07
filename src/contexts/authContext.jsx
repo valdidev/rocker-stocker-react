@@ -6,7 +6,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(false);
 
-  const handleAuth = (e) => {
+  const handlerAuth = (user) => {
     if (user) {
       setUser(user);
       setAuth(true);
@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const data = {auth, handleAuth};
+  const data = {auth, handlerAuth};
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
