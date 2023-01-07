@@ -15,7 +15,7 @@ export const App = () => {
           </Route>
 
           <Route path="/private" element={<PrivateRoute />}>
-            <Route path="/private" element={<Home />} />
+            <Route index element={<Home />} />
           </Route>
         </Routes>
       </BrowserRouter>
