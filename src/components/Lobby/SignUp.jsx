@@ -1,14 +1,27 @@
 import { useState } from "react";
 import { apiCall } from "../../api/axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import "./signin-signup.css";
 
-export const SignUp = () => {
+export const SignUp = ({ switchFlag }) => {
   // API
   const trySignUp = async (body) => {
+    setIsLoading(true);
     try {
       let res = await apiCall("/auth/register", body, null, "post");
-      console.log(res);
+      setIsLoading(false);
+      if (res.status === 200) {
+        MySwal.fire({
+          title: <strong>User created</strong>,
+          icon: "success",
+          confirmButtonText: "Sign In",
+          confirmButtonColor: "#198754",
+        });
+      }
+      switchFlag();
     } catch (error) {
+      setIsLoading(false);
       setUserError(error.response.data.message);
     }
   };
@@ -24,6 +37,8 @@ export const SignUp = () => {
   });
 
   const [userError, setUserError] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // HANDLERS
   const inputsHandler = (e) => {
@@ -58,6 +73,8 @@ export const SignUp = () => {
     credentials.password.length > 0 &&
     credentials.confirmPassword.length > 0
   );
+
+  const MySwal = withReactContent(Swal);
 
   return (
     <div className="form container form-container d-flex flex-column align-items-center">
@@ -115,13 +132,30 @@ export const SignUp = () => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
+
         <p className="text-danger">{userError}</p>
-        <button
-          className="btn-send btn btn-success btn-shadow w-100 my-4"
-          disabled={formIsFilled}
-        >
-          Send
-        </button>
+
+        {!isLoading ? (
+          <button
+            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            disabled={formIsFilled}
+          >
+            Send
+          </button>
+        ) : (
+          <button
+            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            disabled={formIsFilled}
+            type="button"
+          >
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Send</span>
+          </button>
+        )}
       </form>
     </div>
   );

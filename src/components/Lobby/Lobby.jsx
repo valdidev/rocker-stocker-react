@@ -7,6 +7,10 @@ import './lobby.css'
 export const Lobby = () => {
   const [flag, setFlag] = useState(true);
 
+  const switchFlag = () => {
+    setFlag(!flag)
+  }
+
   return (
     <div className="container-fluid bg-black-rs">
       <div className="container-lobby d-flex align-items-center justify-content-center row">
@@ -31,7 +35,7 @@ export const Lobby = () => {
             </div>
           </div>
           <div className="body-lobby mt-3 d-flex flex-column align-items-center justify-content-start text-white">
-            {flag ? <SignIn /> : <SignUp />}
+            {flag ? <SignIn /> : <SignUp switchFlag={switchFlag} />}
           </div>
         </div>
       </div>
