@@ -1,14 +1,23 @@
 import { useState } from "react";
 import { apiCall } from "../../api/axios";
+import { AuthContextProvider } from "../../contexts/authContext";
 import "./signin-signup.css";
 
 export const SignIn = () => {
+
+  const { isAuthenticated } = AuthContextProvider();
+
   // API
   const trySignIn = async (body) => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
-      console.log(res);
+
+      if (res.status === 200) {
+        localStorage.setItem("RS_JWT", res.data.jwt);
+        isAuthenticated(true);
+      } 
     } catch (error) {
+      console.log(error);
       setUserError(error.response.data.message);
     }
   };
