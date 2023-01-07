@@ -8,3 +8,14 @@ export const apiCall = (url, data, headers, method) => axios({
     data,
     headers
 })
+
+axios.interceptors.response.use(
+    (response) => {
+    console.log('response', response)
+    return response
+},
+    (error) => {
+        console.log("error", error)
+        return Promise.reject(error)
+    }
+)

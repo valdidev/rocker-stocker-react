@@ -5,9 +5,21 @@ import "./signin-signup.css";
 export const SignIn = () => {
   // API
   const trySignIn = async (body) => {
-    let res = await apiCall("/auth/login", body, null, "post");
-    console.log(res);
+    try {
+      let res = await apiCall("/auth/login", body, null, "post");
+      console.log(res);
+    } catch (error) {
+      setUserError(error.response.data.message);
+    }
   };
+
+  // HOOKS
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [userError, setUserError] = useState("");
 
   // HANDLERS
   const inputsHandler = (e) => {
@@ -22,22 +34,21 @@ export const SignIn = () => {
     trySignIn(bodyCredentials);
   };
 
-  // HOOKS
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [userError, setUserError] = useState({
-    emailError: "",
-    passwordError: "",
-  });
-
-  // OTHERS
   const bodyCredentials = {
     email: credentials.email,
     password: credentials.password,
   };
+
+  /*  const validateBody = () => {
+    if (
+      body.email !== "" &&
+      body.password &&
+      userError.emailError === "" &&
+      userError.passwordError === ""
+    ) {
+      return true;
+    }
+  }; */
 
   return (
     <div className="form container">
@@ -60,7 +71,7 @@ export const SignIn = () => {
           placeholder="Password"
           onChange={(e) => inputsHandler(e)}
         />
-        <p className="text-danger">Email or Password incorrect</p>
+        <p className="text-danger">{userError}</p>
         <button className="btn-send btn btn-success btn-shadow w-100 my-4">
           Send
         </button>
