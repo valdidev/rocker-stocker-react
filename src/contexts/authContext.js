@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 
 export const AuthContext = createContext();
 
@@ -12,8 +12,16 @@ export function AuthContextProvider({ children }) {
         setIsAuthenticated(true);
     }, []);
 
-    const logOut = useCallback(() => {
+    const signOut = useCallback(() => {
         localStorage.removeItem(ROCKER_STOCKER);
         setIsAuthenticated(false);
     }, []);
+
+    const value = useMemo(() => ({
+        signIn,
+        signOut,
+        isAuthenticated
+    }), [signIn, signOut, isAuthenticated]);
+
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
