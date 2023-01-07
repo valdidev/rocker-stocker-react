@@ -6,7 +6,7 @@ export const PublicRoute = () => {
 
   if (isAuthenticated) {
     return <Navigate to="/private" />;
-  }
+  };
 
   return (
     <div>

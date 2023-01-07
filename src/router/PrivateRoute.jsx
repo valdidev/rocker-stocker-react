@@ -5,7 +5,7 @@ export const PrivateRoute = () => {
   const { isAuthenticated } = useAuthContext();
 
   if (!isAuthenticated) {
-    return <Navigate to="/lobby" />;
+    return <Navigate to="/" />;
   }
 
   return (
