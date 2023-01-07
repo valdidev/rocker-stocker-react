@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
-import { AuthContextProvider } from "../../contexts/authContext";
+import AuthContext from "../../contexts/AuthContext";
+
 import "./signin-signup.css";
 
 export const SignIn = () => {
-
-  const { isAuthenticated } = AuthContextProvider();
-
   // API
   const trySignIn = async (body) => {
     try {
@@ -14,8 +12,9 @@ export const SignIn = () => {
 
       if (res.status === 200) {
         localStorage.setItem("RS_JWT", res.data.jwt);
-        isAuthenticated(true);
-      } 
+        let user = res.data.user
+        handlerAuth(user);
+      }
     } catch (error) {
       console.log(error);
       setUserError(error.response.data.message);
@@ -23,6 +22,9 @@ export const SignIn = () => {
   };
 
   // HOOKS
+
+  const { handlerAuth } = useContext(AuthContext);
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
