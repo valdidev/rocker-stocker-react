@@ -3,11 +3,11 @@ import { apiCall } from "../../api/axios";
 import "./signin-signup.css";
 
 export const SignIn = () => {
-  
   // API
   const trySignIn = async (body) => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
+      console.log(res);
     } catch (error) {
       setUserError(error.response.data.message);
     }
@@ -21,6 +21,8 @@ export const SignIn = () => {
 
   const [userError, setUserError] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   // HANDLERS
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
@@ -30,8 +32,10 @@ export const SignIn = () => {
   };
 
   const handlerSubmit = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     trySignIn(bodyCredentials);
+    setIsLoading(false);
   };
 
   const bodyCredentials = {
@@ -70,12 +74,27 @@ export const SignIn = () => {
           onFocus={() => setUserError("")}
         />
         <p className="text-danger">{userError}</p>
-        <button
-          className="btn-send btn btn-success btn-shadow w-100 my-4"
-          disabled={enableButton}
-        >
-          Send
-        </button>
+        {!isLoading ? (
+          <button
+            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            disabled={enableButton}
+          >
+            Send
+          </button>
+        ) : (
+          <button
+            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            disabled={enableButton}
+            type="button"
+          >
+            <span
+              className="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Send</span>
+          </button>
+        )}
       </form>
     </div>
   );
