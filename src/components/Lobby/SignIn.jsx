@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
+import AuthContext from "../../contexts/AuthContext";
+
 import "./signin-signup.css";
 
 export const SignIn = () => {
-
   // API
   const trySignIn = async (body) => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
 
-      let user = res.data.user;
-
       if (res.status === 200) {
         localStorage.setItem("RS_JWT", res.data.jwt);
-        setUser(user)
-      } 
+        let user = res.data.user
+        handlerAuth(user);
+      }
     } catch (error) {
       console.log(error);
       setUserError(error.response.data.message);
@@ -23,6 +23,7 @@ export const SignIn = () => {
 
   // HOOKS
 
+  const { handlerAuth } = useContext(AuthContext);
 
   const [credentials, setCredentials] = useState({
     email: "",
