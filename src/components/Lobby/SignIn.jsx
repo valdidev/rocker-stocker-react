@@ -3,11 +3,11 @@ import { apiCall } from "../../api/axios";
 import "./signin-signup.css";
 
 export const SignIn = () => {
+  
   // API
   const trySignIn = async (body) => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
-      console.log(res);
     } catch (error) {
       setUserError(error.response.data.message);
     }
@@ -39,22 +39,18 @@ export const SignIn = () => {
     password: credentials.password,
   };
 
-  /*  const validateBody = () => {
-    if (
-      body.email !== "" &&
-      body.password &&
-      userError.emailError === "" &&
-      userError.passwordError === ""
-    ) {
-      return true;
-    }
-  }; */
+  const enableButton = !(
+    userError === "" &&
+    credentials.email.length > 8 &&
+    credentials.password.length > 8
+  );
 
   return (
     <div className="form container">
       <form
         onSubmit={handlerSubmit}
         className="d-flex flex-column align-items-center justify-content-center"
+        noValidate
       >
         <h1 className="text-center">Sign in</h1>
         <input
@@ -63,6 +59,7 @@ export const SignIn = () => {
           type="email"
           placeholder="Email"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
@@ -70,9 +67,13 @@ export const SignIn = () => {
           type="password"
           placeholder="Password"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <p className="text-danger">{userError}</p>
-        <button className="btn-send btn btn-success btn-shadow w-100 my-4">
+        <button
+          className="btn-send btn btn-success btn-shadow w-100 my-4"
+          disabled={enableButton}
+        >
           Send
         </button>
       </form>
