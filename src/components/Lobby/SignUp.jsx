@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiCall } from "../../api/axios";
 import "./signin-signup.css";
 
 export const SignUp = () => {
@@ -9,6 +10,7 @@ export const SignUp = () => {
       console.log(res);
     } catch (error) {
       setUserError(error.response.data.message);
+      console.log(error);
     }
   };
 
@@ -34,23 +36,29 @@ export const SignUp = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    if (formIsFilled) return setUserError("Fill in the text fields");
+    if (credentials.password !== credentials.confirmPassword)
+      return setUserError("Passwords do not match");
     trySignUp(bodyRegister);
   };
 
   const bodyRegister = {
     email: credentials.email,
     password: credentials.password,
-    confirmPassword: credentials.confirmPassword,
     name: credentials.name,
     surname: credentials.surname,
     phone: credentials.phone,
   };
 
-  /* const enableButton = !(
+  const formIsFilled = !(
     userError === "" &&
-    credentials.email.length > 8 &&
-    credentials.password.length > 8
-  ); */
+    credentials.email.length > 0 &&
+    credentials.name.length > 0 &&
+    credentials.surname.length > 0 &&
+    credentials.phone.length > 0 &&
+    credentials.password.length > 0 &&
+    credentials.confirmPassword.length > 0
+  );
 
   return (
     <div className="form container form-container d-flex flex-column align-items-center">
@@ -66,6 +74,7 @@ export const SignUp = () => {
           placeholder="Name"
           name="name"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
@@ -73,14 +82,15 @@ export const SignUp = () => {
           placeholder="Surname"
           name="surname"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
           type="text"
           placeholder="Phone"
           name="phone"
-
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
@@ -88,6 +98,7 @@ export const SignUp = () => {
           placeholder="Email"
           name="email"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
@@ -95,6 +106,7 @@ export const SignUp = () => {
           placeholder="Password"
           name="password"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
         <input
           className="form-control my-2"
@@ -102,8 +114,13 @@ export const SignUp = () => {
           placeholder="Confirm password"
           name="confirmPassword"
           onChange={(e) => inputsHandler(e)}
+          onFocus={() => setUserError("")}
         />
-        <button className="btn-send btn btn-success btn-shadow w-100 my-4">
+        <p className="text-danger">{userError}</p>
+        <button
+          className="btn-send btn btn-success btn-shadow w-100 my-4"
+          disabled={formIsFilled}
+        >
           Send
         </button>
       </form>
