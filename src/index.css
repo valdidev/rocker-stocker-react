@@ -4,11 +4,16 @@
 }
 
 
-/* Global shadows */
-.btn-shadow {
+/* Global components */
+.btn-orange {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #F37265;
 }
 
+.btn-orange:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #d85246;
+}
 
 /* dev bg-color */
 body{

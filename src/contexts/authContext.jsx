@@ -2,10 +2,11 @@ import { createContext, useCallback, useContext, useMemo, useState } from "react
 
 export const AuthContext = createContext();
 
-const ROCKER_STOCKER = 'ROCKER_STOCKER_1';
+const ROCKER_STOCKER = 'RS_JWT';
 
 export function AuthContextProvider({ children }) {
-    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem(ROCKER_STOCKER));
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const signIn = useCallback(() => {
         localStorage.setItem(ROCKER_STOCKER, true);
