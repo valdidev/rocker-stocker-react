@@ -68,7 +68,7 @@
 
 /* NAVBAR */
 
-.navbar_btn {
+.navbar_btn > svg {
   transition: color 200ms;
 }
 
