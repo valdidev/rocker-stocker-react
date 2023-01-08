@@ -26,7 +26,7 @@ export const App = () => {
               <Route path="/private/mysales" element={<MySales />} />
               <Route path="/private/myprofile" element={<MyProfile />} />
               <Route path="/private/admin" element={<AdminRoute />}>
-                <Route path="/private/admin/allusers" element={<AllUsers />} />
+                <Route index element={<AllUsers />} />
                 <Route path="/private/admin/allsales" element={<AllSales />} />
               </Route>
             </Route>

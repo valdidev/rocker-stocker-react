@@ -1,11 +1,12 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
+  // useEffect
+  useMemo(() => {
     const userLogged = localStorage.getItem("RS_USER");
     if (userLogged) {
       const user = JSON.parse(userLogged);
