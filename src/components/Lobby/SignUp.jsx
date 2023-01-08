@@ -2,7 +2,8 @@ import { useState } from "react";
 import { apiCall } from "../../api/axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import "./signin-signup.css";
+
+import '../../index.css';
 
 export const SignUp = ({ switchFlag }) => {
   // API

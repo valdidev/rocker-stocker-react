@@ -3,8 +3,12 @@
   background-color: #3d405b;
 }
 
+.bg-black-dark-rs {
+  background-color: #2f3247;
+}
 
-/* Global components */
+
+/* Global color components */
 .btn-orange {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #F37265;
@@ -12,11 +16,53 @@
 
 .btn-orange:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: #d85246;
+  background-color: #6ba368;
 }
 
-/* dev bg-color */
-body{
-  background-color: #3d405b;
+/* Global sizes */
+.navbarDesign {
+  height: 15vh;
 }
 
+.homeDesign {
+  background-color: blue;
+  height: 80vh;
+}
+
+#F37265
+#d85246
+#9cfc97
+#6ba368
+#df4436
+
+.container-lobby {
+  min-height: 100vh;
+}
+
+.head-lobby {
+  min-height: 10vh;
+}
+
+.buttons-lobby {
+  background-color: #F37265;
+}
+
+.body-lobby {
+  height: 60vh;
+}
+
+.rs-lettering {
+  font-size: 3em;
+}
+
+.border-black-rs {
+  border: 1px solid #2f324760;
+}
+
+.st-back-rs {
+  text-shadow: #2f3247 5px 5px 5px;
+}
+
+.bs-white-rs {
+  box-shadow: 0px 0px 20px 0px #2f3247;
+}

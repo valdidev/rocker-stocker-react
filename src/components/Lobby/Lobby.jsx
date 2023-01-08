@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 
-import './lobby.css'
+import '../../index.css';
 
 export const Lobby = () => {
   const [flag, setFlag] = useState(true);
