@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./components/Home";
 import { Lobby } from "./components/Lobby/Lobby";
+import { MyProfile } from "./components/MyProfile";
+import { MySales } from "./components/MySales";
 import { AuthProvider } from "./contexts/AuthContext";
 import { NavbarLayout } from "./router/NavbarLayout";
 import { PrivateRoute } from "./router/PrivateRoute";
@@ -18,6 +20,8 @@ export const App = () => {
           <Route path="/private" element={<PrivateRoute />}>
             <Route element={<NavbarLayout />}>
               <Route index element={<Home />} />
+              <Route path="/private/mysales" element={<MySales />} />
+              <Route path="/private/myprofile" element={<MyProfile />} />
             </Route>
           </Route>
         </Routes>

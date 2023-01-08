@@ -1,3 +1,4 @@
+
 /* Global color styles */
 .bg-black-rs {
   background-color: #3d405b;
@@ -23,8 +24,8 @@
   height: 15vh;
 }
 
-.homeDesign {
-  background-color: blue;
+.contentDesign {
+  background-color: grey;
   height: 85vh;
 }
 
@@ -67,6 +68,11 @@
 }
 
 /* NAVBAR */
+.navbar_btn,
+.navbar_btn > svg {
+  color: #fff;
+  text-decoration: none;
+}
 
 .navbar_btn > svg {
   transition: color 200ms;

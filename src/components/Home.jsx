@@ -2,6 +2,6 @@ import '../index.css';
 
 export const Home = () => {
   return (
-    <div className="homeDesign">Home</div>
+    <div className="contentDesign">Home</div>
   )
 }
