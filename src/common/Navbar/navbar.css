@@ -1,0 +1,18 @@
+.navbar_btn,
+.navbar_btn > svg {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar_btn > svg {
+  transition: color 200ms;
+}
+
+.navbar_btn:hover {
+  cursor: pointer;
+}
+
+.navbar_btn:hover > svg {
+  color: #6ba368;
+  cursor: pointer;
+}

@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import AuthContext from "../contexts/AuthContext";
+import AuthContext from "../../contexts/AuthContext";
 import { IoStatsChart } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import { MdShoppingCart } from "react-icons/md";
 import { FaPowerOff } from "react-icons/fa";
-import "../index.css";
 import { Link } from "react-router-dom";
+
+import "../../index.css";
+
 
 export const Navbar = () => {
   const { handlerAuth } = useContext(AuthContext);
