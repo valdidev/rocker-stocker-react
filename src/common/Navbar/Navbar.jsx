@@ -7,7 +7,7 @@ import { FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import "../../index.css";
-
+import "./navbar.css";
 
 export const Navbar = () => {
   const { handlerAuth } = useContext(AuthContext);
