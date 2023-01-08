@@ -5,14 +5,14 @@ import AuthContext from "../../contexts/AuthContext";
 import "./signin-signup.css";
 
 export const SignIn = () => {
+  
   // API
   const trySignIn = async (body) => {
     try {
       let res = await apiCall("/auth/login", body, null, "post");
 
       if (res.status === 200) {
-        localStorage.setItem("RS_JWT", res.data.jwt);
-        let user = res.data.user
+        let user = res.data.user;
         handlerAuth(user);
       }
     } catch (error) {
