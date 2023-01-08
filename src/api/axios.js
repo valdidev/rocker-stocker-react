@@ -15,7 +15,7 @@ export const axiosGet = async (target, param, userJwt) => {
         let res = await axios.get(`${baseURL}/${target}/${param}`, {
             headers: { Authorization: "Bearer " + userJwt },
         });
-        console.log(res);
+        return res.data
     } catch (error) {
         console.error(error);
     }
