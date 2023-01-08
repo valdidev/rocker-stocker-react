@@ -9,7 +9,7 @@ export const Navbar = () => {
   // const { handlerAuth } = useContext(AuthContext)
 
   return (
-    <div className="navbarDesign text-white bg-black-dark-rs d-flex justify-content-around align-items-end">
+    <div className="navbarDesign text-white bg-black-dark-rs d-flex justify-content-around align-items-center">
       <div className="navbar_btn pb-3">
         <IoStatsChart size="3em" />
       </div>

@@ -7,7 +7,6 @@
   background-color: #2f3247;
 }
 
-
 /* Global color components */
 .btn-orange {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -26,7 +25,7 @@
 
 .homeDesign {
   background-color: blue;
-  height: 80vh;
+  height: 85vh;
 }
 
 #F37265
@@ -65,4 +64,19 @@
 
 .bs-white-rs {
   box-shadow: 0px 0px 20px 0px #2f3247;
+}
+
+/* NAVBAR */
+
+.navbar_btn {
+  transition: color 200ms;
+}
+
+.navbar_btn:hover {
+  cursor: pointer;
+}
+
+.navbar_btn:hover > svg {
+  color: #6ba368;
+  cursor: pointer;
 }
