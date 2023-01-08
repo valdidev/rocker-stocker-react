@@ -2,11 +2,11 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
 
-export const PrivateRoute = () => {
+export const AdminRoute = () => {
   const { user } = useContext(AuthContext);
 
-  if (!user) {
-    return <Navigate to="/" />;
+  if (user.rolId !== 1) {
+    return <Navigate to="/private" />;
   }
 
   return (

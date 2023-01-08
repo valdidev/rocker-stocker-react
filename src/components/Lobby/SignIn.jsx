@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
 import AuthContext from "../../contexts/AuthContext";
 
-import "./signin-signup.css";
+import '../../index.css';
 
 export const SignIn = () => {
   

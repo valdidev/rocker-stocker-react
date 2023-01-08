@@ -2,14 +2,15 @@ import { useState } from "react";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 
-import './lobby.css'
+import "./lobby.css";
+import "../../index.css";
 
 export const Lobby = () => {
   const [flag, setFlag] = useState(true);
 
   const switchFlag = () => {
-    setFlag(!flag)
-  }
+    setFlag(!flag);
+  };
 
   return (
     <div className="container-fluid bg-black-rs">
@@ -21,13 +22,13 @@ export const Lobby = () => {
             </h1>
             <div className="btn d-flex justify-content-center">
               <div
-                className="buttons-lobby btn btn-orange mx-2"
+                className="btn btn-warning mx-2"
                 onClick={() => setFlag(true)}
               >
                 SIGN IN
               </div>
               <div
-                className="buttons-lobby btn btn-orange mx-2"
+                className="btn btn-warning mx-2"
                 onClick={() => setFlag(false)}
               >
                 SIGN UP
