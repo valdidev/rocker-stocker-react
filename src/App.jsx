@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Admin } from "./components/Admin";
 import { AllSales } from "./components/AllSales";
 import { AllUsers } from "./components/AllUsers";
 import { Home } from "./components/Home";
@@ -26,7 +27,8 @@ export const App = () => {
               <Route path="/private/mysales" element={<MySales />} />
               <Route path="/private/myprofile" element={<MyProfile />} />
               <Route path="/private/admin" element={<AdminRoute />}>
-                <Route index element={<AllUsers />} />
+                <Route index element={<Admin />} />
+                <Route path="/private/admin/allusers" element={<AllUsers />} />
                 <Route path="/private/admin/allsales" element={<AllSales />} />
               </Route>
             </Route>
