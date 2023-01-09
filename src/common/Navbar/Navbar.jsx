@@ -27,7 +27,7 @@ export const Navbar = () => {
           <IoStatsChart size="3em" />
         </div>
       </Link>
-      <Link to="/private">
+      <Link to="/private/home/cart">
         <div className="navbar_btn pb-3">
           <MdShoppingCart size="3em" />
         </div>

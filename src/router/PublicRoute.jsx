@@ -6,7 +6,7 @@ export const PublicRoute = () => {
   const { user } = useContext(AuthContext);
 
   if (user) {
-    return <Navigate to="/private" />;
+    return <Navigate to="/private/home/cart" />;
   }
 
   return (
