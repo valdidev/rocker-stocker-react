@@ -8,13 +8,9 @@
 }
 
 /* Global sizes */
-.navbarDesign {
-  height: 15vh;
-}
-
 .contentDesign {
   background-color: grey;
-  height: 85vh;
+  height: 80vh;
 }
 
 /* COLORS

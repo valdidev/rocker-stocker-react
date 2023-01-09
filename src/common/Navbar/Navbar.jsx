@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import { IoStatsChart } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
-import { MdShoppingCart, MdAdminPanelSettings } from "react-icons/md";
+import { MdAdminPanelSettings, MdOutlinePointOfSale } from "react-icons/md";
 import { FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ export const Navbar = () => {
       </Link>
       <Link to="/private/home/cart">
         <div className="navbar_btn pb-3">
-          <MdShoppingCart size="3em" />
+          <MdOutlinePointOfSale size="3em" />
         </div>
       </Link>
       <Link to="/private/myprofile">

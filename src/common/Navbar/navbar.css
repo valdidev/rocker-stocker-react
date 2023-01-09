@@ -1,3 +1,7 @@
+.navbarDesign {
+  height: 15vh;
+}
+
 .navbar_btn,
 .navbar_btn > svg {
   color: #fff;
