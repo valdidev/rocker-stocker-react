@@ -13,31 +13,31 @@ export const Navbar = () => {
   const { handlerAuth, user } = useContext(AuthContext);
 
   return (
-    <div className="navbarDesign text-white bg-black-dark-rs d-flex justify-content-around align-items-center">
+    <div className="navbarDesign text-white bg-black-dark-rs d-flex justify-content-around align-items-center my-1">
       {user.rolId === 1 ? (
         <Link to="/private/admin">
-          <div className="navbar_btn pb-3">
+          <div className="navbar_btn align-self-start py-1">
             <MdAdminPanelSettings size="3em" />
           </div>
         </Link>
       ) : null}
 
       <Link to="/private/mysales">
-        <div className="navbar_btn pb-3">
+        <div className="navbar_btn align-self-start py-1">
           <IoStatsChart size="3em" />
         </div>
       </Link>
       <Link to="/private/home/cart">
-        <div className="navbar_btn pb-3">
+        <div className="navbar_btn align-self-start py-1">
           <MdOutlinePointOfSale size="3em" />
         </div>
       </Link>
       <Link to="/private/myprofile">
-        <div className="navbar_btn pb-3">
+        <div className="navbar_btn align-self-start py-1">
           <HiUser size="3em" />
         </div>
       </Link>
-      <div onClick={() => handlerAuth()} className="navbar_btn pb-3">
+      <div onClick={() => handlerAuth()} className="navbar_btn align-self-center py-1">
         <FaPowerOff color="red" size="3em" />
       </div>
     </div>

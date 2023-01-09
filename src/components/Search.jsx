@@ -1,9 +1,84 @@
-import '../index.css';
+import { useEffect, useState } from "react";
+import { AiFillFormatPainter, AiFillThunderbolt } from "react-icons/ai";
+import { TfiHummer } from "react-icons/tfi";
+import { axiosGet } from "../api/axios";
+import { Spinner } from "../common/Spinner";
+import "../index.css";
 
 export const Search = () => {
+  const [found, setFound] = useState(null);
+  const [category, setCategory] = useState("construction");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
+
+  const userJwt = userLogged.jwt;
+
+  useEffect(() => {
+    try {
+      setIsLoading(true);
+      axiosGet("article/category", category, userJwt).then((data) => {
+        setFound(data.data);
+        setIsLoading(false);
+      });
+    } catch (error) {
+      setFound(null);
+      setIsLoading(false);
+      console.log(error);
+    }
+  }, [category]);
+
   return (
-    <div className='contentDesign'>
-        <h2>Search</h2>
+    <div className="contentDesign">
+      <div className="d-flex flex-column align-items-center">
+        <div className="d-flex p-2">
+          <div
+            className="btn btn-success mx-1"
+            onClick={() => setCategory("construction")}
+          >
+            <TfiHummer size="2em" />
+          </div>
+          <div
+            className="btn btn-success mx-1"
+            onClick={() => setCategory("electricity")}
+          >
+            <AiFillThunderbolt size="2em" />
+          </div>
+          <div
+            className="btn btn-success mx-1"
+            onClick={() => setCategory("painting")}
+          >
+            <AiFillFormatPainter size="2em" />
+          </div>
+        </div>
+        <div className="d-flex"></div>
+      </div>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Price €</th>
+              <th>Units</th>
+            </tr>
+          </thead>
+          <tbody>
+            {found?.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <td data-label="name">{item.name}</td>
+                  <td data-label="brand">{item.brand}</td>
+                  <td data-label="price">{item.price}</td>
+                  <td data-label="units">{item.units}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
     </div>
-  )
-}
+  );
+};
