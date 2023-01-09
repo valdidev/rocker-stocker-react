@@ -1,7 +1,8 @@
 import { TYPES } from "../actions/shoppingAction";
 
 export const shoppingInitialState = {
-    cart: []
+    cart: [],
+    testeo: 'esto llega'
 };
 
 export const shoppingReducer = (state, action) => {

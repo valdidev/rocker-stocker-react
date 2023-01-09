@@ -1,14 +1,24 @@
-import { createContext, useReducer } from "react";
-import { shoppingInitialState, shoppingReducer } from "../reducers/shoppingReducer";
+import { createContext, useContext, useReducer } from "react";
+import {
+  shoppingInitialState,
+  shoppingReducer,
+} from "../reducers/shoppingReducer";
 
 const ShopContext = createContext();
 
-const ShopProvider = ({ children }) => {
-    
-    const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
-
-
-  return <ShopContext.Provider value={{}}>{children}</ShopContext.Provider>;
+// custom hook //TODO: refactor -> folder hooks
+const useShopContext = () => {
+  return useContext(ShopContext);
 };
 
-export { ShopProvider };
+const ShopProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
+
+  return (
+    <ShopContext.Provider value={{ cart: state.cart, testeo: state.testeo, dispatch }}>
+      {children}
+    </ShopContext.Provider>
+  );
+};
+
+export { ShopProvider, useShopContext };
