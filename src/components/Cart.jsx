@@ -1,10 +1,19 @@
+import { TYPES } from "../actions/shoppingAction";
 import { useShopContext } from "../contexts/ShopContext";
 import "../index.css";
 
 import "./cart.css";
 
 export const Cart = () => {
-  const { cart, total } = useShopContext();
+  const { cart, total, dispatch } = useShopContext();
+
+  const addToCart = (id) => {
+    console.log("add", id);
+      dispatch({
+        type: TYPES.ADD_ONE_TO_CART,
+        payload: id
+      });
+  };
 
   return (
     <div className="contentDesign">
@@ -14,7 +23,7 @@ export const Cart = () => {
         {cart?.map((item, index) => (
           <li key={index}>
             ARTICLE ID: {item.articleId}. X {item.quantity}
-            <button className="mx-2 my-1 btn btn-success" onClick={() => console.log('++++')}>+</button>
+            <button className="mx-2 my-1 btn btn-success" onClick={() => addToCart(item.articleId)}>+</button>
             <button className="mx-2 my-1 btn btn-warning" onClick={() => console.log('----!')}>-</button>
             <button className="mx-2 my-1 btn btn-danger" onClick={() => console.log('delete')}>x</button>
           </li>

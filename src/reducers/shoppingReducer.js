@@ -24,8 +24,6 @@ export const shoppingReducer = (state, action) => {
                     ...state,
                     cart: [...state.cart, newItem]
                 }
-
-
         }
 
         case TYPES.REMOVE_ONE_FROM_CART: {
