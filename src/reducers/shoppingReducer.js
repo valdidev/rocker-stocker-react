@@ -27,7 +27,20 @@ export const shoppingReducer = (state, action) => {
         }
 
         case TYPES.REMOVE_ONE_FROM_CART: {
+            let itemToDecrease = state.cart.find(item => item.articleId === action.payload)
 
+            return itemToDecrease.quantity > 1
+                ? {
+                    ...state,
+                    cart: state.cart.map(item => item.articleId === action.payload
+                        ? { ...item, quantity: item.quantity - 1 }
+                        : item
+                    )
+                }
+                : {
+                    ...state,
+                    cart: state.cart.filter(item => item.article !== action.payload)
+                }
         }
 
         case TYPES.REMOVE_ALL_FROM_CART: {
