@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { AiFillFormatPainter, AiFillThunderbolt } from "react-icons/ai";
 import { TfiHummer } from "react-icons/tfi";
+import { TYPES } from "../actions/shoppingAction";
 import { axiosGet } from "../api/axios";
 import { Spinner } from "../common/Spinner";
+import { useShopContext } from "../contexts/ShopContext";
 import "../index.css";
 
 export const Search = () => {
@@ -10,8 +12,18 @@ export const Search = () => {
   const [category, setCategory] = useState("construction");
   const [isLoading, setIsLoading] = useState(false);
 
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
+  const { dispatch } = useShopContext();
 
+  const addToCart = (id) => {
+    console.log("add", id);
+      dispatch({
+        type: TYPES.ADD_ONE_TO_CART,
+        payload: id
+      });
+  };
+
+  // TODO: refactor -> jwt in axios file
+  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
   const userJwt = userLogged.jwt;
 
   useEffect(() => {
@@ -63,6 +75,7 @@ export const Search = () => {
               <th>Brand</th>
               <th>Price €</th>
               <th>Units</th>
+              <th>ADD</th>
             </tr>
           </thead>
           <tbody>
@@ -73,6 +86,16 @@ export const Search = () => {
                   <td data-label="brand">{item.brand}</td>
                   <td data-label="price">{item.price}</td>
                   <td data-label="units">{item.units}</td>
+                  <td data-label="units">
+                    {
+                      <div
+                        className="btn btn-success"
+                        onClick={() => addToCart(item.id)}
+                      >
+                        +
+                      </div>
+                    }
+                  </td>
                 </tr>
               );
             })}
