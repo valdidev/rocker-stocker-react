@@ -8,17 +8,24 @@ export const shoppingInitialState = {
 export const shoppingReducer = (state, action) => {
     switch (action.type) {
         case TYPES.ADD_ONE_TO_CART: {
-            let newItem = { articleId: action.payload }
+            let newItem = { articleId: action.payload, quantity: 1 }
 
-            console.log({
-                ...state,
-                cart: [...state.cart, newItem]
-            })
+            let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
 
-            return {
-                ...state,
-                cart: [...state.cart, newItem]
-            }
+            return itemInCart
+                ? {
+                    ...state,
+                    cart: state.cart.map(item => item.articleId === newItem.articleId
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                    )
+                }
+                : {
+                    ...state,
+                    cart: [...state.cart, newItem]
+                }
+
+
         }
 
         case TYPES.REMOVE_ONE_FROM_CART: {
