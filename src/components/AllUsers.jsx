@@ -5,25 +5,39 @@ import { TbLock, TbLockOpen } from "react-icons/tb";
 import { FaUserAltSlash } from "react-icons/fa";
 
 import "../index.css";
+import Swal from "sweetalert2";
 
 export const AllUsers = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [flag, setFlag] = useState(false);
 
   const modifyUserActiveStatus = (userId) => {
     setIsLoading(true);
-    axiosPatch("user/active", userId)
-      .then((data) => console.log(data))
-      .finally(() => setFlag(!flag));
+    axiosPatch("user/active", userId).then((data) => console.log(data));
     setIsLoading(false);
   };
 
   const deleteUser = (userId) => {
     setIsLoading(true);
-    axiosDelete("user/delete", userId)
-      .then((data) => console.log(data))
-      .finally(() => setIsLoading(false));
+    axiosDelete("user/delete", userId).then((data) => console.log(data));
+    setIsLoading(false);
+  };
+
+  const confirmToDeleteUser = (user) => {
+    Swal.fire({
+      title: user.email,
+      text: "Do you want to delete the user?",
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: "#c1121f",
+      denyButtonText: "No",
+      denyButtonColor: "#edede9",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(user.id);
+      }
+    });
   };
 
   useEffect(() => {
@@ -38,7 +52,7 @@ export const AllUsers = () => {
       setIsLoading(false);
       console.log(error);
     }
-  }, [flag]);
+  }, []);
 
   if (!users || isLoading) {
     return <Spinner />;
@@ -79,7 +93,7 @@ export const AllUsers = () => {
               <td>
                 <div
                   className="btn btn-danger"
-                  onClick={() => deleteUser(user.id)}
+                  onClick={() => confirmToDeleteUser(user)}
                 >
                   <FaUserAltSlash />
                 </div>
