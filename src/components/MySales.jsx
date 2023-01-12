@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { axiosGet } from "../api/axios";
 import { NoSales } from "../common/NoSales";
 import { Spinner } from "../common/Spinner";
+import { BsInfoLg } from "react-icons/bs";
+import { CgDetailsMore } from "react-icons/cg";
 
 import "./mySales.css";
 
@@ -42,15 +44,19 @@ export const MySales = () => {
             <th>Sale #</th>
             <th>Date</th>
             <th>Total €</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>
           {sales?.map((sale) => {
             return (
-              <tr key={sale.id}>
-                <td data-label="Sale">{sale.id}</td>
-                <td data-label="Date">{sale.date}</td>
-                <td data-label="Total">{sale.total}</td>
+              <tr key={sale.id} className="cursor-pointer">
+                <td data-label="Sale #">{sale.id}</td>
+                <td data-label="Date">{sale.date.split("T")[0]}</td>
+                <td data-label="Total €">{sale.total}</td>
+                <td data-label="Details">
+                  <div className="btn btn-info" onClick={() => console.log("details")}><CgDetailsMore /></div>
+                </td>
               </tr>
             );
           })}

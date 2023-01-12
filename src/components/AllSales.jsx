@@ -43,7 +43,6 @@ export const AllSales = () => {
         {sales?.map((sale) => {
           return (
             <tr key={sale.id}>
-              {/* <td data-label="id">{user.id}</td> */}
               <td data-label="saleId">{sale.id}</td>
               <td data-label="date">{sale.date.split("T")[0]}</td>
               <td data-label="employeeId">{sale.userId}</td>
