@@ -1,30 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TYPES } from "../actions/shoppingAction";
-import { axiosGet } from "../api/axios";
 import { Spinner } from "../common/Spinner";
 import { useShopContext } from "../contexts/ShopContext";
-import {
-  FaTrashAlt,
-  FaArrowCircleUp,
-  FaArrowCircleDown,
-  FaWindowClose,
-} from "react-icons/fa";
-
+import { FaTrashAlt, FaWindowClose } from "react-icons/fa";
+import { MdDone } from "react-icons/md";
 import {
   BsFillArrowUpSquareFill,
   BsFillArrowDownSquareFill,
 } from "react-icons/bs";
 
-import { MdDone } from "react-icons/md";
-
 import "../index.css";
 import "./cart.css";
-
-const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-const userJwt = userLogged.jwt;
+import { EmptyCart } from "./EmptyCart";
 
 export const Cart = () => {
-  const { cart, total, dispatch } = useShopContext();
+  const { cart, total, products, dispatch } = useShopContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const addToCart = (id) => {
@@ -48,26 +38,12 @@ export const Cart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
 
-  const products = [];
-
-  const getCurrentProducts = () => {
-    cart?.map((item) => {
-      axiosGet("article/id", item.articleId, userJwt).then((data) => {
-        products.push(data.data);
-      });
-    });
-  };
-
-  useEffect(() => {
-    setIsLoading(true);
-    getCurrentProducts();
-    setIsLoading(false);
-  }, []);
-
   if (isLoading) return <Spinner />;
 
+  if (products?.length === 0) return <EmptyCart />;
+
   return (
-    <main className="container-fluid">
+    <main className="container-fluid contentDesign bg-secondary p-1">
       <div className="row m-1">
         <div className="col-12 col-md-8">
           <table className="table text-white">
@@ -79,50 +55,52 @@ export const Cart = () => {
                 <th>Amount €</th>
               </tr>
             </thead>
-            <tbody>
-              <tr className="bg-secondary">
-                <td data-label="Name" className="align-middle">
-                  Cemento
-                </td>
-                <td data-label="Price" className="align-middle">
-                  3
-                </td>
-                <td data-label="Units" className="align-middle">
-                  <tr className="d-flex justify-content-center">
-                    <td className="bg-white">
-                      <span onClick={() => console.log("add one")}>
-                        <BsFillArrowUpSquareFill
-                          color="green"
-                          cursor="pointer"
-                          size="1.5em"
-                        />
-                      </span>
+            <tbody className="text-black">
+              {cart?.map((product) => (
+                <tr key={product.id} className="bg-secondary">
+                  <td data-label="Name" className="align-middle bg-white">
+                    {product.name}
+                  </td>
+                  <td data-label="Price" className="align-middle bg-white">
+                    {product.price}
+                  </td>
+                  <td data-label="Units" className="align-middle bg-white">
+                    <div className="d-flex justify-content-evenly">
+                      <div className="bg-white">
+                        <span onClick={() => console.log("add one")}>
+                          <BsFillArrowUpSquareFill
+                            color="green"
+                            cursor="pointer"
+                            size="1.5em"
+                          />
+                        </span>
 
-                      <span className="p-1 text-black fw-bold">25</span>
-                      <span onClick={() => console.log("remove one")}>
-                        <BsFillArrowDownSquareFill
-                          color="red"
-                          cursor="pointer"
+                        <span className="p-1 fw-bold">{product.quantity}</span>
+                        <span onClick={() => console.log("remove one")}>
+                          <BsFillArrowDownSquareFill
+                            color="red"
+                            cursor="pointer"
+                            size="1.5em"
+                          />
+                        </span>
+                      </div>
+                      <div
+                        className="text-center bg-white"
+                        onClick={() => console.log("remove product")}
+                      >
+                        <FaWindowClose
                           size="1.5em"
+                          cursor="pointer"
+                          color="red"
                         />
-                      </span>
-                    </td>
-                    <td
-                      className="text-center bg-white"
-                      onClick={() => console.log("remove product")}
-                    >
-                      <FaWindowClose
-                        size="1.5em"
-                        cursor="pointer"
-                        color="red"
-                      />
-                    </td>
-                  </tr>
-                </td>
-                <td>
-                  250
-                </td>
-              </tr>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-label="Amount" className="align-middle bg-white">
+                    {product.price * product.quantity}
+                  </td>
+                </tr>
+              ))}
             </tbody>
             <tfoot>
               <tr className="bg-black-rs">
@@ -145,7 +123,7 @@ export const Cart = () => {
           <div className="">
             <div
               className="btn btn-success mx-1"
-              onClick={() => console.log("selling...")}
+              onClick={() => console.log("selling...", products)}
             >
               <MdDone size="2em" />
             </div>
