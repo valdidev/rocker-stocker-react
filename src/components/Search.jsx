@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { AiFillFormatPainter, AiFillThunderbolt } from "react-icons/ai";
 import { TfiHummer } from "react-icons/tfi";
+import { FaCartPlus } from "react-icons/fa";
 import { TYPES } from "../actions/shoppingAction";
 import { axiosGet } from "../api/axios";
 import { Spinner } from "../common/Spinner";
 import { useShopContext } from "../contexts/ShopContext";
+
 import "../index.css";
 
 export const Search = () => {
@@ -15,11 +17,11 @@ export const Search = () => {
   const { dispatch } = useShopContext();
 
   const addToCart = (item) => {
-    console.log(item)
-      dispatch({
-        type: TYPES.ADD_ONE_TO_CART,
-        payload: item
-      });
+    console.log(item);
+    dispatch({
+      type: TYPES.ADD_ONE_TO_CART,
+      payload: item,
+    });
   };
 
   // TODO: refactor -> jwt in axios file
@@ -92,7 +94,7 @@ export const Search = () => {
                         className="btn btn-success"
                         onClick={() => addToCart(item)}
                       >
-                        +
+                        <FaCartPlus />
                       </div>
                     }
                   </td>
