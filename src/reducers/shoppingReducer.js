@@ -44,7 +44,10 @@ export const shoppingReducer = (state, action) => {
         }
 
         case TYPES.REMOVE_ALL_FROM_CART: {
-            console.log("remove all from cart")
+            return {
+                ...state,
+                cart: state.cart.filter(item => item.articleId !== action.payload)
+            }
         }
 
         case TYPES.CLEAR_CART: {
