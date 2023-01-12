@@ -35,6 +35,17 @@ export const axiosPatch = async (target, param) => {
     }
 };
 
+export const axiosDelete = async (target, param) => {
+    try {
+        let res = await axios.delete(`${baseURL}/${target}/${param}`, {
+            headers: { Authorization: "Bearer " + userJwt },
+        });
+        return res.data
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 axios.interceptors.response.use(
     (response) => {
         return response

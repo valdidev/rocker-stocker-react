@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { axiosGet, axiosPatch } from "../api/axios";
+import { axiosDelete, axiosGet, axiosPatch } from "../api/axios";
 import { Spinner } from "../common/Spinner";
 import { TbLock, TbLockOpen } from "react-icons/tb";
 import { FaUserAltSlash } from "react-icons/fa";
@@ -17,6 +17,13 @@ export const AllUsers = () => {
       .then((data) => console.log(data))
       .finally(() => setFlag(!flag));
     setIsLoading(false);
+  };
+
+  const deleteUser = (userId) => {
+    setIsLoading(true);
+    axiosDelete("user/delete", userId)
+      .then((data) => console.log(data))
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -70,7 +77,12 @@ export const AllUsers = () => {
                 </div>
               </td>
               <td>
-                <div className="btn btn-danger"><FaUserAltSlash /></div>
+                <div
+                  className="btn btn-danger"
+                  onClick={() => deleteUser(user.id)}
+                >
+                  <FaUserAltSlash />
+                </div>
               </td>
             </tr>
           );
