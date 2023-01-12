@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { axiosGet, axiosPatch } from "../api/axios";
 import { Spinner } from "../common/Spinner";
-import { TbLock } from "react-icons/tb";
+import { TbLock, TbLockOpen } from "react-icons/tb";
+import { FaUserAltSlash } from "react-icons/fa";
+
 import "../index.css";
-import axios from "axios";
 
 export const AllUsers = () => {
   const [users, setUsers] = useState(null);
@@ -40,7 +41,6 @@ export const AllUsers = () => {
     <table className="table">
       <thead>
         <tr>
-          {/* <th>Id #</th> */}
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>
@@ -52,7 +52,6 @@ export const AllUsers = () => {
         {users?.map((user) => {
           return (
             <tr key={user.id}>
-              {/* <td data-label="id">{user.id}</td> */}
               <td data-label="name">{user.name}</td>
               <td data-label="email">{user.email}</td>
               <td data-label="phone">{user.phone}</td>
@@ -62,11 +61,16 @@ export const AllUsers = () => {
               <td data-label="active">{user.isActive ? "Active" : "Block"}</td>
               <td data-label="action">
                 <div
-                  className="btn btn-info"
+                  className={`btn ${
+                    user.isActive ? "btn-success" : "btn-warning"
+                  }`}
                   onClick={() => modifyUserActiveStatus(user.id)}
                 >
-                  <TbLock />
+                  {user.isActive ? <TbLockOpen /> : <TbLock />}
                 </div>
+              </td>
+              <td>
+                <div className="btn btn-danger"><FaUserAltSlash /></div>
               </td>
             </tr>
           );
