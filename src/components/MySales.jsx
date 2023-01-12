@@ -6,19 +6,20 @@ import { BsInfoLg } from "react-icons/bs";
 import { CgDetailsMore } from "react-icons/cg";
 
 import "./mySales.css";
+import { useNavigate } from "react-router-dom";
 
 export const MySales = () => {
   const [sales, setSales] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
+  const navigate = useNavigate();
 
-  const userJwt = userLogged.jwt;
+  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
 
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("sale/mysales", userLogged.id, userJwt).then((data) => {
+      axiosGet("sale/mysales", userLogged.id).then((data) => {
         setSales(data.data);
         setIsLoading(false);
       });
@@ -55,7 +56,12 @@ export const MySales = () => {
                 <td data-label="Date">{sale.date.split("T")[0]}</td>
                 <td data-label="Total €">{sale.total}</td>
                 <td data-label="Details">
-                  <div className="btn btn-info" onClick={() => console.log("details")}><CgDetailsMore /></div>
+                  <div
+                    className="btn btn-info"
+                    onClick={() => navigate(`/private/sale/details/${sale.id}`)}
+                  >
+                    <CgDetailsMore />
+                  </div>
                 </td>
               </tr>
             );
