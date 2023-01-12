@@ -23,6 +23,10 @@ export const Cart = () => {
     }
   };
 
+  const clearCart = () => {
+    dispatch({ type: TYPES.CLEAR_CART });
+  };
+
   return (
     <div className="contentDesign">
       <h1>CART</h1>
@@ -59,10 +63,7 @@ export const Cart = () => {
       >
         SELL
       </button>
-      <button
-        className="btn mx-2 btn-danger"
-        onClick={() => console.log("emptying...")}
-      >
+      <button className="btn mx-2 btn-danger" onClick={clearCart}>
         EMPTY
       </button>
     </div>

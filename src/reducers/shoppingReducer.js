@@ -25,7 +25,7 @@ export const shoppingReducer = (state, action) => {
                     cart: [...state.cart, newItem]
                 }
         }
-        // TODO: bug, does not remove product when 1 remains
+
         case TYPES.REMOVE_ONE_FROM_CART: {
             let itemToDecrease = state.cart.find(item => item.articleId === action.payload)
 
@@ -48,7 +48,7 @@ export const shoppingReducer = (state, action) => {
         }
 
         case TYPES.CLEAR_CART: {
-
+            return shoppingInitialState;
         }
 
         default: return state;
