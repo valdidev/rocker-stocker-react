@@ -16,7 +16,11 @@ export const Cart = () => {
   };
 
   const deleteFromCart = (id, all = false) => {
-    console.log(id + " " + all);
+    if (all) {
+      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
+    } else {
+      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+    }
   };
 
   return (
