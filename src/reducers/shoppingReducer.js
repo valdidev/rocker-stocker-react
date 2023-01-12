@@ -2,14 +2,14 @@ import { TYPES } from "../actions/shoppingAction";
 
 export const shoppingInitialState = {
     cart: [],
-    total: 0,
-    products: []
+    total: 0
 };
 
 export const shoppingReducer = (state, action) => {
     switch (action.type) {
         case TYPES.ADD_ONE_TO_CART: {
-            let newItem = { articleId: action.payload, name: action.item.name, price: action.item.price, quantity: 1 }
+            console.log(action);
+            let newItem = { articleId: action.payload.id, name: action.payload.name, price: action.payload.price, quantity: 1 }
 
             let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
 
@@ -23,8 +23,7 @@ export const shoppingReducer = (state, action) => {
                 }
                 : {
                     ...state,
-                    cart: [...state.cart, newItem],
-                    products: [...state.products, action.item]
+                    cart: [...state.cart, newItem]
                 }
         }
 

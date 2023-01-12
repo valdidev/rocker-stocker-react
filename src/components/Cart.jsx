@@ -14,16 +14,15 @@ import "./cart.css";
 import { EmptyCart } from "./EmptyCart";
 
 export const Cart = () => {
-  const { cart, total, products, dispatch } = useShopContext();
+  const { cart, total, dispatch } = useShopContext();
   const [isLoading, setIsLoading] = useState(false);
 
-  const addToCart = (id) => {
-    console.log("add", id);
+  const addToCart = (item) => {
+    console.log(item);
     dispatch({
       type: TYPES.ADD_ONE_TO_CART,
-      payload: id,
+      payload: item,
     });
-    console.log(cart);
   };
 
   const deleteFromCart = (id, all = false) => {
@@ -40,7 +39,7 @@ export const Cart = () => {
 
   if (isLoading) return <Spinner />;
 
-  if (products?.length === 0) return <EmptyCart />;
+  if (cart?.length === 0) return <EmptyCart />;
 
   return (
     <main className="container-fluid contentDesign bg-secondary p-1">
@@ -67,7 +66,11 @@ export const Cart = () => {
                   <td data-label="Units" className="align-middle bg-white">
                     <div className="d-flex justify-content-evenly">
                       <div className="bg-white">
-                        <span onClick={() => console.log("add one")}>
+                        <span
+                          onClick={() =>
+                            addToCart({ ...product, id: product.articleId })
+                          }
+                        >
                           <BsFillArrowUpSquareFill
                             color="green"
                             cursor="pointer"

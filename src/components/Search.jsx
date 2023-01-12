@@ -14,12 +14,11 @@ export const Search = () => {
 
   const { dispatch } = useShopContext();
 
-  const addToCart = (id, item) => {
-    console.log("add", id, item);
+  const addToCart = (item) => {
+    console.log(item)
       dispatch({
         type: TYPES.ADD_ONE_TO_CART,
-        payload: id,
-        item
+        payload: item
       });
   };
 
@@ -91,7 +90,7 @@ export const Search = () => {
                     {
                       <div
                         className="btn btn-success"
-                        onClick={() => addToCart(item.id, item)}
+                        onClick={() => addToCart(item)}
                       >
                         +
                       </div>
