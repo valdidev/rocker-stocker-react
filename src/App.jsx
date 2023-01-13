@@ -9,6 +9,7 @@ import { Lobby } from "./components/Lobby/Lobby";
 import { MyProfile } from "./components/MyProfile";
 import { MySales } from "./components/MySales";
 import { Search } from "./components/Search";
+import { Transaction } from "./components/Transaction";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ShopProvider } from "./contexts/ShopContext";
 import { AdminRoute } from "./router/AdminRoute";
@@ -35,6 +36,10 @@ export const App = () => {
                 <Route path="/private/home" element={<Home />}>
                   <Route element={<SalebarLayout />}>
                     <Route path="/private/home/cart" element={<Cart />} />
+                    <Route
+                      path="/private/home/cart/transaction"
+                      element={<Transaction />}
+                    />
                     <Route path="/private/home/search" element={<Search />} />
                   </Route>
                 </Route>
@@ -42,7 +47,10 @@ export const App = () => {
                 <Route path="/private/mysales" element={<MySales />} />
                 <Route path="/private/myprofile" element={<MyProfile />} />
 
-                <Route path="/private/sale/details/:saleId" element={<SaleDetails />} />
+                <Route
+                  path="/private/sale/details/:saleId"
+                  element={<SaleDetails />}
+                />
 
                 {/* Private route + admin role */}
                 <Route path="/private/admin" element={<AdminRoute />}>
@@ -58,7 +66,6 @@ export const App = () => {
                 </Route>
               </Route>
             </Route>
-            
           </Routes>
         </BrowserRouter>
       </ShopProvider>

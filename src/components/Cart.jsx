@@ -12,10 +12,14 @@ import {
 import "../index.css";
 import "./cart.css";
 import { EmptyCart } from "./EmptyCart";
+import { Transaction } from "./Transaction";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { cart, total, dispatch } = useShopContext();
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const addToCart = (item) => {
     console.log(item);
@@ -36,6 +40,10 @@ export const Cart = () => {
 
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
+  };
+
+  const sendTransaction = () => {
+    navigate("/private/home/cart/transaction");
   };
 
   if (isLoading) return <Spinner />;
@@ -110,10 +118,7 @@ export const Cart = () => {
             <tfoot>
               <tr className="bg-black-rs">
                 <th colSpan={4}>
-                  <div
-                    className="btn btn-danger"
-                    onClick={() => clearCart()}
-                  >
+                  <div className="btn btn-danger" onClick={() => clearCart()}>
                     <FaTrashAlt />
                   </div>
                 </th>
@@ -126,11 +131,13 @@ export const Cart = () => {
             <h4>Total: 250 €</h4>
           </div>
           <div className="">
-            <div
-              className="btn btn-success mx-1"
-              onClick={() => console.log("selling...", products)}
-            >
-              <MdDone size="2em" />
+            <div className="btn btn-success mx-1">
+              <Link
+                to="/private/home/cart/transaction"
+                state={{ unclosedCart: cart }}
+              >
+                <MdDone size="2em" />
+              </Link>
             </div>
           </div>
         </div>
