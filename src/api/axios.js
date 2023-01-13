@@ -24,6 +24,17 @@ export const axiosGet = async (target, param) => {
     }
 };
 
+export const axiosPost = async (target, param, body) => {
+    try {
+        let res = await axios.post(`${baseURL}/${target}/${param}`, body, {
+            headers: { Authorization: "Bearer " + userJwt },
+        });
+        return res.data
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const axiosPatch = async (target, param) => {
     try {
         let res = await axios.patch(`${baseURL}/${target}/${param}`, "", {

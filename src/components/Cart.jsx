@@ -2,8 +2,7 @@ import { useState } from "react";
 import { TYPES } from "../actions/shoppingAction";
 import { Spinner } from "../common/Spinner";
 import { useShopContext } from "../contexts/ShopContext";
-import { FaTrashAlt, FaWindowClose } from "react-icons/fa";
-import { MdDone } from "react-icons/md";
+import { FaTrashAlt, FaWindowClose, FaArrowRight } from "react-icons/fa";
 import {
   BsFillArrowUpSquareFill,
   BsFillArrowDownSquareFill,
@@ -12,7 +11,6 @@ import {
 import "../index.css";
 import "./cart.css";
 import { EmptyCart } from "./EmptyCart";
-import { Transaction } from "./Transaction";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Cart = () => {
@@ -132,11 +130,8 @@ export const Cart = () => {
           </div>
           <div className="">
             <div className="btn btn-success mx-1">
-              <Link
-                to="/private/home/cart/transaction"
-                state={{ unclosedCart: cart }}
-              >
-                <MdDone size="2em" />
+              <Link to="/private/home/cart/transaction" state={cart}>
+                <FaArrowRight size="2em" color="#fff" />
               </Link>
             </div>
           </div>
