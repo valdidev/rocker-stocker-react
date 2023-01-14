@@ -32,7 +32,7 @@ export const EditProfile = () => {
     axiosPatch("user/modify", "", bodyToUpdateProfile)
       .then((data) => console.log(data))
       .catch((error) => console.log(error))
-      .finally(() => navigate("/private/myprofile"));
+      .finally(() => navigate(-1));
   };
 
   return (

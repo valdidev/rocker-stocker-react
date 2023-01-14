@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { axiosDelete, axiosGet, axiosPatch } from "../api/axios";
 import { Spinner } from "../common/Spinner";
 import { TbLock, TbLockOpen } from "react-icons/tb";
-import { FaUserAltSlash } from "react-icons/fa";
+import { FaUserAltSlash, FaUserEdit } from "react-icons/fa";
 
 import "../index.css";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export const AllUsers = () => {
   const [users, setUsers] = useState(null);
@@ -67,20 +68,34 @@ export const AllUsers = () => {
           <th>Phone</th>
           <th>Position</th>
           <th>Active</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {users?.map((user) => {
           return (
             <tr key={user.id}>
-              <td data-label="name">{user.name}</td>
-              <td data-label="email">{user.email}</td>
-              <td data-label="phone">{user.phone}</td>
-              <td data-label="position">
-                {user.rolId === 1 ? "Manager" : "Employee"}
-              </td>
-              <td data-label="active">{user.isActive ? "Active" : "Block"}</td>
-              <td data-label="action">
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.phone}</td>
+              <td>{user.rolId === 1 ? "Manager" : "Employee"}</td>
+              <td>{user.isActive ? "Active" : "Block"}</td>
+              <td>
+                <div className="btn btn-info mx-1">
+                  <Link
+                    to="/private/myprofile/edit"
+                    state={{
+                      editableProfile: {
+                        name: user.name,
+                        surname: user.surname,
+                        phone: user.phone,
+                        email: user.email,
+                      },
+                    }}
+                  >
+                    <FaUserEdit className="text-white" />
+                  </Link>
+                </div>
                 <div
                   className={`btn ${
                     user.isActive ? "btn-success" : "btn-warning"
@@ -89,10 +104,8 @@ export const AllUsers = () => {
                 >
                   {user.isActive ? <TbLockOpen /> : <TbLock />}
                 </div>
-              </td>
-              <td>
                 <div
-                  className="btn btn-danger"
+                  className="btn btn-danger mx-1"
                   onClick={() => confirmToDeleteUser(user)}
                 >
                   <FaUserAltSlash />
