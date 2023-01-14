@@ -26,7 +26,6 @@ export const MySales = () => {
     } catch (error) {
       setSales(null);
       setIsLoading(false);
-      console.log(error);
     }
   }, []);
 

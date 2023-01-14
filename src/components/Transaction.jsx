@@ -33,7 +33,6 @@ export const Transaction = () => {
       setIsReady(true);
       sendBody(finalBody);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
     }
   };

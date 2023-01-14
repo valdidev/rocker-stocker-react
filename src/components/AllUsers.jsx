@@ -51,7 +51,6 @@ export const AllUsers = () => {
     } catch (error) {
       setUsers(null);
       setIsLoading(false);
-      console.log(error);
     }
   }, []);
 

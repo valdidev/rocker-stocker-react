@@ -17,7 +17,6 @@ export const Search = () => {
   const { dispatch } = useShopContext();
 
   const addToCart = (item) => {
-    console.log(item);
     dispatch({
       type: TYPES.ADD_ONE_TO_CART,
       payload: item,
@@ -38,7 +37,6 @@ export const Search = () => {
     } catch (error) {
       setFound(null);
       setIsLoading(false);
-      console.log(error);
     }
   }, [category]);
 

@@ -20,7 +20,6 @@ export const Cart = () => {
   const navigate = useNavigate();
 
   const addToCart = (item) => {
-    console.log(item);
     dispatch({
       type: TYPES.ADD_ONE_TO_CART,
       payload: item,
@@ -28,7 +27,6 @@ export const Cart = () => {
   };
 
   const deleteFromCart = (id, all = false) => {
-    console.log(id);
     if (all) {
       dispatch({ type: TYPES.REMOVE_PRODUCT_FROM_CART, payload: id });
     } else {
@@ -62,7 +60,6 @@ export const Cart = () => {
               </tr>
             </thead>
             <tbody className="text-black">
-              {console.log(cart)}
               {cart?.map((product) => (
                 <tr key={product.id} className="bg-secondary">
                   <td data-label="Name" className="align-middle bg-white">

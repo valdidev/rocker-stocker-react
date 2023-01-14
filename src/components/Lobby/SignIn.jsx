@@ -16,7 +16,6 @@ export const SignIn = () => {
         handlerAuth(user);
       }
     } catch (error) {
-      console.log(error);
       setUserError(error.response.data.message);
     }
   };

@@ -8,7 +8,6 @@ export const shoppingInitialState = {
 export const shoppingReducer = (state, action) => {
     switch (action.type) {
         case TYPES.ADD_ONE_TO_CART: {
-            console.log(action);
             let newItem = { articleId: action.payload.id, name: action.payload.name, price: action.payload.price, quantity: 1 }
 
             let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
