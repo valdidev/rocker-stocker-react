@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosPatch } from "../api/axios";
 import { ButtonSpinner } from "../common/ButtonSpinner";
+import { MdDone } from "react-icons/md";
 
 export const EditProfile = () => {
   const { state } = useLocation();
@@ -19,8 +20,8 @@ export const EditProfile = () => {
   };
 
   const handleSubmit = (e) => {
-    setIsLoading(true)
-    
+    setIsLoading(true);
+
     e.preventDefault();
     let bodyToUpdateProfile = {
       name: user.name,
@@ -84,7 +85,7 @@ export const EditProfile = () => {
 
         {!isLoading ? (
           <button type="submit" className="btn btn-primary">
-            CONFIRM
+            <MdDone />
           </button>
         ) : (
           <ButtonSpinner />

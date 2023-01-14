@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MdDone, MdDoneAll } from "react-icons/md";
+import { MdDoneAll } from "react-icons/md";
 import { ButtonSpinner } from "../common/ButtonSpinner";
 import "../index.css";
 import "./transaction.css";

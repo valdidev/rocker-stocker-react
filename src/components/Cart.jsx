@@ -7,11 +7,10 @@ import {
   BsFillArrowUpSquareFill,
   BsFillArrowDownSquareFill,
 } from "react-icons/bs";
-
-import "../index.css";
-import "./cart.css";
 import { EmptyCart } from "./EmptyCart";
 import { Link, useNavigate } from "react-router-dom";
+import "../index.css";
+import "./cart.css";
 
 export const Cart = () => {
   const { cart, total, dispatch } = useShopContext();
@@ -123,7 +122,7 @@ export const Cart = () => {
         </div>
         <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center">
           <div className="d-flex flex-column align-items-center justify-content-center">
-            <h4>Total: 250 €</h4>
+            <h4>Total: {total} €</h4>
           </div>
           <div className="">
             <div className="btn btn-success mx-1">

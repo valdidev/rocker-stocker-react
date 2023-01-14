@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosGet } from "../api/axios";
 import { Spinner } from "../common/Spinner";
+import { FaUserEdit } from "react-icons/fa";
+
 import "../index.css";
 
 export const MyProfile = () => {
@@ -57,11 +59,13 @@ export const MyProfile = () => {
                 name: profile.name,
                 surname: profile.surname,
                 phone: profile.phone,
-                email: profile.email
+                email: profile.email,
               },
             }}
           >
-            <div className="btn btn-info">EDIT</div>
+            <div className="btn btn-info">
+              <FaUserEdit />
+            </div>
           </Link>
         </div>
       </div>
