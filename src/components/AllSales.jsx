@@ -36,7 +36,7 @@ export const AllSales = () => {
   return (
     <table className="table">
       <thead>
-        <tr>
+        <tr className="bg-black-rs">
           <th>Sale #</th>
           <th>Date</th>
           <th>Employee #</th>

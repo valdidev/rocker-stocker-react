@@ -4,6 +4,7 @@ import { Admin } from "./components/Admin";
 import { AllSales } from "./components/AllSales";
 import { AllUsers } from "./components/AllUsers";
 import { Cart } from "./components/Cart";
+import { EditProfile } from "./components/EditProfile";
 import { Home } from "./components/Home";
 import { Lobby } from "./components/Lobby/Lobby";
 import { MyProfile } from "./components/MyProfile";
@@ -46,6 +47,7 @@ export const App = () => {
 
                 <Route path="/private/mysales" element={<MySales />} />
                 <Route path="/private/myprofile" element={<MyProfile />} />
+                <Route path="/private/myprofile/edit" element={<EditProfile />} />
 
                 <Route
                   path="/private/sale/details/:saleId"

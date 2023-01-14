@@ -61,7 +61,7 @@ export const AllUsers = () => {
   return (
     <table className="table">
       <thead>
-        <tr>
+        <tr className="bg-black-rs">
           <th>Name</th>
           <th>Email</th>
           <th>Phone</th>

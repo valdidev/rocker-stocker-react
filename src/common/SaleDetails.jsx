@@ -24,9 +24,9 @@ export const SaleDetails = () => {
   return (
     <div className="contentDesign">
       <h1 className="text-center">Details of sale # {saleId}</h1>
-      <table className="table">
+      <table className="table container">
         <thead>
-          <tr>
+          <tr className="bg-info">
             <th>Article #</th>
             <th>Name</th>
             <th>Price €</th>

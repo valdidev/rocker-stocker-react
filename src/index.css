@@ -7,6 +7,20 @@
   background-color: #2f3247;
 }
 
+.border-dark-rs {
+  border: 1px solid #2f3247;
+  box-shadow: 5px 5px 5px #2f3247;
+}
+
+.border-white-rs {
+  border: 1px solid #fff;
+  box-shadow: 5px 5px 5px #2f3247;
+}
+
+.st-back-rs {
+  text-shadow: #2f3247 5px 5px 5px;
+}
+
 /* Global sizes */
 .contentDesign {
   background-color: grey;

@@ -35,9 +35,9 @@ export const axiosPost = async (target, param, body) => {
     }
 };
 
-export const axiosPatch = async (target, param) => {
+export const axiosPatch = async (target, param, body) => {
     try {
-        let res = await axios.patch(`${baseURL}/${target}/${param}`, "", {
+        let res = await axios.patch(`${baseURL}/${target}/${param}`, body, {
             headers: { Authorization: "Bearer " + userJwt },
         });
         return res.data

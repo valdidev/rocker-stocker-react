@@ -37,11 +37,11 @@ export const MySales = () => {
   }
 
   return (
-    <div className="contentDesign">
+    <div className="contentDesign container">
       <h1 className="text-center">SALES - {userLogged.name.toUpperCase()}</h1>
       <table className="table">
         <thead>
-          <tr>
+          <tr className="bg-black-rs">
             <th>Sale #</th>
             <th>Date</th>
             <th>Total €</th>
