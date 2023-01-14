@@ -23,14 +23,10 @@ export const Search = () => {
     });
   };
 
-  // TODO: refactor -> jwt in axios file
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-  const userJwt = userLogged.jwt;
-
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("article/category", category, userJwt).then((data) => {
+      axiosGet("article/category", category).then((data) => {
         setFound(data.data);
         setIsLoading(false);
       });
@@ -68,7 +64,7 @@ export const Search = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <table className="table">
+        <table className="table container">
           <thead>
             <tr>
               <th>Name</th>
@@ -82,11 +78,11 @@ export const Search = () => {
             {found?.map((item) => {
               return (
                 <tr key={item.id}>
-                  <td data-label="name">{item.name}</td>
-                  <td data-label="brand">{item.brand}</td>
-                  <td data-label="price">{item.price}</td>
-                  <td data-label="units">{item.units}</td>
-                  <td data-label="units">
+                  <td data-label="Name">{item.name}</td>
+                  <td data-label="Brand">{item.brand}</td>
+                  <td data-label="Price">{item.price}</td>
+                  <td data-label="Units">{item.units}</td>
+                  <td data-label="Add">
                     {
                       <div
                         className="btn btn-success"
