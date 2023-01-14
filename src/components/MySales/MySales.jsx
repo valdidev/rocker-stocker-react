@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { axiosGet } from "../api/axios";
-import { NoSales } from "../common/NoSales";
-import { Spinner } from "../common/Spinner";
-import { BsInfoLg } from "react-icons/bs";
+import { NoSales } from "../../common/NoSales";
+import { axiosGet } from "../../api/axios";
+import { Spinner } from "../../common/Spinner";
 import { CgDetailsMore } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 import "./mySales.css";
-import { useNavigate } from "react-router-dom";
 
 export const MySales = () => {
   const [sales, setSales] = useState(null);

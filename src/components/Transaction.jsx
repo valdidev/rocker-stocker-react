@@ -2,15 +2,13 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdDoneAll } from "react-icons/md";
 import { ButtonSpinner } from "../common/ButtonSpinner";
-import "../index.css";
-import "./transaction.css";
 import { axiosPost } from "../api/axios";
 import { useShopContext } from "../contexts/ShopContext";
 import { TYPES } from "../actions/shoppingAction";
+import "../index.css";
 
 export const Transaction = () => {
   const { dispatch } = useShopContext();
-
   const { state } = useLocation();
 
   const navigate = useNavigate();

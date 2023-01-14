@@ -8,7 +8,7 @@ import { EditProfile } from "./components/EditProfile";
 import { Home } from "./components/Home";
 import { Lobby } from "./components/Lobby/Lobby";
 import { MyProfile } from "./components/MyProfile";
-import { MySales } from "./components/MySales";
+import { MySales } from "./components/MySales/MySales";
 import { Search } from "./components/Search";
 import { Transaction } from "./components/Transaction";
 import { AuthProvider } from "./contexts/AuthContext";

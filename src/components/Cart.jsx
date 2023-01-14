@@ -10,7 +10,6 @@ import {
 import { EmptyCart } from "./EmptyCart";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
-import "./cart.css";
 
 export const Cart = () => {
   const { cart, total, dispatch } = useShopContext();
