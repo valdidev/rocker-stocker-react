@@ -6,7 +6,6 @@ export const ButtonSpinner = () => {
       className="btn btn-warning"
       type="button"
       disabled
-      onClick={() => console.log("hola")}
     >
       <span
         className="spinner-border spinner-border-sm"

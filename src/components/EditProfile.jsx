@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosPatch } from "../api/axios";
+import { ButtonSpinner } from "../common/ButtonSpinner";
 
 export const EditProfile = () => {
   const { state } = useLocation();
@@ -18,6 +19,8 @@ export const EditProfile = () => {
   };
 
   const handleSubmit = (e) => {
+    setIsLoading(true)
+    
     e.preventDefault();
     let bodyToUpdateProfile = {
       name: user.name,
@@ -78,9 +81,14 @@ export const EditProfile = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          CONFIRM
-        </button>
+
+        {!isLoading ? (
+          <button type="submit" className="btn btn-primary">
+            CONFIRM
+          </button>
+        ) : (
+          <ButtonSpinner />
+        )}
       </form>
     </div>
   );
