@@ -83,7 +83,7 @@ export const Transaction = () => {
                   <span>Total: </span>
                   {state.total} €
                 </div>
-                <div className="p-1">
+                <div className="transanctionDesign_footer p-2">
                   {!isLoading ? (
                     <div className="btn btn-success">
                       <MdDoneAll size="1.5em" onClick={prepareBody} />

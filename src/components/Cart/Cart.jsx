@@ -9,6 +9,7 @@ import {
 import { EmptyCart } from "../EmptyCart/EmptyCart";
 import { Link } from "react-router-dom";
 import "../../index.css";
+import "./cart.css";
 
 export const Cart = () => {
   const { cart, dispatch } = useShopContext();
@@ -50,7 +51,7 @@ export const Cart = () => {
   if (cart?.length === 0) return <EmptyCart />;
 
   return (
-    <main className="container-fluid p-1">
+    <main className="cartDesign container pt-2">
       <div className="row m-1">
         <div className="col-12 col-md-8">
           <table className="table text-white">
@@ -124,9 +125,11 @@ export const Cart = () => {
             </tfoot>
           </table>
         </div>
-        <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center">
+        <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center box-shadow-rs">
           <div className="d-flex flex-column align-items-center justify-content-center">
-            <h4><span className="fw-bold">Total:</span> {total || 0} €</h4>
+            <h4>
+              <span className="fw-bold">Total:</span> {total || 0} €
+            </h4>
           </div>
           <div className="">
             <div className="btn btn-primary mx-1">

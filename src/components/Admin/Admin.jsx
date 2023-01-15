@@ -25,7 +25,7 @@ export const Admin = () => {
           Sales
         </div>
       </div>
-      <div>{flag ? <AllUsers /> : <AllSales />}</div>
+      <div className="adminDesign_tables">{flag ? <AllUsers /> : <AllSales />}</div>
     </div>
   );
 };

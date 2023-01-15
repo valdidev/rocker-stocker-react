@@ -17,6 +17,10 @@
   box-shadow: 5px 5px 5px #2f3247;
 }
 
+.box-shadow-rs {
+  box-shadow: 5px 5px 20px #2f3247;
+}
+
 .border-white-rs {
   border: 1px solid #fff;
   box-shadow: 5px 5px 5px #2f3247;
@@ -32,7 +36,7 @@
 /* APP */
 .appDesign {
   background-color: grey;
-  min-height: 99.5vh;
+  min-height: 100vh;
 }
 
 /* Responsive tables */

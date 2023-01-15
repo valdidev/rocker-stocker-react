@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import "../../index.css";
+import "./allSales.css";
 
 export const AllSales = () => {
   const [sales, setSales] = useState(null);
@@ -33,7 +34,7 @@ export const AllSales = () => {
   }
 
   return (
-    <table className="table">
+    <table className="table box-shadow-rs">
       <thead>
         <tr className="bg-black-rs">
           <th>Sale #</th>
@@ -47,10 +48,10 @@ export const AllSales = () => {
         {sales?.map((sale) => {
           return (
             <tr key={sale.id}>
-              <td data-label="saleId">{sale.id}</td>
-              <td data-label="date">{sale.date.split("T")[0]}</td>
-              <td data-label="employeeId">{sale.userId}</td>
-              <td data-label="total">{sale.total}</td>
+              <td data-label="Sale #">{sale.id}</td>
+              <td data-label="Date">{sale.date.split("T")[0]}</td>
+              <td data-label="Employee #">{sale.userId}</td>
+              <td data-label="Total €">{sale.total}</td>
               <td data-label="Details">
                 <div
                   className="btn btn-info"

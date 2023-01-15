@@ -59,7 +59,7 @@ export const AllUsers = () => {
   }
 
   return (
-    <table className="table">
+    <table className="table box-shadow-rs">
       <thead>
         <tr className="bg-black-rs">
           <th>Name</th>

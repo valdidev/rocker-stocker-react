@@ -64,7 +64,7 @@ export const Search = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <table className="table container">
+        <table className="table container box-shadow-rs">
           <thead>
             <tr className="bg-black-rs">
               <th>Name</th>

@@ -4,6 +4,8 @@ import { axiosPatch } from "../../api/axios";
 import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
 
+import "./editProfile.css";
+
 export const EditProfile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -36,9 +38,11 @@ export const EditProfile = () => {
   };
 
   return (
-    <div className="container">
-      <h3>Editing profile of {user.email}</h3>
-      <form onSubmit={handleSubmit}>
+    <div className="editProfileDesign container">
+      <h3 className="text-center text-white st-back-rs py-3">
+        Edit profile of {user.email}
+      </h3>
+      <form className="editProfileDesign_form container" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="inputName" className="form-label">
             Name
@@ -69,7 +73,7 @@ export const EditProfile = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="inputPhone" className="form-label">
-            Surname
+            Phone
           </label>
           <input
             className="form-control"
@@ -81,14 +85,15 @@ export const EditProfile = () => {
             onChange={handleChange}
           />
         </div>
-
-        {!isLoading ? (
-          <button type="submit" className="btn btn-primary">
-            <MdDone />
-          </button>
-        ) : (
-          <ButtonSpinner />
-        )}
+        <div className="d-flex text-center justify-content-center editProfileDesign_btn">
+          {!isLoading ? (
+            <button type="submit" className="btn btn-primary p-2">
+              <MdDone fontSize="1.5em" />
+            </button>
+          ) : (
+            <ButtonSpinner />
+          )}
+        </div>
       </form>
     </div>
   );

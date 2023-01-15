@@ -37,7 +37,7 @@ export const MySales = () => {
   return (
     <div className="mySalesDesign">
       <h1 className="text-center text-white st-back-rs">{userLogged.email}</h1>
-      <table className="table container">
+      <table className="table container box-shadow-rs">
         <thead>
           <tr className="bg-black-rs">
             <th>Sale #</th>
