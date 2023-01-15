@@ -10,13 +10,13 @@ export const Admin = () => {
     <div className="contentDesign container-fluid d-flex flex-column align-items-center">
       <div>
         <div
-          className="btn btn-info mx-1 my-1"
+          className="btn btn-warning mx-1 my-1"
           onClick={() => setFlag(true)}
         >
           Users
         </div>
         <div
-          className="btn btn-info mx-1 my-1"
+          className="btn btn-warning mx-1 my-1"
           onClick={() => setFlag(false)}
         >
           Sales

@@ -66,7 +66,7 @@ export const Search = () => {
       ) : (
         <table className="table container">
           <thead>
-            <tr>
+            <tr className="bg-black-rs">
               <th>Name</th>
               <th>Brand</th>
               <th>Price €</th>

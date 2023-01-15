@@ -8,14 +8,17 @@ export const SignIn = () => {
   
   // API
   const trySignIn = async (body) => {
+    setIsLoading(true);
     try {
       let res = await apiCall("/auth/login", body, null, "post");
+      setIsLoading(false);
 
       if (res.status === 200) {
         let user = res.data.user;
         handlerAuth(user);
       }
     } catch (error) {
+      setIsLoading(false);
       setUserError(error.response.data.message);
     }
   };
@@ -30,7 +33,6 @@ export const SignIn = () => {
   });
 
   const [userError, setUserError] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
 
   // HANDLERS
@@ -84,6 +86,7 @@ export const SignIn = () => {
           onFocus={() => setUserError("")}
         />
         <p className="text-danger">{userError}</p>
+
         {!isLoading ? (
           <button
             className="btn-send btn btn-success btn-shadow w-100 my-4"

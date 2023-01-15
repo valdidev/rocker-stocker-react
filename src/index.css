@@ -1,4 +1,9 @@
 /* Global color styles */
+* {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 .bg-black-rs {
   background-color: #3d405b;
 }
@@ -19,6 +24,10 @@
 
 .st-back-rs {
   text-shadow: #2f3247 5px 5px 5px;
+}
+
+.btn {
+  box-shadow: 2px 2px 5px #2f3247;
 }
 
 /* Global sizes */
