@@ -11,8 +11,6 @@ export const Transaction = () => {
   const { dispatch } = useShopContext();
   const { state } = useLocation();
 
-  console.log(state);
-
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +27,6 @@ export const Transaction = () => {
       });
 
       let finalBody = [{ total: state.total }, { cart }];
-      console.log(finalBody);
       sendBody(finalBody);
     } catch (error) {
       setIsLoading(false);

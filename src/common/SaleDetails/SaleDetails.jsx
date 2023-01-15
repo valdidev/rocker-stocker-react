@@ -36,9 +36,9 @@ export const SaleDetails = () => {
           </tr>
         </thead>
         <tbody>
-          {saleDetails?.map((sale) => {
+          {saleDetails?.map((sale, index) => {
             return (
-              <tr key={sale.id} className="cursor-pointer">
+              <tr key={index} className="cursor-pointer">
                 <td data-label="Article #">{sale.articleId}</td>
                 <td data-label="Name">Cemento</td>
                 <td data-label="Price €">25</td>
