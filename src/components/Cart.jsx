@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { TYPES } from "../actions/shoppingAction";
+import { Spinner } from "../common/Spinner";
 import { useShopContext } from "../contexts/ShopContext";
 import { FaTrashAlt, FaWindowClose, FaArrowRight } from "react-icons/fa";
 import {
@@ -6,11 +8,14 @@ import {
   BsFillArrowDownSquareFill,
 } from "react-icons/bs";
 import { EmptyCart } from "./EmptyCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
 
 export const Cart = () => {
   const { cart, total, dispatch } = useShopContext();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const addToCart = (item) => {
     dispatch({
@@ -30,6 +35,12 @@ export const Cart = () => {
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
+
+  const sendTransaction = () => {
+    navigate("/private/home/cart/transaction");
+  };
+
+  if (isLoading) return <Spinner />;
 
   if (cart?.length === 0) return <EmptyCart />;
 

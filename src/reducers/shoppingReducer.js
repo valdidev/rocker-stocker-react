@@ -8,24 +8,27 @@ export const shoppingInitialState = {
 export const shoppingReducer = (state, action) => {
     switch (action.type) {
         case TYPES.ADD_ONE_TO_CART: {
-            let newItem = { articleId: action.payload.id, name: action.payload.name, price: action.payload.price, quantity: 1 }
+
+            let newItem = { articleId: action.payload.id, name: action.payload.name, price: action.payload.price, quantity: 1, amount: action.payload.price }
 
             let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
-
-            console.log(newItem)
 
             return itemInCart
                 ? {
                     ...state,
                     cart: state.cart.map(item => item.articleId === newItem.articleId
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item),
-                    total: parseInt(state.total) + parseInt(newItem.price)
+                        ?
+                        {
+                            ...item,
+                            quantity: item.quantity + 1,
+                            amount: parseInt(item.amount) + parseInt(newItem.price)
+                        }
+                        : item
+                    )
                 }
                 : {
                     ...state,
-                    cart: [...state.cart, newItem],
-                    total: parseInt(state.total) + parseInt(newItem.price)
+                    cart: [...state.cart, newItem]
                 }
         }
 
@@ -36,7 +39,12 @@ export const shoppingReducer = (state, action) => {
                 ? {
                     ...state,
                     cart: state.cart.map(item => item.articleId === action.payload
-                        ? { ...item, quantity: item.quantity - 1 }
+                        ?
+                        {
+                            ...item,
+                            quantity: item.quantity - 1,
+                            amount: parseInt(item.amount) - parseInt(item.price)
+                        }
                         : item
                     )
                 }
