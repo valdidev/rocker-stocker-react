@@ -18,57 +18,63 @@ import { NavbarLayout } from "./router/NavbarLayout";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 import { SalebarLayout } from "./router/SalebarLayout";
+import "./index.css";
 
 export const App = () => {
   return (
     <AuthProvider>
       <ShopProvider>
         <BrowserRouter>
-          <Routes>
-            {/* PUBLIC ROUTES */}
-            <Route path="/" element={<PublicRoute />}>
-              <Route index element={<Lobby />} />
-            </Route>
+          <div className="appDesign">
+            <Routes>
+              {/* PUBLIC ROUTES */}
+              <Route path="/" element={<PublicRoute />}>
+                <Route index element={<Lobby />} />
+              </Route>
 
-            {/* PRIVATE ROUTES */}
+              {/* PRIVATE ROUTES */}
 
-            <Route path="/private" element={<PrivateRoute />}>
-              <Route element={<NavbarLayout />}>
-                <Route path="/private/home" element={<Home />}>
-                  <Route element={<SalebarLayout />}>
-                    <Route path="/private/home/cart" element={<Cart />} />
+              <Route path="/private" element={<PrivateRoute />}>
+                <Route element={<NavbarLayout />}>
+                  <Route path="/private/home" element={<Home />}>
+                    <Route element={<SalebarLayout />}>
+                      <Route path="/private/home/cart" element={<Cart />} />
+                      <Route
+                        path="/private/home/cart/transaction"
+                        element={<Transaction />}
+                      />
+                      <Route path="/private/home/search" element={<Search />} />
+                    </Route>
+                  </Route>
+
+                  <Route path="/private/mysales" element={<MySales />} />
+                  <Route path="/private/myprofile" element={<MyProfile />} />
+                  <Route
+                    path="/private/myprofile/edit"
+                    element={<EditProfile />}
+                  />
+
+                  <Route
+                    path="/private/sale/details/:saleId"
+                    element={<SaleDetails />}
+                  />
+
+                  {/* Private route + admin role */}
+                  <Route path="/private/admin" element={<AdminRoute />}>
+                    <Route index element={<Admin />} />
                     <Route
-                      path="/private/home/cart/transaction"
-                      element={<Transaction />}
+                      path="/private/admin/allusers"
+                      element={<AllUsers />}
                     />
-                    <Route path="/private/home/search" element={<Search />} />
+                    <Route
+                      path="/private/admin/allsales"
+                      element={<AllSales />}
+                    />
                   </Route>
                 </Route>
-
-                <Route path="/private/mysales" element={<MySales />} />
-                <Route path="/private/myprofile" element={<MyProfile />} />
-                <Route path="/private/myprofile/edit" element={<EditProfile />} />
-
-                <Route
-                  path="/private/sale/details/:saleId"
-                  element={<SaleDetails />}
-                />
-
-                {/* Private route + admin role */}
-                <Route path="/private/admin" element={<AdminRoute />}>
-                  <Route index element={<Admin />} />
-                  <Route
-                    path="/private/admin/allusers"
-                    element={<AllUsers />}
-                  />
-                  <Route
-                    path="/private/admin/allsales"
-                    element={<AllSales />}
-                  />
-                </Route>
               </Route>
-            </Route>
-          </Routes>
+            </Routes>
+          </div>
         </BrowserRouter>
       </ShopProvider>
     </AuthProvider>

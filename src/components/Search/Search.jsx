@@ -7,6 +7,7 @@ import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { useShopContext } from "../../contexts/ShopContext";
 import "../../index.css";
+import "./search.css";
 
 export const Search = () => {
   const [found, setFound] = useState(null);
@@ -36,7 +37,7 @@ export const Search = () => {
   }, [category]);
 
   return (
-    <div>
+    <div className="searchDesign pb-2">
       <div className="d-flex flex-column align-items-center">
         <div className="d-flex p-2">
           <div

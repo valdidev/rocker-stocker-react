@@ -29,6 +29,11 @@
 .btn {
   box-shadow: 2px 2px 5px #2f3247;
 }
+/* APP */
+.appDesign {
+  background-color: grey;
+  min-height: 99.5vh;
+}
 
 /* Responsive tables */
 .table {

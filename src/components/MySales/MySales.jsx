@@ -28,16 +28,16 @@ export const MySales = () => {
     }
   }, []);
 
-  if (!sales && isLoading) {
+  if (isLoading) {
     return <Spinner />;
   } else if (!sales && !isLoading) {
     return <NoSales />;
   }
 
   return (
-    <div className="container">
-      <h1 className="text-center">{userLogged.email}</h1>
-      <table className="table">
+    <div className="mySalesDesign">
+      <h1 className="text-center text-white st-back-rs">{userLogged.email}</h1>
+      <table className="table container">
         <thead>
           <tr className="bg-black-rs">
             <th>Sale #</th>

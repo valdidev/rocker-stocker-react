@@ -10,8 +10,8 @@ export const Admin = () => {
   const [flag, setFlag] = useState(true);
 
   return (
-    <div className="container-fluid d-flex flex-column align-items-center">
-      <div>
+    <div className="adminDesign container-fluid d-flex flex-column align-items-center">
+      <div className="my-2">
         <div
           className="btn btn-warning mx-1 my-1"
           onClick={() => setFlag(true)}
