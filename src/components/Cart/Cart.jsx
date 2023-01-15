@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
-import { TYPES } from "../actions/shoppingAction";
-import { Spinner } from "../common/Spinner";
-import { useShopContext } from "../contexts/ShopContext";
+import { TYPES } from "../../actions/shoppingAction";
+import { useShopContext } from "../../contexts/ShopContext";
 import { FaTrashAlt, FaWindowClose, FaArrowRight } from "react-icons/fa";
 import {
   BsFillArrowUpSquareFill,
   BsFillArrowDownSquareFill,
 } from "react-icons/bs";
-import { EmptyCart } from "./EmptyCart";
+import { EmptyCart } from "../EmptyCart/EmptyCart";
 import { Link } from "react-router-dom";
-import "../index.css";
+import "../../index.css";
 
 export const Cart = () => {
   const { cart, dispatch } = useShopContext();
@@ -51,7 +50,7 @@ export const Cart = () => {
   if (cart?.length === 0) return <EmptyCart />;
 
   return (
-    <main className="container-fluid contentDesign bg-secondary p-1">
+    <main className="container-fluid p-1">
       <div className="row m-1">
         <div className="col-12 col-md-8">
           <table className="table text-white">

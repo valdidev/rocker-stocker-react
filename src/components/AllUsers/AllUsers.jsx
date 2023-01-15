@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { axiosDelete, axiosGet, axiosPatch } from "../api/axios";
-import { Spinner } from "../common/Spinner";
+import { axiosDelete, axiosGet, axiosPatch } from "../../api/axios";
+import { Spinner } from "../../common/Spinner/Spinner";
 import { TbLock, TbLockOpen } from "react-icons/tb";
 import { FaUserAltSlash, FaUserEdit } from "react-icons/fa";
-
-import "../index.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import "../../index.css";
+
 
 export const AllUsers = () => {
   const [users, setUsers] = useState(null);

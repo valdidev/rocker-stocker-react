@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import { axiosGet } from "../api/axios";
-import { Spinner } from "../common/Spinner";
-import "../index.css";
+import { axiosGet } from "../../api/axios";
+import { Spinner } from "../../common/Spinner/Spinner";
+import "../../index.css";
 
 export const AllSales = () => {
   const [sales, setSales] = useState(null);
@@ -52,13 +52,13 @@ export const AllSales = () => {
               <td data-label="employeeId">{sale.userId}</td>
               <td data-label="total">{sale.total}</td>
               <td data-label="Details">
-                  <div
-                    className="btn btn-info"
-                    onClick={() => navigate(`/private/sale/details/${sale.id}`)}
-                  >
-                    <CgDetailsMore />
-                  </div>
-                </td>
+                <div
+                  className="btn btn-info"
+                  onClick={() => navigate(`/private/sale/details/${sale.id}`)}
+                >
+                  <CgDetailsMore />
+                </div>
+              </td>
             </tr>
           );
         })}

@@ -1,13 +1,16 @@
 import { useState } from "react";
-import "../index.css";
-import { AllSales } from "./AllSales";
-import { AllUsers } from "./AllUsers";
+import { AllSales } from "../AllSales/AllSales";
+import { AllUsers } from "../AllUsers/AllUsers";
+
+import "./admin.css";
+import "../../index.css";
+
 
 export const Admin = () => {
   const [flag, setFlag] = useState(true);
 
   return (
-    <div className="contentDesign container-fluid d-flex flex-column align-items-center">
+    <div className="container-fluid d-flex flex-column align-items-center">
       <div>
         <div
           className="btn btn-warning mx-1 my-1"

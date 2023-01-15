@@ -1,8 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { axiosPatch } from "../api/axios";
-import { ButtonSpinner } from "../common/ButtonSpinner";
+import { axiosPatch } from "../../api/axios";
+import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
 
 export const EditProfile = () => {

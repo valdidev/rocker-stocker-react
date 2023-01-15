@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { NoSales } from "../../common/NoSales";
+import { NoSales } from "../../common/NoSales/NoSales";
 import { axiosGet } from "../../api/axios";
-import { Spinner } from "../../common/Spinner";
+import { Spinner } from "../../common/Spinner/Spinner";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export const MySales = () => {
   }
 
   return (
-    <div className="contentDesign container">
+    <div className="container">
       <h1 className="text-center">{userLogged.email}</h1>
       <table className="table">
         <thead>

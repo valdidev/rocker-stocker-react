@@ -4,7 +4,7 @@ import axios from 'axios';
 const baseURL = 'http://localhost:3000';
 
 const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-const userJwt = userLogged?.jwt;
+const userJwt = userLogged.jwt;
 
 
 export const apiCall = (url, data, headers, method) => axios({

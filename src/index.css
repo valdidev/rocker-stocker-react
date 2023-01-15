@@ -30,20 +30,6 @@
   box-shadow: 2px 2px 5px #2f3247;
 }
 
-/* Global sizes */
-.contentDesign {
-  background-color: grey;
-  height: 80vh;
-}
-
-/* COLORS
-#F37265
-#d85246
-#9cfc97
-#6ba368
-#df4436
- */
-
 /* Responsive tables */
 .table {
   width: 100%;

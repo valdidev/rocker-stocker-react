@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdDoneAll } from "react-icons/md";
-import { ButtonSpinner } from "../common/ButtonSpinner";
-import { axiosPost } from "../api/axios";
-import { useShopContext } from "../contexts/ShopContext";
-import { TYPES } from "../actions/shoppingAction";
-import "../index.css";
+import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner"
+import { axiosPost } from "../../api/axios";
+import { useShopContext } from "../../contexts/ShopContext";
+import { TYPES } from "../../actions/shoppingAction";
+import "../../index.css";
 
 export const Transaction = () => {
   const { dispatch } = useShopContext();
@@ -16,11 +16,9 @@ export const Transaction = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isReady, setIsReady] = useState(false);
 
   const prepareBody = () => {
-    
-    let cart = []
+    let cart = [];
 
     try {
       setIsLoading(true);
@@ -31,8 +29,7 @@ export const Transaction = () => {
       });
 
       let finalBody = [{ total: state.total }, { cart }];
-      console.log(finalBody)
-      setIsReady(true);
+      console.log(finalBody);
       sendBody(finalBody);
     } catch (error) {
       setIsLoading(false);
@@ -49,11 +46,11 @@ export const Transaction = () => {
   };
 
   return (
-    <div className="contentDesign">
+    <div>
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className=" contentDesign d-flex flex-column justify-content-start">
+            <div className="d-flex flex-column justify-content-start">
               <div className="transactionHeader d-flex justify-content-center align-items-center">
                 <h3 className="text-white st-back-rs">Sale details</h3>
               </div>
@@ -82,7 +79,10 @@ export const Transaction = () => {
                 </table>
               </div>
               <div className="transactionFooter bg-black-rs d-flex flex-column justify-content-center align-items-center rounded border-dark-rs">
-                <div className="text-white bg-black-dark-rs w-100 text-center"><span>Total: </span>{state.total} €</div>
+                <div className="text-white bg-black-dark-rs w-100 text-center">
+                  <span>Total: </span>
+                  {state.total} €
+                </div>
                 <div className="p-1">
                   {!isLoading ? (
                     <div className="btn btn-success">
