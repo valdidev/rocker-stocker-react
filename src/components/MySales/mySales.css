@@ -1,3 +1,9 @@
+.mySalesDesign {
+  background-color: grey ;
+  min-height: 90vh;
+  width: 100vw;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

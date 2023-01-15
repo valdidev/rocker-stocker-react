@@ -1,0 +1,6 @@
+.spinnerDesign {
+    height: 90vh;
+    margin-top: .7em;
+    background-color: grey;
+    text-shadow: 5px 5px 5px solid black;
+}

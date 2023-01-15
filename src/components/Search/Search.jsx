@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { AiFillFormatPainter, AiFillThunderbolt } from "react-icons/ai";
 import { TfiHummer } from "react-icons/tfi";
 import { FaCartPlus } from "react-icons/fa";
-import { TYPES } from "../actions/shoppingAction";
-import { axiosGet } from "../api/axios";
-import { Spinner } from "../common/Spinner";
-import { useShopContext } from "../contexts/ShopContext";
-
-import "../index.css";
+import { TYPES } from "../../actions/shoppingAction";
+import { axiosGet } from "../../api/axios";
+import { Spinner } from "../../common/Spinner/Spinner";
+import { useShopContext } from "../../contexts/ShopContext";
+import "../../index.css";
+import "./search.css";
 
 export const Search = () => {
   const [found, setFound] = useState(null);
@@ -37,7 +37,7 @@ export const Search = () => {
   }, [category]);
 
   return (
-    <div className="contentDesign">
+    <div className="searchDesign pb-2">
       <div className="d-flex flex-column align-items-center">
         <div className="d-flex p-2">
           <div
@@ -64,9 +64,9 @@ export const Search = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <table className="table container">
+        <table className="table container box-shadow-rs">
           <thead>
-            <tr>
+            <tr className="bg-black-rs">
               <th>Name</th>
               <th>Brand</th>
               <th>Price €</th>

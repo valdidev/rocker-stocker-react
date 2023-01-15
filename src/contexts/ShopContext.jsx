@@ -6,7 +6,6 @@ import {
 
 const ShopContext = createContext();
 
-// custom hook //TODO: refactor -> folder hooks
 const useShopContext = () => {
   return useContext(ShopContext);
 };
@@ -16,7 +15,7 @@ const ShopProvider = ({ children }) => {
 
   return (
     <ShopContext.Provider
-      value={{ cart: state.cart, total: state.total, dispatch }}
+      value={{ cart: state.cart, dispatch }}
     >
       {children}
     </ShopContext.Provider>

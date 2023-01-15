@@ -1,0 +1,9 @@
+.myProfileDesign {
+    background-color: grey;
+    height: 90vh;
+}
+
+.myProfileDesign_cardOut {
+    min-width: 40vw;
+    height: 65vh;
+}

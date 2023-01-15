@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { axiosGet } from "../api/axios";
-import "../index.css";
-import { Spinner } from "./Spinner";
+import { axiosGet } from "../../api/axios";
+import { Spinner } from "../Spinner/Spinner";
+import "../../index.css";
+import "./saleDetails.css";
+
 
 export const SaleDetails = () => {
   const { saleId } = useParams();
@@ -22,8 +24,8 @@ export const SaleDetails = () => {
   if (!saleDetails || isLoading) return <Spinner />;
 
   return (
-    <div className="contentDesign">
-      <h1 className="text-center">Details of sale # {saleId}</h1>
+    <div className="saleDetailsDesign">
+      <h1 className="text-center text-white st-back-rs">Details of sale # {saleId}</h1>
       <table className="table container">
         <thead>
           <tr className="bg-info">
