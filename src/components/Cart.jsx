@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TYPES } from "../actions/shoppingAction";
 import { Spinner } from "../common/Spinner";
 import { useShopContext } from "../contexts/ShopContext";
@@ -8,14 +8,26 @@ import {
   BsFillArrowDownSquareFill,
 } from "react-icons/bs";
 import { EmptyCart } from "./EmptyCart";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../index.css";
 
 export const Cart = () => {
-  const { cart, total, dispatch } = useShopContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const { cart, dispatch } = useShopContext();
 
-  const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    deduceTotal();
+  }, [cart]);
+
+  const deduceTotal = () => {
+    let amounts = 0;
+    cart?.map((article) => {
+      amounts = parseInt(amounts) + parseInt(article.amount);
+    });
+
+    setTotal(amounts);
+  };
 
   const addToCart = (item) => {
     dispatch({
@@ -35,12 +47,6 @@ export const Cart = () => {
   const clearCart = () => {
     dispatch({ type: TYPES.CLEAR_CART });
   };
-
-  const sendTransaction = () => {
-    navigate("/private/home/cart/transaction");
-  };
-
-  if (isLoading) return <Spinner />;
 
   if (cart?.length === 0) return <EmptyCart />;
 
@@ -121,11 +127,11 @@ export const Cart = () => {
         </div>
         <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center">
           <div className="d-flex flex-column align-items-center justify-content-center">
-            <h4>Total: {total} €</h4>
+            <h4><span className="fw-bold">Total:</span> {total || 0} €</h4>
           </div>
           <div className="">
-            <div className="btn btn-success mx-1">
-              <Link to="/private/home/cart/transaction" state={cart}>
+            <div className="btn btn-primary mx-1">
+              <Link to="/private/home/cart/transaction" state={{ cart, total }}>
                 <FaArrowRight size="2em" color="#fff" />
               </Link>
             </div>

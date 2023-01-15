@@ -1,8 +1,7 @@
 import { TYPES } from "../actions/shoppingAction";
 
 export const shoppingInitialState = {
-    cart: [],
-    total: 0
+    cart: []
 };
 
 export const shoppingReducer = (state, action) => {
@@ -13,19 +12,19 @@ export const shoppingReducer = (state, action) => {
 
             let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
 
-            return itemInCart
-                ? {
-                    ...state,
-                    cart: state.cart.map(item => item.articleId === newItem.articleId
-                        ?
-                        {
-                            ...item,
-                            quantity: item.quantity + 1,
-                            amount: parseInt(item.amount) + parseInt(newItem.price)
-                        }
-                        : item
-                    )
-                }
+
+            return itemInCart ? {
+                ...state,
+                cart: state.cart.map(item => item.articleId === newItem.articleId
+                    ?
+                    {
+                        ...item,
+                        quantity: item.quantity + 1,
+                        amount: parseInt(item.amount) + parseInt(newItem.price),
+                    }
+                    : item
+                ),
+            }
                 : {
                     ...state,
                     cart: [...state.cart, newItem]

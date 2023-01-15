@@ -11,23 +11,27 @@ export const Transaction = () => {
   const { dispatch } = useShopContext();
   const { state } = useLocation();
 
+  console.log(state);
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
   const prepareBody = () => {
+    
+    let cart = []
+
     try {
       setIsLoading(true);
-      const cart = [];
 
-      state.map((item) => {
+      state?.cart?.map((item) => {
         const { articleId, quantity } = item;
         cart.push({ articleId, quantity });
       });
 
-      let finalBody = [{ total: 47 }, { cart }];
-
+      let finalBody = [{ total: state.total }, { cart }];
+      console.log(finalBody)
       setIsReady(true);
       sendBody(finalBody);
     } catch (error) {
@@ -49,14 +53,14 @@ export const Transaction = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className=" contentDesign d-flex flex-column justify-content-start bg-info">
-              <div className="transactionHeader d-flex justify-content-center align-items-center bg-secondary">
-                <h3>Sale details</h3>
+            <div className=" contentDesign d-flex flex-column justify-content-start">
+              <div className="transactionHeader d-flex justify-content-center align-items-center">
+                <h3 className="text-white st-back-rs">Sale details</h3>
               </div>
-              <div className="trasactionBody bg-success container">
+              <div className="trasactionBody container">
                 <table className="table">
                   <thead>
-                    <tr>
+                    <tr className="bg-success">
                       <th>Article</th>
                       <th>Price €</th>
                       <th>Units</th>
@@ -64,7 +68,7 @@ export const Transaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {state?.map((article) => (
+                    {state?.cart?.map((article) => (
                       <tr key={article.id} className="cursor-pointer">
                         <td data-label="Article">{article.name}</td>
                         <td data-label="Price">{article.price}</td>
@@ -77,14 +81,17 @@ export const Transaction = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="transactionFooter bg-danger d-flex justify-content-center align-items-center">
-                {!isLoading ? (
-                  <div className="btn btn-success">
-                    <MdDoneAll size="1.5em" onClick={prepareBody} />
-                  </div>
-                ) : (
-                  <ButtonSpinner />
-                )}
+              <div className="transactionFooter bg-black-rs d-flex flex-column justify-content-center align-items-center rounded border-dark-rs">
+                <div className="text-white bg-black-dark-rs w-100 text-center"><span>Total: </span>{state.total} €</div>
+                <div className="p-1">
+                  {!isLoading ? (
+                    <div className="btn btn-success">
+                      <MdDoneAll size="1.5em" onClick={prepareBody} />
+                    </div>
+                  ) : (
+                    <ButtonSpinner />
+                  )}
+                </div>
               </div>
             </div>
           </div>
