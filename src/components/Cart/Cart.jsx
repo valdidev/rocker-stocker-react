@@ -64,8 +64,8 @@ export const Cart = () => {
               </tr>
             </thead>
             <tbody className="text-black">
-              {cart?.map((product) => (
-                <tr key={product.id} className="bg-secondary">
+              {cart?.map((product, index) => (
+                <tr key={index} className="bg-secondary">
                   <td data-label="Name" className="align-middle bg-white">
                     {product.name}
                   </td>

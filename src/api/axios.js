@@ -1,10 +1,14 @@
 import axios from 'axios';
 
 
-const baseURL = 'http://localhost:3000';
+// const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
+const baseURL = "http://localhost:3000"
 
 const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-const userJwt = userLogged.jwt;
+let userJwt;
+if (userLogged) {
+    userJwt = userLogged.jwt;
+}
 
 
 export const apiCall = (url, data, headers, method) => axios({
