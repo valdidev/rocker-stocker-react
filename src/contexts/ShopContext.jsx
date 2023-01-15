@@ -6,7 +6,6 @@ import {
 
 const ShopContext = createContext();
 
-// custom hook //TODO: refactor -> folder hooks
 const useShopContext = () => {
   return useContext(ShopContext);
 };

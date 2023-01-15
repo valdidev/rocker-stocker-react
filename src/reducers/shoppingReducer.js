@@ -12,17 +12,20 @@ export const shoppingReducer = (state, action) => {
 
             let itemInCart = state.cart.find(item => item.articleId === newItem.articleId)
 
+            console.log(newItem)
+
             return itemInCart
                 ? {
                     ...state,
                     cart: state.cart.map(item => item.articleId === newItem.articleId
                         ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                    )
+                        : item),
+                    total: parseInt(state.total) + parseInt(newItem.price)
                 }
                 : {
                     ...state,
-                    cart: [...state.cart, newItem]
+                    cart: [...state.cart, newItem],
+                    total: parseInt(state.total) + parseInt(newItem.price)
                 }
         }
 
