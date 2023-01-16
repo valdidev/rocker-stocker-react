@@ -11,7 +11,7 @@ import { MyProfile } from "./components/MyProfile/MyProfile";
 import { MySales } from "./components/MySales/MySales";
 import { Search } from "./components/Search/Search";
 import { Transaction } from "./components/Transaction/Transaction";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { ShopProvider } from "./contexts/ShopContext";
 import { AdminRoute } from "./router/AdminRoute";
 import { NavbarLayout } from "./router/NavbarLayout";
