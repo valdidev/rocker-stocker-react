@@ -1,5 +1,7 @@
 # Rocker Stocker APP - Gestión del inventario de un almacén
-## _Frontend de mi aplicación full stack_
+
+## Pruébala :rocket:
+[Ir a la APP](https://rocker-stocker.netlify.app/)
 
 ## UI desarrollada en React
 ![image](https://user-images.githubusercontent.com/96445737/212578258-eea82d54-9ed5-4b73-9821-201e3cd33d05.png)
