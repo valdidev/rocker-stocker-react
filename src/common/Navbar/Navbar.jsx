@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import AuthContext from "../../contexts/AuthContext";
 import { IoStatsChart } from "react-icons/io5";
 import { HiUser } from "react-icons/hi";
 import { MdAdminPanelSettings, MdOutlinePointOfSale } from "react-icons/md";
@@ -9,6 +8,7 @@ import Swal from "sweetalert2";
 
 import "../../index.css";
 import "./navbar.css";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const Navbar = () => {
   const { handlerAuth, user } = useContext(AuthContext);

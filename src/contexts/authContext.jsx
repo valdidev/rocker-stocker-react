@@ -2,7 +2,7 @@ import { createContext, useMemo, useState } from "react";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   // useEffect
@@ -29,4 +29,4 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContext;
+export { AuthProvider, AuthContext };
