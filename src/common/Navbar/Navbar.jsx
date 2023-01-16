@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 import "../../index.css";
 import "./navbar.css";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 export const Navbar = () => {
   const { handlerAuth, user } = useContext(AuthContext);

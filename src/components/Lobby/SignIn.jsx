@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 import '../../index.css';
 

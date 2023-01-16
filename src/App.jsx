@@ -18,7 +18,7 @@ import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 import { SalebarLayout } from "./router/SalebarLayout";
 import "./index.css";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext2";
 
 export const App = () => {
   return (
