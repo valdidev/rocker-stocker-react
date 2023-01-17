@@ -3,7 +3,12 @@
     height: 90vh;
 }
 
+.myProfileDesign_cardIn {
+    min-height: 35vh;
+}
+
 .myProfileDesign_cardOut {
     min-width: 40vw;
     height: 65vh;
 }
+

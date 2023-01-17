@@ -27,7 +27,7 @@ export const MyProfile = () => {
       <div className="myProfileDesign_cardOut d-flex flex-column justify-content-evenly align-items-center  bg-black-rs border-dark-rs p-1 rounded">
         <h1 className="h-20 st-back-rs py-2">Profile</h1>
         <div className="myProfileDesign_cardIn d-flex row w-100 justify-content-between p-2 border-dark-rs rounded">
-          <div className="d-flex col-12 col-sm-4 flex-column  bg-info">
+          <div className="d-flex col-12 col-sm-4 flex-column justify-content-center  bg-info">
             <div className="d-flex flex-column">
               <span className="fw-bold">NAME</span>
               {profile?.name}
