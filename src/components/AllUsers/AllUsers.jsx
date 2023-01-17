@@ -118,9 +118,9 @@ export const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
-                  <td>{user.rolId === 1 ? "Manager" : "Employee"}</td>
+                  <td>{user.rolId === 1 ? "MANAGER" : "Employee"}</td>
                   <td>{user.isActive ? "Active" : "Block"}</td>
-                  <td>
+                  <td className="d-flex justify-content-evenly">
                     <div className="btn btn-info mx-1">
                       <Link
                         to="/private/myprofile/edit"

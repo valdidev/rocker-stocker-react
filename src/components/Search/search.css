@@ -1,5 +1,5 @@
 .searchDesign {
-  background-color: grey;
+  background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);;
   margin-top: 0.7em;
   min-height: 83vh;
 }
