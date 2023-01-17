@@ -4,12 +4,26 @@ import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
+import usePagination from "../../hook/usePagination";
+import { Pagination } from "../../common/Pagination/Pagination";
 
 import "./mySales.css";
 
 export const MySales = () => {
   const [sales, setSales] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const itemsPerPage = 5;
+
+  const { currentData, currentPage, maxPage, next, prev } = usePagination(
+    sales,
+    itemsPerPage
+  );
+
+  const paginatedSales = currentData();
+
+  console.log("full sales", sales);
+  console.log("paginated", paginatedSales);
 
   const navigate = useNavigate();
 
@@ -66,6 +80,12 @@ export const MySales = () => {
           })}
         </tbody>
       </table>
+      <Pagination
+        currentPage={currentPage}
+        maxPage={maxPage}
+        next={next}
+        prev={prev}
+      />
     </div>
   );
 };

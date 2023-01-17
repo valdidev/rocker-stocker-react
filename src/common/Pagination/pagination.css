@@ -1,0 +1,24 @@
+.paginationDesign {
+    max-height: 10vh;
+}
+
+.paginationDesign_btn {
+  border-radius: 0.2em;
+  padding:   0 0.4em;
+  background-color: #2f3247;
+  color: white;
+  font-size: 2em;
+  opacity: 0.8;
+}
+
+.paginationDesign_btn:disabled {
+  background-color: #3d405b;
+  cursor: not-allowed;
+}
+
+.paginationDesign_page {
+  font-size: 1.5em;
+  padding: 0.5em;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+}
