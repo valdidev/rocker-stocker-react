@@ -8,6 +8,7 @@ import { TYPES } from "../../actions/shoppingAction";
 import usePagination from "../../hook/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
+import Swal from "sweetalert2";
 import "../../index.css";
 import "./transaction.css";
 
@@ -21,6 +22,23 @@ export const Transaction = () => {
     state.cart,
     productsPerTable
   );
+
+  const confirmSale = () => {
+    Swal.fire({
+      title: `Total to pay: ${state?.total} €`,
+      text: "Do you confirm the sale?",
+      icon: "info",
+      showDenyButton: true,
+      confirmButtonText: "PAY",
+      confirmButtonColor: "#198754",
+      denyButtonText: "Cancel",
+      denyButtonColor: "#c1121f",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        prepareBody();
+      }
+    });
+  };
 
   const paginatedProducts = currentData();
 
@@ -64,7 +82,7 @@ export const Transaction = () => {
           <div className="col-12">
             <div className="d-flex flex-column justify-content-start">
               <div className="transactionHeader d-flex justify-content-center align-items-center">
-                <h3 className="text-white st-back-rs">Sale details</h3>
+                <h3 className="text-black fs-1 py-4">Sale details</h3>
               </div>
               <div className="trasactionBody container tableContainer">
                 <table className="table">
@@ -80,9 +98,9 @@ export const Transaction = () => {
                     {paginatedProducts?.map((article) => (
                       <tr key={article.id} className="cursor-pointer">
                         <td data-label="Article">{article.name}</td>
-                        <td data-label="Price">{article.price}</td>
+                        <td data-label="Price €">{article.price}</td>
                         <td data-label="Units">{article.quantity}</td>
-                        <td data-label="Amount">
+                        <td data-label="Amount €">
                           {article.price * article.quantity}
                         </td>
                       </tr>
@@ -103,10 +121,10 @@ export const Transaction = () => {
                   <span className="fw-bold ">Total: </span>
                   {state.total} €
                 </div>
-                <div className="transanctionDesign_footer p-2">
+                <div className="transanctionDesign_footer p-4">
                   {!isLoading ? (
                     <div className="btn btn-success">
-                      <MdDoneAll size="1.5em" onClick={prepareBody} />
+                      <MdDoneAll size="2em" onClick={confirmSale} />
                     </div>
                   ) : (
                     <ButtonSpinner />

@@ -50,7 +50,7 @@ export const EditProfile = () => {
         onSubmit={handleSubmit}
       >
         <div className="mb-3">
-          <label htmlFor="inputName" className="form-label">
+          <label htmlFor="inputName" className="form-label fw-bold">
             Name
           </label>
           <input
@@ -64,7 +64,7 @@ export const EditProfile = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="inputSurname" className="form-label">
+          <label htmlFor="inputSurname" className="form-label fw-bold">
             Surname
           </label>
           <input
@@ -78,7 +78,7 @@ export const EditProfile = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="inputPhone" className="form-label">
+          <label htmlFor="inputPhone" className="form-label fw-bold">
             Phone
           </label>
           <input

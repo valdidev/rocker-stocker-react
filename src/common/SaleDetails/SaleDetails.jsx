@@ -37,8 +37,8 @@ export const SaleDetails = () => {
   if (!saleDetails || isLoading) return <Spinner />;
 
   return (
-    <div className="saleDetailsDesign">
-      <h1 className="text-center text-white st-back-rs">
+    <div className="saleDetailsDesign pb-2">
+      <h1 className="text-center text-black">
         Details of sale # {saleId}
       </h1>
       <div className="tableContainer">

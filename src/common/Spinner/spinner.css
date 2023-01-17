@@ -1,6 +1,6 @@
 .spinnerDesign {
     height: 90vh;
     margin-top: .7em;
-    background-color: grey;
+    background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);;
     text-shadow: 5px 5px 5px solid black;
 }

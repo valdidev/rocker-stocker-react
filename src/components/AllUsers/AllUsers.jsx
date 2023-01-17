@@ -14,6 +14,7 @@ import "./allUsers.css";
 export const AllUsers = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   const usersPerTable = 5;
 
@@ -24,18 +25,22 @@ export const AllUsers = () => {
 
   const paginatedUsers = currentData();
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const modifyUserActiveStatus = (userId) => {
     setIsLoading(true);
-    axiosPatch("user/active", userId, "", user?.jwt).then((data) => console.log(data));
+    axiosPatch("user/active", userId, "", user?.jwt).then((data) =>
+      console.log(data)
+    );
     setIsLoading(false);
+    setFlag(!flag);
   };
 
   const deleteUser = (userId) => {
     setIsLoading(true);
-    axiosDelete("user/delete", userId, user?.jwt).then((data) => console.log(data));
-    setIsLoading(false);
+    axiosDelete("user/delete", userId, user?.jwt)
+      .then((data) => console.log(data))
+      .then(setFlag(!flag));
   };
 
   const confirmToDeleteUser = (user) => {
@@ -55,6 +60,26 @@ export const AllUsers = () => {
     });
   };
 
+  const confirmToModifyActiveStatus = (user) => {
+    let activityStatus = !user.isActive ? "ACTIVE" : "INACTIVE";
+    let colorStatus = user.isActive ? "#FFC107" : "#198754";
+
+    Swal.fire({
+      title: user.email,
+      text: `Do you want to change to ${activityStatus}?`,
+      icon: "warning",
+      showDenyButton: true,
+      confirmButtonText: "Change",
+      confirmButtonColor: `${colorStatus}`,
+      denyButtonText: "No",
+      denyButtonColor: "#edede9",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        modifyUserActiveStatus(user.id);
+      }
+    });
+  };
+
   useEffect(() => {
     try {
       setIsLoading(true);
@@ -66,16 +91,16 @@ export const AllUsers = () => {
       setUsers(null);
       setIsLoading(false);
     }
-  }, []);
+  }, [flag]);
 
   if (!users || isLoading) {
     return <Spinner />;
   }
 
   return (
-    <div className="allUsersDesign">
-      <div className="tableContainer">
-        <table className="table box-shadow-rs">
+    <div className="tableContainer">
+      <div className="containerTable">
+        <table className="table box-shadow-rs container">
           <thead>
             <tr className="bg-black-rs">
               <th>Name</th>
@@ -93,9 +118,9 @@ export const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
-                  <td>{user.rolId === 1 ? "Manager" : "Employee"}</td>
+                  <td>{user.rolId === 1 ? "MANAGER" : "Employee"}</td>
                   <td>{user.isActive ? "Active" : "Block"}</td>
-                  <td>
+                  <td className="d-flex justify-content-evenly">
                     <div className="btn btn-info mx-1">
                       <Link
                         to="/private/myprofile/edit"
@@ -115,7 +140,7 @@ export const AllUsers = () => {
                       className={`btn ${
                         user.isActive ? "btn-success" : "btn-warning"
                       }`}
-                      onClick={() => modifyUserActiveStatus(user.id)}
+                      onClick={() => confirmToModifyActiveStatus(user)}
                     >
                       {user.isActive ? <TbLockOpen /> : <TbLock />}
                     </div>

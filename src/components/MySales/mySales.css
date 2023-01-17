@@ -1,17 +1,30 @@
 .mySalesDesign {
-  background-color: grey ;
+  background: linear-gradient(-180deg, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%);
   min-height: 90vh;
   width: 100vw;
 }
 
+.mySalesDesign_email {
+  text-shadow: 2px 3px 2px #ccc;
+}
+
 .tableContainer {
-  min-height: 55vh;
+ min-height: 60vh;
+}
+
+.tableContainer_spacing {
+  min-height: 50vh;
+}
+
+.paginationDesign {
+  width: 100vw;
+  margin-top: 1em;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 .table td,

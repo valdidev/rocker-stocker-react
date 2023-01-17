@@ -44,9 +44,9 @@ export const AllSales = () => {
   }
 
   return (
-    <div className="allSalesDesign">
-      <div className="tableContainer">
-        <table className="table box-shadow-rs">
+    <div className="tableContainer">
+      <div className="containerTable">
+        <table className="table box-shadow-rs container">
           <thead>
             <tr className="bg-black-rs">
               <th>Sale #</th>
