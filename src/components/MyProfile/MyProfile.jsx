@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { FaUserEdit } from "react-icons/fa";
-
+import { AuthContext } from "../../contexts/AuthContext2";
 import "../../index.css";
 import "./myProfile.css";
-import { AuthContext } from "../../contexts/AuthContext2";
 
 export const MyProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -21,7 +20,7 @@ export const MyProfile = () => {
       .finally(setIsLoading(false));
   }, []);
 
-  if (!profile) return <Spinner />;
+  if (isLoading || !profile) return <Spinner />;
 
   return (
     <div className="myProfileDesign text-white container-fluid d-flex justify-content-center align-items-center">
@@ -31,25 +30,25 @@ export const MyProfile = () => {
           <div className="d-flex col-12 col-sm-4 flex-column  bg-info">
             <div className="d-flex flex-column">
               <span className="fw-bold">NAME</span>
-              {profile.name}
+              {profile?.name}
             </div>
             <div className="d-flex flex-column">
               <span className="fw-bold">SURNAME</span>
-              {profile.surname}
+              {profile?.surname}
             </div>
             <div className="d-flex flex-column">
               <span className="fw-bold">PHONE</span>
-              {profile.phone}
+              {profile?.phone}
             </div>
           </div>
           <div className="d-flex justify-content-center col-12 col-sm-8 flex-column bg-black-dark-rs">
             <div className="d-flex flex-column">
               <span className="fw-bold">EMAIL</span>
-              <span>{profile.email}</span>
+              <span>{profile?.email}</span>
             </div>
             <div className="d-flex flex-column">
               <span className="fw-bold">POSITION</span>
-              {profile.rolId === 1 ? "Manager" : "Employee"}
+              {profile?.rolId === 1 ? "Manager" : "Employee"}
             </div>
           </div>
         </div>
