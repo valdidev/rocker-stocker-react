@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import usePagination from "../../hook/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
-
 import "../../index.css";
 import "./allUsers.css";
 
@@ -85,7 +84,7 @@ export const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((user) => {
+            {paginatedUsers?.map((user) => {
               return (
                 <tr key={user.id}>
                   <td>{user.name}</td>
