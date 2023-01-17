@@ -125,7 +125,7 @@ export const Cart = () => {
             </tfoot>
           </table>
         </div>
-        <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center box-shadow-rs">
+        <div className="col-12 col-md-4 p-2 bg-black-dark-rs text-white d-flex flex-column justify-content-center align-items-center box-shadow-rs rounded">
           <div className="d-flex flex-column align-items-center justify-content-center">
             <h4>
               <span className="fw-bold">Total:</span> {total || 0} €

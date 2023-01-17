@@ -2,6 +2,12 @@
     min-height: 90vh;
 }
 
-.editProfileDesign_form {
-  max-width: 70%;
+.editProfileDesign_form.container {
+  max-width: 40vw;
+}
+
+@media (max-width: 500px) {
+  .editProfileDesign_form.container {
+    max-width: 80vw;
+  }
 }
