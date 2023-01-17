@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { Spinner } from "../../common/Spinner/Spinner";
+import { AuthContext } from "../../contexts/AuthContext2";
 import usePagination from "../../hook/usePagination";
 import "../../index.css";
 import "./allSales.css";
@@ -23,14 +24,12 @@ export const AllSales = () => {
 
   const navigate = useNavigate();
 
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-
-  const userJwt = userLogged.jwt;
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("sale/all", "", userJwt).then((data) => {
+      axiosGet("sale/all", "", user?.jwt).then((data) => {
         setSales(data.data);
         setIsLoading(false);
       });

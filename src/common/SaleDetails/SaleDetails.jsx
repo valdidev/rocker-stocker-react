@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../Spinner/Spinner";
 import usePagination from "../../hook/usePagination";
 import { Pagination } from "../Pagination/Pagination";
+import { AuthContext } from "../../contexts/AuthContext2";
 import "../../index.css";
 import "./saleDetails.css";
 
@@ -22,9 +23,11 @@ export const SaleDetails = () => {
 
   const paginatedSaleDetails = currentData();
 
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     setIsLoading(true);
-    axiosGet("sale/details", saleId)
+    axiosGet("sale/details", saleId, user?.jwt)
       .then((result) => {
         setSaleDetails(result.data);
       })
@@ -62,7 +65,7 @@ export const SaleDetails = () => {
           </tbody>
         </table>
       </div>
-      {saleDetails.length > salesPerTable && (
+      {saleDetails?.length > salesPerTable && (
         <Pagination
           currentPage={currentPage}
           maxPage={maxPage}

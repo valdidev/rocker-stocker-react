@@ -1,19 +1,34 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdDoneAll } from "react-icons/md";
-import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner"
+import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { axiosPost } from "../../api/axios";
 import { useShopContext } from "../../contexts/ShopContext";
 import { TYPES } from "../../actions/shoppingAction";
+import usePagination from "../../hook/usePagination";
+import { Pagination } from "../../common/Pagination/Pagination";
+import { AuthContext } from "../../contexts/AuthContext2";
 import "../../index.css";
+import "./transaction.css";
 
 export const Transaction = () => {
   const { dispatch } = useShopContext();
   const { state } = useLocation();
 
+  const productsPerTable = 5;
+
+  const { currentData, currentPage, maxPage, next, prev } = usePagination(
+    state.cart,
+    productsPerTable
+  );
+
+  const paginatedProducts = currentData();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const prepareBody = () => {
     let cart = [];
@@ -34,7 +49,7 @@ export const Transaction = () => {
   };
 
   const sendBody = (finalBody) => {
-    axiosPost("sale/sell", "", finalBody)
+    axiosPost("sale/sell", "", finalBody, user?.jwt)
       .then((data) => console.log(data))
       .then(() => {
         dispatch({ type: TYPES.CLEAR_CART });
@@ -51,7 +66,7 @@ export const Transaction = () => {
               <div className="transactionHeader d-flex justify-content-center align-items-center">
                 <h3 className="text-white st-back-rs">Sale details</h3>
               </div>
-              <div className="trasactionBody container">
+              <div className="trasactionBody container tableContainer">
                 <table className="table">
                   <thead>
                     <tr className="bg-success">
@@ -62,7 +77,7 @@ export const Transaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {state?.cart?.map((article) => (
+                    {paginatedProducts?.map((article) => (
                       <tr key={article.id} className="cursor-pointer">
                         <td data-label="Article">{article.name}</td>
                         <td data-label="Price">{article.price}</td>
@@ -75,9 +90,17 @@ export const Transaction = () => {
                   </tbody>
                 </table>
               </div>
-              <div className="transactionFooter bg-black-rs d-flex flex-column justify-content-center align-items-center rounded border-dark-rs">
-                <div className="text-white bg-black-dark-rs w-100 text-center">
-                  <span>Total: </span>
+              {state.cart?.length > productsPerTable && (
+                <Pagination
+                  currentPage={currentPage}
+                  maxPage={maxPage}
+                  next={next}
+                  prev={prev}
+                />
+              )}
+              <div className="transactionFooter bg-black-rs d-flex flex-column justify-content-center align-items-center rounded border-dark-rs my-3">
+                <div className="text-white bg-black-dark-rs w-100 fs-5 text-center">
+                  <span className="fw-bold ">Total: </span>
                   {state.total} €
                 </div>
                 <div className="transanctionDesign_footer p-2">

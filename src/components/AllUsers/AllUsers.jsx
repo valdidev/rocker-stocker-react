@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { axiosDelete, axiosGet, axiosPatch } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { TbLock, TbLockOpen } from "react-icons/tb";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import usePagination from "../../hook/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
+import { AuthContext } from "../../contexts/AuthContext2";
 import "../../index.css";
 import "./allUsers.css";
 
@@ -23,15 +24,17 @@ export const AllUsers = () => {
 
   const paginatedUsers = currentData();
 
+  const { user } = useContext(AuthContext)
+
   const modifyUserActiveStatus = (userId) => {
     setIsLoading(true);
-    axiosPatch("user/active", userId).then((data) => console.log(data));
+    axiosPatch("user/active", userId, "", user?.jwt).then((data) => console.log(data));
     setIsLoading(false);
   };
 
   const deleteUser = (userId) => {
     setIsLoading(true);
-    axiosDelete("user/delete", userId).then((data) => console.log(data));
+    axiosDelete("user/delete", userId, user?.jwt).then((data) => console.log(data));
     setIsLoading(false);
   };
 
@@ -55,7 +58,7 @@ export const AllUsers = () => {
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("user/all", "").then((data) => {
+      axiosGet("user/all", "", user?.jwt).then((data) => {
         setUsers(data.data);
         setIsLoading(false);
       });

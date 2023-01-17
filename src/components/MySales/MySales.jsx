@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NoSales } from "../../common/NoSales/NoSales";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
@@ -8,29 +8,30 @@ import usePagination from "../../hook/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 
 import "./mySales.css";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 export const MySales = () => {
   const [sales, setSales] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const itemsPerPage = 5;
+  const salesPerTable = 5;
 
   const { currentData, currentPage, maxPage, next, prev } = usePagination(
     sales,
-    itemsPerPage
+    salesPerTable
   );
 
   const paginatedSales = currentData();
 
   const navigate = useNavigate();
 
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("sale/mysales", userLogged.id).then((data) => {
-        setSales(data.data);
+      axiosGet("sale/mysales", user?.id, user?.jwt).then((data) => {
+        setSales(data?.data);
         setIsLoading(false);
       });
     } catch (error) {
@@ -47,9 +48,7 @@ export const MySales = () => {
 
   return (
     <div className="mySalesDesign">
-      <h1 className="text-center text-white st-back-rs py-3">
-        {userLogged.email}
-      </h1>
+      <h1 className="text-center text-white st-back-rs py-3">{user?.email}</h1>
       <div className="tableContainer">
         <table className="table container box-shadow-rs">
           <thead>
@@ -83,12 +82,14 @@ export const MySales = () => {
           </tbody>
         </table>
       </div>
-      <Pagination
-        currentPage={currentPage}
-        maxPage={maxPage}
-        next={next}
-        prev={prev}
-      />
+      {sales?.length > salesPerTable && (
+        <Pagination
+          currentPage={currentPage}
+          maxPage={maxPage}
+          next={next}
+          prev={prev}
+        />
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiFillFormatPainter, AiFillThunderbolt } from "react-icons/ai";
 import { TfiHummer } from "react-icons/tfi";
 import { FaCartPlus } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { Spinner } from "../../common/Spinner/Spinner";
 import { useShopContext } from "../../contexts/ShopContext";
 import "../../index.css";
 import "./search.css";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 export const Search = () => {
   const [found, setFound] = useState(null);
@@ -23,10 +24,12 @@ export const Search = () => {
     });
   };
 
+  const { user } = useContext(AuthContext)
+
   useEffect(() => {
     try {
       setIsLoading(true);
-      axiosGet("article/category", category).then((data) => {
+      axiosGet("article/category", category, user?.jwt).then((data) => {
         setFound(data.data);
         setIsLoading(false);
       });

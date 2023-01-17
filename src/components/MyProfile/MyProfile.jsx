@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
@@ -6,16 +6,17 @@ import { FaUserEdit } from "react-icons/fa";
 
 import "../../index.css";
 import "./myProfile.css";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 export const MyProfile = () => {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     setIsLoading(true);
-    axiosGet("user/profile", userLogged.id)
+    axiosGet("user/profile", user?.id, user?.jwt)
       .then((result) => setProfile(result.data))
       .finally(setIsLoading(false));
   }, []);

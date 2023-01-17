@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosPatch } from "../../api/axios";
 import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
 
 import "./editProfile.css";
+import { AuthContext } from "../../contexts/AuthContext2";
 
 export const EditProfile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(state.editableProfile || null);
+  const [userProfile, setUser] = useState(state.editableProfile || null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setUser({
-      ...user,
+      ...userProfile,
       [e.target.name]: e.target.value,
     });
   };
@@ -25,13 +28,13 @@ export const EditProfile = () => {
 
     e.preventDefault();
     let bodyToUpdateProfile = {
-      name: user.name,
-      surname: user.surname,
-      phone: user.phone,
-      email: user.email,
+      name: userProfile.name,
+      surname: userProfile.surname,
+      phone: userProfile.phone,
+      email: userProfile.email,
     };
 
-    axiosPatch("user/modify", "", bodyToUpdateProfile)
+    axiosPatch("user/modify", "", bodyToUpdateProfile, user?.jwt)
       .then((data) => console.log(data))
       .catch((error) => console.log(error))
       .finally(() => navigate(-1));
@@ -40,9 +43,12 @@ export const EditProfile = () => {
   return (
     <div className="editProfileDesign container">
       <h3 className="text-center text-white st-back-rs py-3">
-        Edit profile of {user.email}
+        Edit profile of {userProfile.email}
       </h3>
-      <form className="editProfileDesign_form container" onSubmit={handleSubmit}>
+      <form
+        className="editProfileDesign_form container"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-3">
           <label htmlFor="inputName" className="form-label">
             Name
@@ -53,7 +59,7 @@ export const EditProfile = () => {
             aria-describedby="nameHelp"
             type="text"
             name="name"
-            value={user.name}
+            value={userProfile.name}
             onChange={handleChange}
           />
         </div>
@@ -67,7 +73,7 @@ export const EditProfile = () => {
             aria-describedby="surnameHelp"
             type="text"
             name="surname"
-            value={user.surname}
+            value={userProfile.surname}
             onChange={handleChange}
           />
         </div>
@@ -81,7 +87,7 @@ export const EditProfile = () => {
             aria-describedby="phoneHelp"
             type="text"
             name="phone"
-            value={user.phone}
+            value={userProfile.phone}
             onChange={handleChange}
           />
         </div>

@@ -4,12 +4,6 @@ import axios from 'axios';
 // const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
 const baseURL = "http://localhost:3000";
 
-const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
-let userJwt;
-if (userLogged) {
-    userJwt = userLogged.jwt;
-}
-
 
 export const apiCall = (url, data, headers, method) => axios({
     method,
@@ -18,10 +12,10 @@ export const apiCall = (url, data, headers, method) => axios({
     headers
 })
 
-export const axiosGet = async (target, param) => {
+export const axiosGet = async (target, param, jwt) => {
     try {
         let res = await axios.get(`${baseURL}/${target}/${param}`, {
-            headers: { Authorization: "Bearer " + userJwt },
+            headers: { Authorization: "Bearer " + jwt },
         });
         return res.data
     } catch (error) {
@@ -29,10 +23,10 @@ export const axiosGet = async (target, param) => {
     }
 };
 
-export const axiosPost = async (target, param, body) => {
+export const axiosPost = async (target, param, body, jwt) => {
     try {
         let res = await axios.post(`${baseURL}/${target}/${param}`, body, {
-            headers: { Authorization: "Bearer " + userJwt },
+            headers: { Authorization: "Bearer " + jwt },
         });
         return res.data
     } catch (error) {
@@ -40,10 +34,10 @@ export const axiosPost = async (target, param, body) => {
     }
 };
 
-export const axiosPatch = async (target, param, body) => {
+export const axiosPatch = async (target, param, body, jwt) => {
     try {
         let res = await axios.patch(`${baseURL}/${target}/${param}`, body, {
-            headers: { Authorization: "Bearer " + userJwt },
+            headers: { Authorization: "Bearer " + jwt },
         });
         return res.data
     } catch (error) {
@@ -51,10 +45,10 @@ export const axiosPatch = async (target, param, body) => {
     }
 };
 
-export const axiosDelete = async (target, param) => {
+export const axiosDelete = async (target, param, jwt) => {
     try {
         let res = await axios.delete(`${baseURL}/${target}/${param}`, {
-            headers: { Authorization: "Bearer " + userJwt },
+            headers: { Authorization: "Bearer " + jwt },
         });
         return res.data
     } catch (error) {
