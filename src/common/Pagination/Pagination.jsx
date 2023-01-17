@@ -2,7 +2,7 @@ import "./pagination.css";
 
 export const Pagination = ({ currentPage, maxPage, next, prev }) => {
   return (
-    <div className="paginationDesign d-flex justify-content-center pb-1">
+    <div className="paginationDesign d-flex justify-content-center align-items-center pb-1">
       <button
         className="paginationDesign_btn"
         disabled={currentPage === 1}
