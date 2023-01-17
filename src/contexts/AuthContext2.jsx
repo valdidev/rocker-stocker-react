@@ -29,5 +29,4 @@ const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };
 
-export { AuthProvider };
-export default AuthContext;
+export { AuthProvider, AuthContext };

@@ -4,6 +4,10 @@
   width: 100vw;
 }
 
+.tableContainer {
+  min-height: 55vh;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
