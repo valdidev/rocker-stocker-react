@@ -22,9 +22,6 @@ export const MySales = () => {
 
   const paginatedSales = currentData();
 
-  console.log("full sales", sales);
-  console.log("paginated", paginatedSales);
-
   const navigate = useNavigate();
 
   const userLogged = JSON.parse(localStorage.getItem("RS_USER"));
