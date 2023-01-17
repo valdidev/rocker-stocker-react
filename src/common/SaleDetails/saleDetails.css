@@ -1,3 +1,7 @@
 .saleDetailsDesign {
-    min-height: 90vh;
+  min-height: 90vh;
+}
+
+.tableContainer {
+  min-height: 55vh;
 }

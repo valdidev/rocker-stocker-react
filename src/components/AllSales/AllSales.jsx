@@ -81,7 +81,7 @@ export const AllSales = () => {
           </tbody>
         </table>
       </div>
-      {sales?.length > 5 && (
+      {sales?.length > salesPerTable && (
         <Pagination
           currentPage={currentPage}
           maxPage={maxPage}

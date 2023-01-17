@@ -129,7 +129,7 @@ export const AllUsers = () => {
           </tbody>
         </table>
       </div>
-      {users.length > 5 && (
+      {users.length > usersPerTable && (
         <Pagination
           currentPage={currentPage}
           maxPage={maxPage}
