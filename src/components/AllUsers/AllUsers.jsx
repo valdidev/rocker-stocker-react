@@ -100,7 +100,7 @@ export const AllUsers = () => {
   return (
     <div className="tableContainer">
       <div className="containerTable">
-        <table className="table box-shadow-rs">
+        <table className="table box-shadow-rs container">
           <thead>
             <tr className="bg-black-rs">
               <th>Name</th>
