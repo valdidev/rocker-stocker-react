@@ -54,7 +54,10 @@
   justify-content: space-around;
 }
 
-/* COLORS */
+/* Dinamic buttons */
+.btnSelected {
+  opacity: .6;
+}
 
 @media (max-width: 500px) {
   .lobbyContainer_items_head {

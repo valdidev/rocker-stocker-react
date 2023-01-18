@@ -22,13 +22,13 @@ export const Lobby = () => {
             </h1>
             <div className="d-flex justify-content-center">
               <div
-                className="btn btn-warning py-2 px-3 mx-2 fw-bolder"
+                className={`btn btn-warning py-2 px-3 mx-2 fw-bolder ${!flag && 'btnSelected'}`}
                 onClick={() => setFlag(true)}
               >
                 <GrUserAdmin size="2em" />
               </div>
               <div
-                className="btn btn-warning py-2 px-3 mx-2 fw-bolder"
+                className={`btn btn-warning py-2 px-3 mx-2 fw-bolder ${flag && 'btnSelected'}`}
                 onClick={() => setFlag(false)}
               >
                 <GrUserAdd size="2em" />
