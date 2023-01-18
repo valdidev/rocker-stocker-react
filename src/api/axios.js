@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-
-// const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
-const baseURL = "http://localhost:3000";
-
+// production URL
+const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
 
 export const apiCall = (url, data, headers, method) => axios({
     method,
