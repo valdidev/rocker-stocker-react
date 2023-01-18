@@ -1,27 +1,87 @@
-.container-lobby {
+.lobbyContainer {
+  height: 100vh;
+}
+
+.lobbyContainer_items_head_rs {
+  font-size: 3em;
+  text-shadow: 2px 2px 2px rgb(63, 76, 119);
+}
+
+.lobbyContainer_wrap {
   min-height: 100vh;
 }
 
-.head-lobby {
-  min-height: 10vh;
+.lobbyContainer_items {
+  height: 90vh;
+  background: linear-gradient(
+    112.1deg,
+    rgb(32, 38, 57) 11.4%,
+    rgb(63, 76, 119) 70.2%
+  );
+  box-shadow: 0.5em 0.5em 1em #202639;
 }
 
-.body-lobby {
-  height: 60vh;
+.lobbyContainer_items_head {
+  height: 30%;
 }
 
-.rs-lettering {
-  font-size: 3em;
+.lobbyContainer_items_body {
+  height: 70%;
+  width: 50%;
 }
 
-.border-black-rs {
-  border: 1px solid #2f324760;
+.formContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
-.st-back-rs {
-  text-shadow: #2f3247 5px 5px 5px;
+.lobbyForm {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.bs-white-rs {
-  box-shadow: 0px 0px 20px 0px #2f3247;
+.lobbyForm_signin {
+  justify-content: space-evenly;
+}
+
+.lobbyForm_signup {
+  justify-content: space-around;
+}
+
+/* Dinamic buttons */
+.btnSelected {
+  opacity: .6;
+}
+
+@media (max-width: 500px) {
+  .lobbyContainer_items_head {
+    height: 25%;
+  }
+
+  .lobbyContainer_items_head_rs {
+    font-size: 2em;
+  }
+
+  .lobbyContainer_items_body {
+    height: 75%;
+    width: auto;
+  }
+  .formContainer {
+    justify-content: start;
+  }
+
+  .lobbyForm_signup,
+  .lobbyForm_signin {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

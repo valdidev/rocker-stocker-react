@@ -2,8 +2,8 @@ import { useState } from "react";
 import { apiCall } from "../../api/axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
-import '../../index.css';
+import { BsBoxArrowInUp } from "react-icons/bs";
+import "../../index.css";
 
 export const SignUp = ({ switchFlag }) => {
   // API
@@ -27,7 +27,6 @@ export const SignUp = ({ switchFlag }) => {
     }
   };
 
-  // HOOKS
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -41,7 +40,6 @@ export const SignUp = ({ switchFlag }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // HANDLERS
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
       ...prevState,
@@ -61,16 +59,12 @@ export const SignUp = ({ switchFlag }) => {
     email: credentials.email,
     password: credentials.password,
     name: credentials.name,
-    surname: credentials.surname,
-    phone: credentials.phone,
   };
 
   const formIsFilled = !(
     userError === "" &&
     credentials.email.length > 0 &&
     credentials.name.length > 0 &&
-    credentials.surname.length > 0 &&
-    credentials.phone.length > 0 &&
     credentials.password.length > 0 &&
     credentials.confirmPassword.length > 0
   );
@@ -78,13 +72,14 @@ export const SignUp = ({ switchFlag }) => {
   const MySwal = withReactContent(Swal);
 
   return (
-    <div className="form container form-container d-flex flex-column align-items-center">
+    <div className="form container formContainer">
+      <h1 className="text-center">Sign up</h1>
+
       <form
         onSubmit={handlerSubmit}
-        className="d-flex flex-column align-items-center justify-content-center"
+        className="lobbyForm lobbyForm_signup"
         noValidate
       >
-        <h1 className="text-center">Sign up</h1>
         <input
           className="form-control my-2"
           type="text"
@@ -93,22 +88,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
-        <input
-          className="form-control my-2"
-          type="text"
-          placeholder="Surname"
-          name="surname"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
-        />
-        <input
-          className="form-control my-2"
-          type="text"
-          placeholder="Phone"
-          name="phone"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
-        />
+
         <input
           className="form-control my-2"
           type="email"
@@ -117,6 +97,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
+
         <input
           className="form-control my-2"
           type="password"
@@ -125,6 +106,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
+
         <input
           className="form-control my-2"
           type="password"
@@ -138,14 +120,14 @@ export const SignUp = ({ switchFlag }) => {
 
         {!isLoading ? (
           <button
-            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            className="btn-send btn btn-success py-2 w-50"
             disabled={formIsFilled}
           >
-            Send
+            <BsBoxArrowInUp size="2em" />
           </button>
         ) : (
           <button
-            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            className="btn-send btn btn-success py-2 w-50"
             disabled={formIsFilled}
             type="button"
           >
