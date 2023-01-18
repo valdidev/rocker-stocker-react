@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
-
+import { GrUserAdd, GrUserAdmin } from "react-icons/gr";
 import "./lobby.css";
 import "../../index.css";
 
@@ -13,29 +13,29 @@ export const Lobby = () => {
   };
 
   return (
-    <div className="container-fluid bg-black-rs">
-      <div className="container-lobby d-flex align-items-center justify-content-center row">
-        <div className="wrap-lobby d-flex col-10 col-md-6 col-l-4 col-xl-4  flex-column align-items-center border-black-rs bs-white-rs justify-content-center rounded">
-          <div className="head-lobby text-white justify-self-start d-flex flex-column align-items-center mb-4">
-            <h1 className="rs-lettering head-lobby-lettering text-center my-3 st-back-rs">
+    <div className="container-fluid lobbyContainer">
+      <div className="lobbyContainer_wrap d-flex align-items-center justify-content-center row">
+        <div className="lobbyContainer_items d-flex col-10 col-md-6 col-l-4 col-xl-4  flex-column align-items-center border-black-rs bs-white-rs justify-content-center rounded bg-black-rs">
+          <div className="lobbyContainer_items_head text-white d-flex flex-column align-items-center justify-content-evenly">
+            <h1 className="lobbyContainer_items_head_rs text-center">
               Rocker Stocker
             </h1>
             <div className="d-flex justify-content-center">
               <div
-                className="btn btn-warning mx-2"
+                className="btn btn-warning py-2 px-3 mx-2 fw-bolder"
                 onClick={() => setFlag(true)}
               >
-                SIGN IN
+                <GrUserAdmin size="2em" />
               </div>
               <div
-                className="btn btn-warning mx-2"
+                className="btn btn-warning py-2 px-3 mx-2 fw-bolder"
                 onClick={() => setFlag(false)}
               >
-                SIGN UP
+                <GrUserAdd size="2em" />
               </div>
             </div>
           </div>
-          <div className="body-lobby mt-3 d-flex flex-column align-items-center justify-content-start text-white">
+          <div className="lobbyContainer_items_body text-white">
             {flag ? <SignIn /> : <SignUp switchFlag={switchFlag} />}
           </div>
         </div>
