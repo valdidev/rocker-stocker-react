@@ -1,11 +1,10 @@
 import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
 import { AuthContext } from "../../contexts/AuthContext2";
-
-import '../../index.css';
+import { FiLogIn } from "react-icons/fi";
+import "../../index.css";
 
 export const SignIn = () => {
-  
   // API
   const trySignIn = async (body) => {
     setIsLoading(true);
@@ -23,8 +22,6 @@ export const SignIn = () => {
     }
   };
 
-  // HOOKS
-
   const { handlerAuth } = useContext(AuthContext);
 
   const [credentials, setCredentials] = useState({
@@ -35,7 +32,6 @@ export const SignIn = () => {
   const [userError, setUserError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // HANDLERS
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
       ...prevState,
@@ -62,13 +58,14 @@ export const SignIn = () => {
   );
 
   return (
-    <div className="form container">
+    <div className="form container formContainer">
+      <h1 className="text-center">Sign in</h1>
+
       <form
         onSubmit={handlerSubmit}
-        className="d-flex flex-column align-items-center justify-content-center"
+        className="lobbyForm lobbyForm_signin"
         noValidate
       >
-        <h1 className="text-center">Sign in</h1>
         <input
           className="form-control my-2"
           name="email"
@@ -89,14 +86,14 @@ export const SignIn = () => {
 
         {!isLoading ? (
           <button
-            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            className="btn-send btn btn-success btn-shadow w-50"
             disabled={enableButton}
           >
-            Send
+            <FiLogIn size="2em" />
           </button>
         ) : (
           <button
-            className="btn-send btn btn-success btn-shadow w-100 my-4"
+            className="btn-send btn btn-success btn-shadow w-50"
             disabled={enableButton}
             type="button"
           >

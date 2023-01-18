@@ -3,9 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { axiosPatch } from "../../api/axios";
 import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
-
-import "./editProfile.css";
 import { AuthContext } from "../../contexts/AuthContext2";
+import "./editProfile.css";
 
 export const EditProfile = () => {
   const { state } = useLocation();
@@ -42,7 +41,7 @@ export const EditProfile = () => {
 
   return (
     <div className="editProfileDesign container">
-      <h3 className="text-center text-white st-back-rs py-3">
+      <h3 className="text-center text-black py-3">
         Edit profile of {userProfile.email}
       </h3>
       <form
