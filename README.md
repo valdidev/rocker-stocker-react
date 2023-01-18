@@ -14,22 +14,24 @@
  - **[Features](#features)**
  - **[Responsive design](#responsive-design)**
 ***
-# Rocker Stocker :es:
+# :es: Rocker Stocker 
 ## _Aplicación para la administración integral de un almacén_
 
+***
 ## Probar :rocket:
 [Ir a la APP](https://rocker-stocker.netlify.app/)
 
-## UI Tecnologías 
+***
+## UI Tecnologías :zap:
 - React.js
 - Axios
 - Bootstrap 5
 
-## Backend: API con Express.js y base de datos MySQL
-***
+### Backend: API con Express.js y base de datos MySQL
 - [Visitar repositorio del backend](https://github.com/valdidev/rocker-stocker-backend)
+***
 
-## Funcionalidades
+## Funcionalidades :heavy_check_mark:
 
 - Registro e inicio de sesión de usuarios con su token
 - CRUD de artículos 
@@ -37,41 +39,53 @@
 - Control de las ventas
 - Usuarios empleados y usuarios encargados
 
-## Diseño adaptable
-![image](https://user-images.githubusercontent.com/96445737/212577684-862a3f05-c915-4f48-88b2-d8cabd763bee.png)
+<details>
+  <summary>VER IMÁGENES</summary>
+  <img src="https://user-images.githubusercontent.com/96445737/213224978-407a32e4-5b08-4aaa-a11a-7240d7bbbc01.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225019-e8711362-85a8-4b50-93e8-b8f86e28d66e.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225091-fcc0b7f8-7a4d-45b6-8fb8-d4e052be6618.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225232-f5330647-adcd-4917-ac62-325b58a558f3.png" width="400" height="200" />
+</details>
 
+***
+## Diseño adaptable :left_right_arrow:
+<img src="https://user-images.githubusercontent.com/96445737/213223066-681e7bcb-4987-4ed0-993c-1268e9500bc0.png" width="400" height="300" />
 
-## Desplegada en Netlify
-![image](https://user-images.githubusercontent.com/96445737/213191726-ef622c2d-638f-44cd-ac26-6def98e2cdd4.png)
+***
+## Desplegada en Netlify :globe_with_meridians:
+<img src="https://user-images.githubusercontent.com/96445737/213220353-7f16719c-431b-466b-ad9b-a9cafa563788.png" width="200" height="100" />
+
 [Netlify.com](https://www.netlify.com/)
+***
 
-
-## Licencia
+## Licencia :scroll:
 
 MIT
 
-## Autor
+## Autor 👨‍💻
 Fernando Valdivielso - @valdidev
 
 ***
 ***
 
-# Rocker Stocker :uk:
+# :uk: Rocker Stocker 
 ## _App for the integral administration of a warehouse_
+***
 
 ## Try it :rocket:
 [Go to the APP](https://rocker-stocker.netlify.app/)
 
-## UI Technologies 
+***
+## UI Technologies :zap:
 - React.js
 - Axios
 - Bootstrap 5
 
-## Backend: API with Express.js and MySQL database
-***
+### Backend: API with Express.js and MySQL database
 - [Visit backend repository](https://github.com/valdidev/rocker-stocker-backend)
+***
 
-## Features
+## Features :heavy_check_mark:
 
 - Register and login with Token
 - CRUD of articles
@@ -79,18 +93,29 @@ Fernando Valdivielso - @valdidev
 - Sales control
 - Employee or Manager roles
 
-## Responsive design
-![image](https://user-images.githubusercontent.com/96445737/212577684-862a3f05-c915-4f48-88b2-d8cabd763bee.png)
+<details>
+  <summary>SEE SCREENSHOTS</summary>
+  <img src="https://user-images.githubusercontent.com/96445737/213224978-407a32e4-5b08-4aaa-a11a-7240d7bbbc01.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225019-e8711362-85a8-4b50-93e8-b8f86e28d66e.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225091-fcc0b7f8-7a4d-45b6-8fb8-d4e052be6618.png" width="400" height="200" />
+  <img src="https://user-images.githubusercontent.com/96445737/213225232-f5330647-adcd-4917-ac62-325b58a558f3.png" width="400" height="200" />
+</details>
 
+***
 
-## Deploy on Netlify
-![image](https://user-images.githubusercontent.com/96445737/213191726-ef622c2d-638f-44cd-ac26-6def98e2cdd4.png)
+## Responsive design :left_right_arrow:
+<img src="https://user-images.githubusercontent.com/96445737/213223066-681e7bcb-4987-4ed0-993c-1268e9500bc0.png" width="400" height="300" />
+
+***
+## Deploy on Netlify :globe_with_meridians:
+<img src="https://user-images.githubusercontent.com/96445737/213220353-7f16719c-431b-466b-ad9b-a9cafa563788.png" width="200" height="100" />
+
 [Netlify.com](https://www.netlify.com/)
+***
 
-
-## License
+## License :scroll:
 MIT
 
-## Author
+## Author 👨‍💻
 Fernando Valdivielso - @valdidev
 
