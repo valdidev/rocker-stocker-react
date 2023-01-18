@@ -34,11 +34,11 @@ export const MyProfile = () => {
             </div>
             <div className="d-flex flex-column">
               <span className="fw-bold">SURNAME</span>
-              {profile?.surname}
+              {profile?.surname || "Not provided"}
             </div>
             <div className="d-flex flex-column">
               <span className="fw-bold">PHONE</span>
-              {profile?.phone}
+              {profile?.phone || "Not provided"}
             </div>
           </div>
           <div className="d-flex justify-content-center col-12 col-sm-8 flex-column bg-black-dark-rs">

@@ -27,7 +27,6 @@ export const SignUp = ({ switchFlag }) => {
     }
   };
 
-  // HOOKS
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -41,7 +40,6 @@ export const SignUp = ({ switchFlag }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // HANDLERS
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
       ...prevState,
@@ -61,16 +59,12 @@ export const SignUp = ({ switchFlag }) => {
     email: credentials.email,
     password: credentials.password,
     name: credentials.name,
-    surname: credentials.surname,
-    phone: credentials.phone,
   };
 
   const formIsFilled = !(
     userError === "" &&
     credentials.email.length > 0 &&
     credentials.name.length > 0 &&
-    credentials.surname.length > 0 &&
-    credentials.phone.length > 0 &&
     credentials.password.length > 0 &&
     credentials.confirmPassword.length > 0
   );
@@ -93,22 +87,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
-        <input
-          className="form-control my-2"
-          type="text"
-          placeholder="Surname"
-          name="surname"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
-        />
-        <input
-          className="form-control my-2"
-          type="text"
-          placeholder="Phone"
-          name="phone"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
-        />
+       
         <input
           className="form-control my-2"
           type="email"
@@ -117,6 +96,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
+
         <input
           className="form-control my-2"
           type="password"
@@ -125,6 +105,7 @@ export const SignUp = ({ switchFlag }) => {
           onChange={(e) => inputsHandler(e)}
           onFocus={() => setUserError("")}
         />
+        
         <input
           className="form-control my-2"
           type="password"
