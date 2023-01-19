@@ -21,8 +21,10 @@ export const EditProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (Object.keys(errors).length > 0) return;
+    
+    if (errors?.name !== "" || errors.surname !== "" || errors.phone !== "") {
+      return;
+    };
 
     setIsLoading(true);
 
