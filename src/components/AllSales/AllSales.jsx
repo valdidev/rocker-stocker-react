@@ -6,7 +6,7 @@ import { NoSales } from "../../common/NoSales/NoSales";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { AuthContext } from "../../contexts/AuthContext2";
-import usePagination from "../../hook/usePagination";
+import usePagination from "../../hooks/usePagination";
 import "../../index.css";
 import "./allSales.css";
 

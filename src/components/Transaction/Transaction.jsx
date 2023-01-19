@@ -5,7 +5,7 @@ import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { axiosPost } from "../../api/axios";
 import { useShopContext } from "../../contexts/ShopContext";
 import { TYPES } from "../../actions/shoppingAction";
-import usePagination from "../../hook/usePagination";
+import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import Swal from "sweetalert2";

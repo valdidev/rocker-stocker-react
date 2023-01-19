@@ -4,7 +4,7 @@ import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
-import usePagination from "../../hook/usePagination";
+import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import "./mySales.css";

@@ -5,7 +5,7 @@ import { TbLock, TbLockOpen } from "react-icons/tb";
 import { FaUserAltSlash, FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import usePagination from "../../hook/usePagination";
+import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import "../../index.css";
