@@ -55,6 +55,7 @@ export const EditProfile = () => {
       <form
         className="editProfileDesign_form container"
         onSubmit={handleSubmit}
+        noValidate
       >
         <div className="mb-3 editProfileDesign_form_inputContainer">
           <label htmlFor="inputName" className="form-label fw-bold">
@@ -87,7 +88,7 @@ export const EditProfile = () => {
             aria-describedby="surnameHelp"
             type="text"
             name="surname"
-            value={form.surname}
+            value={form.surname || ""}
             onChange={handleChange}
             onBlur={handleBlur}
             required
@@ -108,7 +109,7 @@ export const EditProfile = () => {
             aria-describedby="phoneHelp"
             type="text"
             name="phone"
-            value={form.phone}
+            value={form.phone || ""}
             onChange={handleChange}
             onBlur={handleBlur}
             required
