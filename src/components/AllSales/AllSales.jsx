@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CgDetailsMore } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { axiosGet } from "../../api/axios";
+import { NoSales } from "../../common/NoSales/NoSales";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { AuthContext } from "../../contexts/AuthContext2";
@@ -24,7 +25,7 @@ export const AllSales = () => {
 
   const navigate = useNavigate();
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     try {
@@ -39,9 +40,9 @@ export const AllSales = () => {
     }
   }, []);
 
-  if (!sales && isLoading) {
-    return <Spinner />;
-  }
+  if (!sales && isLoading) return <Spinner />;
+
+  if (!sales) return <NoSales />;
 
   return (
     <div className="tableContainer">

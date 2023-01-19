@@ -5,23 +5,6 @@ import { FiLogIn } from "react-icons/fi";
 import "../../index.css";
 
 export const SignIn = () => {
-  // API
-  const trySignIn = async (body) => {
-    setIsLoading(true);
-    try {
-      let res = await apiCall("/auth/login", body, null, "post");
-      setIsLoading(false);
-
-      if (res.status === 200) {
-        let user = res.data.user;
-        handlerAuth(user);
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setUserError(error.response.data.message);
-    }
-  };
-
   const { handlerAuth } = useContext(AuthContext);
 
   const [credentials, setCredentials] = useState({
@@ -32,6 +15,24 @@ export const SignIn = () => {
   const [userError, setUserError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const trySignIn = async (body) => {
+    setIsLoading(true);
+    try {
+      let res = await apiCall("/auth/login", body, null, "post");
+
+      if (res.status === 200) {
+        let user = res.data.user;
+        handlerAuth(user);
+      }
+
+      setIsLoading(false);
+      
+    } catch (error) {
+      setIsLoading(false);
+      setUserError(error.response.data.message);
+    }
+  };
+
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
       ...prevState,
@@ -40,10 +41,8 @@ export const SignIn = () => {
   };
 
   const handlerSubmit = (e) => {
-    setIsLoading(true);
     e.preventDefault();
     trySignIn(bodyCredentials);
-    setIsLoading(false);
   };
 
   const bodyCredentials = {
@@ -84,14 +83,7 @@ export const SignIn = () => {
         />
         <p className="text-danger">{userError}</p>
 
-        {!isLoading ? (
-          <button
-            className="btn-send btn btn-success btn-shadow w-50"
-            disabled={enableButton}
-          >
-            <FiLogIn size="2em" />
-          </button>
-        ) : (
+        {isLoading ? (
           <button
             className="btn-send btn btn-success btn-shadow w-50"
             disabled={enableButton}
@@ -103,6 +95,13 @@ export const SignIn = () => {
               aria-hidden="true"
             ></span>
             <span className="visually-hidden">Send</span>
+          </button>
+        ) : (
+          <button
+            className="btn-send btn btn-success btn-shadow w-50"
+            disabled={enableButton}
+          >
+            <FiLogIn size="2em" />
           </button>
         )}
       </form>

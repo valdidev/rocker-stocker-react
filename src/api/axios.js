@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 // production URL
-const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
+// const baseURL = "https://rocker-stocker-backend-production.up.railway.app";
 
 // localhost
-// const baseURL = "http://localhost:3000";
+const baseURL = "http://localhost:3000";
 
 export const apiCall = (url, data, headers, method) => axios({
     method,
