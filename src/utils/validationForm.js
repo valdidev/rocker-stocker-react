@@ -8,13 +8,13 @@ export const validationsForm = (form) => {
     if (!form.name.trim()) {
         errors.name = "Name field is required";
     } else if (!regexText.test(form.name.trim())) {
-        errors.name = "Name field only accepts letters and white spaces";
+        errors.name = "Only accepts letters and white spaces";
     }
 
     if (!form.surname.trim()) {
         errors.surname = "Surname field is required";
     } else if (!regexText.test(form.surname.trim())) {
-        errors.surname = "Surname field only accepts letters and white spaces";
+        errors.surname = "Only accepts letters and white spaces";
     }
 
     if (!form.phone.trim()) {

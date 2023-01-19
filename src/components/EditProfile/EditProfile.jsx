@@ -47,14 +47,14 @@ export const EditProfile = () => {
 
   return (
     <div className="editProfileDesign container">
-      <h3 className="text-center text-black py-3">
+      <h3 className="editProfileDesign_header text-center text-black">
         Edit profile of {user?.email}
       </h3>
       <form
         className="editProfileDesign_form container"
         onSubmit={handleSubmit}
       >
-        <div className="mb-3">
+        <div className="mb-3 editProfileDesign_form_inputContainer">
           <label htmlFor="inputName" className="form-label fw-bold">
             Name
           </label>
@@ -75,7 +75,7 @@ export const EditProfile = () => {
           <p className="text-center text-danger">{errors.name}</p>
         )}
 
-        <div className="mb-3">
+        <div className="mb-3 editProfileDesign_form_inputContainer">
           <label htmlFor="inputSurname" className="form-label fw-bold">
             Surname
           </label>
@@ -96,7 +96,7 @@ export const EditProfile = () => {
           <p className="text-center text-danger">{errors.surname}</p>
         )}
 
-        <div className="mb-3">
+        <div className="mb-3 editProfileDesign_form_inputContainer">
           <label htmlFor="inputPhone" className="form-label fw-bold">
             Phone
           </label>
@@ -119,7 +119,7 @@ export const EditProfile = () => {
 
         <div className="d-flex text-center justify-content-center editProfileDesign_btn">
           {!isLoading ? (
-            <button type="submit" className="btn btn-primary p-2">
+            <button type="submit" className="btn btn-primary py-2 px-4">
               <MdDone fontSize="1.5em" />
             </button>
           ) : (

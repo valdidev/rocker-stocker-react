@@ -1,12 +1,27 @@
 .editProfileDesign {
-    min-height: 90vh;
+  min-height: 90vh;
 }
 
 .editProfileDesign_form.container {
-  max-width: 40vw;
+  min-height: 50vh;
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.editProfileDesign_header {
+  height: 13vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.editProfileDesign_form_inputContainer,
+.editProfileDesign_btn {
+  min-width: 70%;
+}
 
 @media (max-width: 500px) {
   .editProfileDesign_form.container {
