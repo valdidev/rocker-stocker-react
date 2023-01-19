@@ -4,45 +4,51 @@ import { axiosPatch } from "../../api/axios";
 import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
 import { AuthContext } from "../../contexts/AuthContext2";
+import { useForm } from "../../hooks/useForm";
 import "./editProfile.css";
 
 export const EditProfile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const [userProfile, setUser] = useState(state.editableProfile || null);
   const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useContext(AuthContext);
 
-  const handleChange = (e) => {
-    setUser({
-      ...userProfile,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const { form, errors, handleChange, handleBlur } = useForm(
+    state?.editableProfile
+  );
 
   const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (Object.keys(errors).length > 0) return;
+
     setIsLoading(true);
 
-    e.preventDefault();
     let bodyToUpdateProfile = {
-      name: userProfile.name,
-      surname: userProfile.surname,
-      phone: userProfile.phone,
-      email: userProfile.email,
+      name: form?.name,
+      surname: form?.surname,
+      phone: form?.phone,
+      email: user?.email,
     };
 
     axiosPatch("user/modify", "", bodyToUpdateProfile, user?.jwt)
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+      })
       .finally(() => navigate(-1));
   };
 
   return (
     <div className="editProfileDesign container">
       <h3 className="text-center text-black py-3">
-        Edit profile of {userProfile.email}
+        Edit profile of {user?.email}
       </h3>
       <form
         className="editProfileDesign_form container"
@@ -58,10 +64,17 @@ export const EditProfile = () => {
             aria-describedby="nameHelp"
             type="text"
             name="name"
-            value={userProfile.name}
+            value={form.name}
             onChange={handleChange}
+            onBlur={handleBlur}
+            required
           />
         </div>
+
+        {errors?.name && (
+          <p className="text-center text-danger">{errors.name}</p>
+        )}
+
         <div className="mb-3">
           <label htmlFor="inputSurname" className="form-label fw-bold">
             Surname
@@ -72,10 +85,17 @@ export const EditProfile = () => {
             aria-describedby="surnameHelp"
             type="text"
             name="surname"
-            value={userProfile.surname}
+            value={form.surname}
             onChange={handleChange}
+            onBlur={handleBlur}
+            required
           />
         </div>
+
+        {errors?.surname && (
+          <p className="text-center text-danger">{errors.surname}</p>
+        )}
+
         <div className="mb-3">
           <label htmlFor="inputPhone" className="form-label fw-bold">
             Phone
@@ -86,10 +106,17 @@ export const EditProfile = () => {
             aria-describedby="phoneHelp"
             type="text"
             name="phone"
-            value={userProfile.phone}
+            value={form.phone}
             onChange={handleChange}
+            onBlur={handleBlur}
+            required
           />
         </div>
+
+        {errors?.phone && (
+          <p className="text-center text-danger">{errors.phone}</p>
+        )}
+
         <div className="d-flex text-center justify-content-center editProfileDesign_btn">
           {!isLoading ? (
             <button type="submit" className="btn btn-primary p-2">
