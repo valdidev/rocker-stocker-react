@@ -3,20 +3,28 @@ import { apiCall } from "../../api/axios";
 import { AuthContext } from "../../contexts/AuthContext2";
 import { FiLogIn } from "react-icons/fi";
 import "../../index.css";
+import { useForm } from "../../hooks/useForm";
 
 export const SignIn = () => {
   const { handlerAuth } = useContext(AuthContext);
 
-  const [credentials, setCredentials] = useState({
+  const [isLoading, setIsLoading] = useState(false);
+
+  const initialForm = {
     email: "",
     password: "",
-  });
+  };
 
-  const [userError, setUserError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { form, errors, handleChange, handleBlur } = useForm(initialForm);
+
+  const bodyCredentials = {
+    email: form.email,
+    password: form.password,
+  };
 
   const trySignIn = async (body) => {
     setIsLoading(true);
+
     try {
       let res = await apiCall("/auth/login", body, null, "post");
 
@@ -26,35 +34,19 @@ export const SignIn = () => {
       }
 
       setIsLoading(false);
-      
     } catch (error) {
       setIsLoading(false);
-      setUserError(error.response.data.message);
+      console.log(error);
     }
-  };
-
-  const inputsHandler = (e) => {
-    setCredentials((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
   };
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+
+    if (errors.email !== "" || errors.password !== "") return;
+
     trySignIn(bodyCredentials);
   };
-
-  const bodyCredentials = {
-    email: credentials.email,
-    password: credentials.password,
-  };
-
-  const enableButton = !(
-    userError === "" &&
-    credentials.email.length > 8 &&
-    credentials.password.length > 8
-  );
 
   return (
     <div className="form container formContainer">
@@ -70,23 +62,30 @@ export const SignIn = () => {
           name="email"
           type="email"
           placeholder="Email"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
         <input
           className="form-control my-2"
           name="password"
           type="password"
           placeholder="Password"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
-        <p className="text-danger">{userError}</p>
+
+        {(errors?.email && (
+          <p className="text-center text-danger">{errors.email}</p>
+        )) ||
+          (errors?.password && (
+            <p className="text-center text-danger">{errors.password}</p>
+          ))}
 
         {isLoading ? (
           <button
             className="btn-send btn btn-success btn-shadow w-50"
-            disabled={enableButton}
             type="button"
           >
             <span
@@ -97,10 +96,7 @@ export const SignIn = () => {
             <span className="visually-hidden">Send</span>
           </button>
         ) : (
-          <button
-            className="btn-send btn btn-success btn-shadow w-50"
-            disabled={enableButton}
-          >
+          <button className="btn-send btn btn-success btn-shadow w-50">
             <FiLogIn size="2em" />
           </button>
         )}
