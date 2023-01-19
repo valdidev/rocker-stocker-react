@@ -6,12 +6,14 @@ import { BsBoxArrowInUp } from "react-icons/bs";
 import "../../index.css";
 
 export const SignUp = ({ switchFlag }) => {
-  // API
+  const [userError, setUserError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const trySignUp = async (body) => {
     setIsLoading(true);
+
     try {
       let res = await apiCall("/auth/register", body, null, "post");
-      setIsLoading(false);
       if (res.status === 200) {
         MySwal.fire({
           title: <strong>User created</strong>,
@@ -20,6 +22,9 @@ export const SignUp = ({ switchFlag }) => {
           confirmButtonColor: "#198754",
         });
       }
+
+      setIsLoading(false);
+
       switchFlag();
     } catch (error) {
       setIsLoading(false);
@@ -35,10 +40,6 @@ export const SignUp = ({ switchFlag }) => {
     surname: "",
     phone: "",
   });
-
-  const [userError, setUserError] = useState("");
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const inputsHandler = (e) => {
     setCredentials((prevState) => ({
@@ -118,14 +119,7 @@ export const SignUp = ({ switchFlag }) => {
 
         <p className="text-danger">{userError}</p>
 
-        {!isLoading ? (
-          <button
-            className="btn-send btn btn-success py-2 w-50"
-            disabled={formIsFilled}
-          >
-            <BsBoxArrowInUp size="2em" />
-          </button>
-        ) : (
+        {isLoading ? (
           <button
             className="btn-send btn btn-success py-2 w-50"
             disabled={formIsFilled}
@@ -137,6 +131,13 @@ export const SignUp = ({ switchFlag }) => {
               aria-hidden="true"
             ></span>
             <span className="visually-hidden">Send</span>
+          </button>
+        ) : (
+          <button
+            className="btn-send btn btn-success py-2 w-50"
+            disabled={formIsFilled}
+          >
+            <BsBoxArrowInUp size="2em" />
           </button>
         )}
       </form>
