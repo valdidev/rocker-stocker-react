@@ -5,6 +5,11 @@ import { ButtonSpinner } from "../../common/ButtonSpinner/ButtonSpinner";
 import { MdDone } from "react-icons/md";
 import { AuthContext } from "../../contexts/AuthContext2";
 import { useForm } from "../../hooks/useForm";
+import {
+  axiosErrorNotification,
+  toastNotification,
+} from "../../utils/notificationMatcher";
+
 import "./editProfile.css";
 
 export const EditProfile = () => {
@@ -21,10 +26,10 @@ export const EditProfile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (errors?.name !== "" || errors.surname !== "" || errors.phone !== "") {
       return;
-    };
+    }
 
     setIsLoading(true);
 
@@ -37,11 +42,11 @@ export const EditProfile = () => {
 
     axiosPatch("user/modify", "", bodyToUpdateProfile, user?.jwt)
       .then((data) => {
-        console.log(data);
+        toastNotification(data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        axiosErrorNotification(error);
         setIsLoading(false);
       })
       .finally(() => navigate(-1));

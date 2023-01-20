@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { HiOutlineSearch } from "react-icons/hi";
 import { MdShoppingCart } from "react-icons/md";
-import "../../index.css";
 import "./salebar.css";
 
 export const Salebar = () => {

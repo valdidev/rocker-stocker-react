@@ -6,9 +6,10 @@ import { TYPES } from "../../actions/shoppingAction";
 import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { useShopContext } from "../../contexts/ShopContext";
-import "../../index.css";
-import "./search.css";
 import { AuthContext } from "../../contexts/AuthContext2";
+import { toast } from "react-hot-toast";
+import "./search.css";
+
 
 export const Search = () => {
   const [found, setFound] = useState(null);
@@ -17,14 +18,17 @@ export const Search = () => {
 
   const { dispatch } = useShopContext();
 
+  const notifySuccess = (nameItem) => toast.success(nameItem.toUpperCase());
+
   const addToCart = (item) => {
     dispatch({
       type: TYPES.ADD_ONE_TO_CART,
       payload: item,
     });
+    notifySuccess(item.name);
   };
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     try {
@@ -41,7 +45,7 @@ export const Search = () => {
 
   return (
     <div className="searchDesign pb-2">
-      <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center pb-2">
         <div className="d-flex p-2">
           <div
             className="btn btn-success mx-1"
@@ -62,7 +66,6 @@ export const Search = () => {
             <AiFillFormatPainter size="2em" />
           </div>
         </div>
-        <div className="d-flex"></div>
       </div>
       {isLoading ? (
         <Spinner />

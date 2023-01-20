@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext2";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "../../hooks/useForm";
 import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
+import { axiosErrorNotification } from "../../utils/notificationMatcher";
 
 export const SignIn = () => {
   const { handlerAuth } = useContext(AuthContext);
@@ -36,7 +37,7 @@ export const SignIn = () => {
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      axiosErrorNotification(error);
     }
   };
 
@@ -52,6 +53,7 @@ export const SignIn = () => {
   return (
     <div className="form container formContainer">
       <h1 className="text-center">Sign in</h1>
+
       <form
         onSubmit={handlerSubmit}
         className="lobbyForm lobbyForm_signin"

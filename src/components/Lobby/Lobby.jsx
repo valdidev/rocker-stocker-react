@@ -3,7 +3,6 @@ import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 import { GrUserAdd, GrUserAdmin } from "react-icons/gr";
 import "./lobby.css";
-import "../../index.css";
 
 export const Lobby = () => {
   const [flag, setFlag] = useState(true);

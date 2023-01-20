@@ -9,7 +9,10 @@ import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import Swal from "sweetalert2";
-import "../../index.css";
+import {
+  axiosErrorNotification,
+  toastNotification,
+} from "../../utils/notificationMatcher";
 import "./transaction.css";
 
 export const Transaction = () => {
@@ -68,10 +71,11 @@ export const Transaction = () => {
 
   const sendBody = (finalBody) => {
     axiosPost("sale/sell", "", finalBody, user?.jwt)
-      .then((data) => console.log(data))
+      .then((data) => toastNotification(data))
       .then(() => {
         dispatch({ type: TYPES.CLEAR_CART });
       })
+      .catch((err) => axiosErrorNotification(err))
       .finally(() => navigate("/private/mysales"));
   };
 
@@ -95,8 +99,8 @@ export const Transaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {paginatedProducts?.map((article) => (
-                      <tr key={article.id} className="cursor-pointer">
+                    {paginatedProducts?.map((article, index) => (
+                      <tr key={index} className="cursor-pointer">
                         <td data-label="Article">{article.name}</td>
                         <td data-label="Price €">{article.price}</td>
                         <td data-label="Units">{article.quantity}</td>
