@@ -18,8 +18,8 @@ import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 import { SalebarLayout } from "./router/SalebarLayout";
 import { AuthProvider } from "./contexts/AuthContext2";
-import "./index.css";
 import { Toaster } from "react-hot-toast";
+import "./index.css";
 
 export const App = () => {
   return (
@@ -33,11 +33,12 @@ export const App = () => {
                 bottom: 80,
               }}
               toastOptions={{
-                className: "",
+                duration: 5000,
                 style: {
-                  border: "1px solid #713200",
-                  padding: "16px",
-                  color: "#713200",
+                  border: "2px solid #2f3247",
+                  padding: ".5em",
+                  fontSize: "1em",
+                  color: "#000",
                 },
               }}
               

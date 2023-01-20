@@ -3,6 +3,7 @@ import { apiCall } from "../../api/axios";
 import { BsBoxArrowInUp } from "react-icons/bs";
 import { useForm } from "../../hooks/useForm";
 import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
+import { axiosErrorNotification } from "../../utils/notificationMatcher";
 
 export const SignUp = ({ switchFlag }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +34,7 @@ export const SignUp = ({ switchFlag }) => {
       switchFlag();
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      axiosErrorNotification(error);
     }
   };
 

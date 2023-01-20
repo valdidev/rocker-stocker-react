@@ -9,6 +9,10 @@ import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import Swal from "sweetalert2";
+import {
+  axiosErrorNotification,
+  toastNotification,
+} from "../../utils/notificationMatcher";
 import "./transaction.css";
 
 export const Transaction = () => {
@@ -67,10 +71,11 @@ export const Transaction = () => {
 
   const sendBody = (finalBody) => {
     axiosPost("sale/sell", "", finalBody, user?.jwt)
-      .then((data) => console.log(data))
+      .then((data) => toastNotification(data))
       .then(() => {
         dispatch({ type: TYPES.CLEAR_CART });
       })
+      .catch((err) => axiosErrorNotification(err))
       .finally(() => navigate("/private/mysales"));
   };
 
