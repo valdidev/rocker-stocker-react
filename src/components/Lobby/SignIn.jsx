@@ -4,7 +4,10 @@ import { AuthContext } from "../../contexts/AuthContext2";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "../../hooks/useForm";
 import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
-import { axiosErrorNotification } from "../../utils/notificationMatcher";
+import {
+  axiosErrorNotification,
+  toastNotification,
+} from "../../utils/notificationMatcher";
 
 export const SignIn = () => {
   const { handlerAuth } = useContext(AuthContext);
@@ -27,10 +30,14 @@ export const SignIn = () => {
     setIsLoading(true);
 
     try {
-      let res = await apiCall("/auth/login", body, null, "post");
+      let res = await apiCall("/auth/login", body, null, "post").catch((data) =>
+        axiosErrorNotification(data.response.data)
+      );
 
-      if (res.status === 200) {
+      if (res?.status === 200) {
         let user = res.data.user;
+        let data = res.data;
+        toastNotification(data);
         handlerAuth(user);
       }
 

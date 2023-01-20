@@ -3,7 +3,10 @@ import { apiCall } from "../../api/axios";
 import { BsBoxArrowInUp } from "react-icons/bs";
 import { useForm } from "../../hooks/useForm";
 import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
-import { axiosErrorNotification } from "../../utils/notificationMatcher";
+import {
+  axiosErrorNotification,
+  toastNotification,
+} from "../../utils/notificationMatcher";
 
 export const SignUp = ({ switchFlag }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +30,14 @@ export const SignUp = ({ switchFlag }) => {
     setIsLoading(true);
 
     try {
-      await apiCall("/auth/register", body, null, "post");
+      await apiCall("/auth/register", body, null, "post")
+        .then((data) => {
+          toastNotification(data.data);
+          switchFlag();
+        })
+        .catch((error) => axiosErrorNotification(error.response.data));
 
       setIsLoading(false);
-
-      switchFlag();
     } catch (error) {
       setIsLoading(false);
       axiosErrorNotification(error);
