@@ -94,8 +94,8 @@ export const Transaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {paginatedProducts?.map((article) => (
-                      <tr key={article.id} className="cursor-pointer">
+                    {paginatedProducts?.map((article, index) => (
+                      <tr key={index} className="cursor-pointer">
                         <td data-label="Article">{article.name}</td>
                         <td data-label="Price €">{article.price}</td>
                         <td data-label="Units">{article.quantity}</td>
