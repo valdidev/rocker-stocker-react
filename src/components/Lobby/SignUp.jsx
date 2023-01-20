@@ -1,82 +1,62 @@
 import { useState } from "react";
 import { apiCall } from "../../api/axios";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { BsBoxArrowInUp } from "react-icons/bs";
+import { useForm } from "../../hooks/useForm";
 import "../../index.css";
 
 export const SignUp = ({ switchFlag }) => {
-  // API
-  const trySignUp = async (body) => {
-    setIsLoading(true);
-    try {
-      let res = await apiCall("/auth/register", body, null, "post");
-      setIsLoading(false);
-      if (res.status === 200) {
-        MySwal.fire({
-          title: <strong>User created</strong>,
-          icon: "success",
-          confirmButtonText: "Sign In",
-          confirmButtonColor: "#198754",
-        });
-      }
-      switchFlag();
-    } catch (error) {
-      setIsLoading(false);
-      setUserError(error.response.data.message);
-    }
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [credentials, setCredentials] = useState({
+  const initialForm = {
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
-    name: "",
-    surname: "",
-    phone: "",
-  });
-
-  const [userError, setUserError] = useState("");
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const inputsHandler = (e) => {
-    setCredentials((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
   };
 
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    if (formIsFilled) return setUserError("Fill in the text fields");
-    if (credentials.password !== credentials.confirmPassword)
-      return setUserError("Passwords do not match");
-    trySignUp(bodyRegister);
-  };
+  const { form, errors, handleChange, handleBlur } = useForm(initialForm);
 
   const bodyRegister = {
-    email: credentials.email,
-    password: credentials.password,
-    name: credentials.name,
+    email: form.email,
+    password: form.password,
+    name: form.name,
   };
 
-  const formIsFilled = !(
-    userError === "" &&
-    credentials.email.length > 0 &&
-    credentials.name.length > 0 &&
-    credentials.password.length > 0 &&
-    credentials.confirmPassword.length > 0
-  );
+  const trySignUp = async (body) => {
+    setIsLoading(true);
 
-  const MySwal = withReactContent(Swal);
+    try {
+      await apiCall("/auth/register", body, null, "post");
+
+      setIsLoading(false);
+
+      switchFlag();
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      errors?.name !== "" ||
+      errors.email !== "" ||
+      errors.password !== "" ||
+      errors.confirmPassword !== ""
+    )
+      return;
+
+    trySignUp(bodyRegister);
+  };
 
   return (
     <div className="form container formContainer">
       <h1 className="text-center">Sign up</h1>
 
       <form
-        onSubmit={handlerSubmit}
+        onSubmit={handleSubmit}
         className="lobbyForm lobbyForm_signup"
         noValidate
       >
@@ -85,8 +65,10 @@ export const SignUp = ({ switchFlag }) => {
           type="text"
           placeholder="Name"
           name="name"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          value={form.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
 
         <input
@@ -94,8 +76,10 @@ export const SignUp = ({ switchFlag }) => {
           type="email"
           placeholder="Email"
           name="email"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          value={form.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
 
         <input
@@ -103,8 +87,10 @@ export const SignUp = ({ switchFlag }) => {
           type="password"
           placeholder="Password"
           name="password"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          value={form.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
 
         <input
@@ -112,31 +98,37 @@ export const SignUp = ({ switchFlag }) => {
           type="password"
           placeholder="Confirm password"
           name="confirmPassword"
-          onChange={(e) => inputsHandler(e)}
-          onFocus={() => setUserError("")}
+          value={form.confirmPassword}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          required
         />
 
-        <p className="text-danger">{userError}</p>
+        {(errors?.name && (
+          <p className="text-center text-danger">{errors.name}</p>
+        )) ||
+          (errors?.email && (
+            <p className="text-center text-danger">{errors.email}</p>
+          )) ||
+          (errors?.password && (
+            <p className="text-center text-danger">{errors.password}</p>
+          )) ||
+          (errors?.confirmPassword && (
+            <p className="text-center text-danger">{errors.confirmPassword}</p>
+          ))}
 
-        {!isLoading ? (
-          <button
-            className="btn-send btn btn-success py-2 w-50"
-            disabled={formIsFilled}
-          >
-            <BsBoxArrowInUp size="2em" />
-          </button>
-        ) : (
-          <button
-            className="btn-send btn btn-success py-2 w-50"
-            disabled={formIsFilled}
-            type="button"
-          >
+        {isLoading ? (
+          <button className="btn-send btn btn-success py-2 w-50" type="button">
             <span
               className="spinner-border spinner-border-sm"
               role="status"
               aria-hidden="true"
             ></span>
             <span className="visually-hidden">Send</span>
+          </button>
+        ) : (
+          <button className="btn-send btn btn-success py-2 w-50">
+            <BsBoxArrowInUp size="2em" />
           </button>
         )}
       </form>

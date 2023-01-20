@@ -60,7 +60,6 @@ export const MyProfile = () => {
                 name: profile.name,
                 surname: profile.surname,
                 phone: profile.phone,
-                email: profile.email,
               },
             }}
           >
