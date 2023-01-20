@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext2";
 import { FiLogIn } from "react-icons/fi";
 import { useForm } from "../../hooks/useForm";
 import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
+// import { toast } from "react-hot-toast";
 
 export const SignIn = () => {
   const { handlerAuth } = useContext(AuthContext);
@@ -49,9 +50,13 @@ export const SignIn = () => {
     trySignIn(bodyCredentials);
   };
 
+  // const notify = () => toast.error("Here is your toast.");
+
   return (
     <div className="form container formContainer">
       <h1 className="text-center">Sign in</h1>
+      {/* <button onClick={notify}>Make me a toast</button> */}
+
       <form
         onSubmit={handlerSubmit}
         className="lobbyForm lobbyForm_signin"
