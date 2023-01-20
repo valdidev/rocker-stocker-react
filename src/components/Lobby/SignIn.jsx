@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import { apiCall } from "../../api/axios";
 import { AuthContext } from "../../contexts/AuthContext2";
 import { FiLogIn } from "react-icons/fi";
-import "../../index.css";
 import { useForm } from "../../hooks/useForm";
+import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
 
 export const SignIn = () => {
   const { handlerAuth } = useContext(AuthContext);
@@ -15,7 +15,7 @@ export const SignIn = () => {
     password: "",
   };
 
-  const { form, errors, handleChange, handleBlur } = useForm(initialForm);
+  const { form, errors, handleChange, checkErrors } = useForm(initialForm);
 
   const bodyCredentials = {
     email: form.email,
@@ -42,6 +42,7 @@ export const SignIn = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    checkErrors(e);
 
     if (errors.email !== "" || errors.password !== "") return;
 
@@ -51,7 +52,6 @@ export const SignIn = () => {
   return (
     <div className="form container formContainer">
       <h1 className="text-center">Sign in</h1>
-
       <form
         onSubmit={handlerSubmit}
         className="lobbyForm lobbyForm_signin"
@@ -63,7 +63,6 @@ export const SignIn = () => {
           type="email"
           placeholder="Email"
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
         <input
@@ -72,7 +71,6 @@ export const SignIn = () => {
           type="password"
           placeholder="Password"
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
 
@@ -83,23 +81,10 @@ export const SignIn = () => {
             <p className="text-center text-danger">{errors.password}</p>
           ))}
 
-        {isLoading ? (
-          <button
-            className="btn-send btn btn-success btn-shadow w-50"
-            type="button"
-          >
-            <span
-              className="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Send</span>
-          </button>
-        ) : (
-          <button className="btn-send btn btn-success btn-shadow w-50">
-            <FiLogIn size="2em" />
-          </button>
-        )}
+        <ButtonWithLoader
+          isLoading={isLoading}
+          IconButton={<FiLogIn size="2em" />}
+        />
       </form>
     </div>
   );
