@@ -2,14 +2,14 @@
 <h1 align="center">:large_orange_diamond: Rocker Stocker APP :large_orange_diamond:</h1>
 
 ***
-**[:es: LEER EN ESPAÑOL](#rocker-stocker-es)**
+**[:es: LEER EN ESPAÑOL](#es-rocker-stocker)**
  - **[Probar](#probar-rocket)**
  - **[Funcionalidades](#funcionalidades-heavy_check_mark)**
  - **[Diseño adaptable](#diseño-adaptable-left_right_arrow)**
  
 #
 
-**[:uk: READ IN ENGLISH](#rocker-stocker-uk)**
+**[:uk: READ IN ENGLISH](#uk-rocker-stocker)**
  - **[Try](#try-it-rocket)**
  - **[Features](#features-heavy_check_mark)**
  - **[Responsive design](#responsive-design-left_right_arrow)**
