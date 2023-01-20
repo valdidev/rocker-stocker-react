@@ -1,5 +1,4 @@
 import { IoStatsChart } from "react-icons/io5";
-import "../../index.css";
 import "./noSales.css";
 
 export const NoSales = () => {

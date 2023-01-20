@@ -5,10 +5,9 @@ import { MdAdminPanelSettings, MdOutlinePointOfSale } from "react-icons/md";
 import { FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-
-import "../../index.css";
-import "./navbar.css";
 import { AuthContext } from "../../contexts/AuthContext2";
+import "./navbar.css";
+
 
 export const Navbar = () => {
   const { handlerAuth, user } = useContext(AuthContext);

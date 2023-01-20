@@ -1,6 +1,4 @@
 import { MdRemoveShoppingCart } from "react-icons/md";
-
-import "../../index.css";
 import "./emptyCart.css";
 
 export const EmptyCart = () => {

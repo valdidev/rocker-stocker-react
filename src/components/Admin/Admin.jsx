@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { AllSales } from "../AllSales/AllSales";
 import { AllUsers } from "../AllUsers/AllUsers";
-
 import "./admin.css";
-import "../../index.css";
-
 
 export const Admin = () => {
   const [flag, setFlag] = useState(true);
@@ -25,7 +22,9 @@ export const Admin = () => {
           Sales
         </div>
       </div>
-      <div className="adminDesign_tables">{flag ? <AllUsers /> : <AllSales />}</div>
+      <div className="adminDesign_tables">
+        {flag ? <AllUsers /> : <AllSales />}
+      </div>
     </div>
   );
 };

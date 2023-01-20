@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
-import "../../index.css";
 import "./allUsers.css";
 
 export const AllUsers = () => {

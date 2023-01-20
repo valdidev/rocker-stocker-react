@@ -9,7 +9,6 @@ import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
 import Swal from "sweetalert2";
-import "../../index.css";
 import "./transaction.css";
 
 export const Transaction = () => {

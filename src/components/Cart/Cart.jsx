@@ -8,7 +8,6 @@ import {
 } from "react-icons/bs";
 import { EmptyCart } from "../EmptyCart/EmptyCart";
 import { Link } from "react-router-dom";
-import "../../index.css";
 import "./cart.css";
 
 export const Cart = () => {

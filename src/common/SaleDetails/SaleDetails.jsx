@@ -5,7 +5,6 @@ import { Spinner } from "../Spinner/Spinner";
 import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
-import "../../index.css";
 import "./saleDetails.css";
 
 export const SaleDetails = () => {
@@ -38,7 +37,7 @@ export const SaleDetails = () => {
 
   return (
     <div className="saleDetailsDesign pb-2">
-      <h1 className="text-center text-black">
+      <h1 className="text-center text-black py-4">
         Details of sale # {saleId}
       </h1>
       <div className="tableContainer">
