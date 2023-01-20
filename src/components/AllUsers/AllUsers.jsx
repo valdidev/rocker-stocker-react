@@ -5,10 +5,10 @@ import { TbLock, TbLockOpen } from "react-icons/tb";
 import { FaUserAltSlash, FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import usePagination from "../../hook/usePagination";
+import usePagination from "../../hooks/usePagination";
 import { Pagination } from "../../common/Pagination/Pagination";
 import { AuthContext } from "../../contexts/AuthContext2";
-import "../../index.css";
+import { toastNotification } from "../../utils/notificationMatcher";
 import "./allUsers.css";
 
 export const AllUsers = () => {
@@ -30,7 +30,7 @@ export const AllUsers = () => {
   const modifyUserActiveStatus = (userId) => {
     setIsLoading(true);
     axiosPatch("user/active", userId, "", user?.jwt).then((data) =>
-      console.log(data)
+      toastNotification(data)
     );
     setIsLoading(false);
     setFlag(!flag);
@@ -39,7 +39,7 @@ export const AllUsers = () => {
   const deleteUser = (userId) => {
     setIsLoading(true);
     axiosDelete("user/delete", userId, user?.jwt)
-      .then((data) => console.log(data))
+      .then((data) => toastNotification(data))
       .then(setFlag(!flag));
   };
 

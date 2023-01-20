@@ -4,7 +4,6 @@ import { axiosGet } from "../../api/axios";
 import { Spinner } from "../../common/Spinner/Spinner";
 import { FaUserEdit } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthContext2";
-import "../../index.css";
 import "./myProfile.css";
 
 export const MyProfile = () => {
@@ -60,7 +59,6 @@ export const MyProfile = () => {
                 name: profile.name,
                 surname: profile.surname,
                 phone: profile.phone,
-                email: profile.email,
               },
             }}
           >

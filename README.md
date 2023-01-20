@@ -1,18 +1,18 @@
 #
-<h1 align="center">Rocker Stocker APP</h1>
+<h1 align="center">:large_orange_diamond: Rocker Stocker APP :large_orange_diamond:</h1>
 
 ***
-**[:es: LEER EN ESPAÑOL](#rocker-stocker-es)**
+**[:es: LEER EN ESPAÑOL](#es-rocker-stocker)**
  - **[Probar](#probar-rocket)**
- - **[Funcionalidades](#funcionalidades)**
- - **[Diseño adaptable](#diseño-adaptable)**
+ - **[Funcionalidades](#funcionalidades-heavy_check_mark)**
+ - **[Diseño adaptable](#diseño-adaptable-left_right_arrow)**
  
 #
 
-**[:uk: READ IN ENGLISH](#rocker-stocker-uk)**
+**[:uk: READ IN ENGLISH](#uk-rocker-stocker)**
  - **[Try](#try-it-rocket)**
- - **[Features](#features)**
- - **[Responsive design](#responsive-design)**
+ - **[Features](#features-heavy_check_mark)**
+ - **[Responsive design](#responsive-design-left_right_arrow)**
 ***
 # :es: Rocker Stocker 
 ## _Aplicación para la administración integral de un almacén_
@@ -40,7 +40,7 @@
 - Usuarios empleados y usuarios encargados
 
 <details>
-  <summary>VER IMÁGENES</summary>
+  <summary>VER IMÁGENES :red_circle:</summary>
   <img src="https://user-images.githubusercontent.com/96445737/213224978-407a32e4-5b08-4aaa-a11a-7240d7bbbc01.png" width="400" height="200" />
   <img src="https://user-images.githubusercontent.com/96445737/213225019-e8711362-85a8-4b50-93e8-b8f86e28d66e.png" width="400" height="200" />
   <img src="https://user-images.githubusercontent.com/96445737/213225091-fcc0b7f8-7a4d-45b6-8fb8-d4e052be6618.png" width="400" height="200" />
@@ -94,7 +94,7 @@ Fernando Valdivielso - @valdidev
 - Employee or Manager roles
 
 <details>
-  <summary>SEE SCREENSHOTS</summary>
+  <summary>SEE SCREENSHOTS :red_circle:</summary>
   <img src="https://user-images.githubusercontent.com/96445737/213224978-407a32e4-5b08-4aaa-a11a-7240d7bbbc01.png" width="400" height="200" />
   <img src="https://user-images.githubusercontent.com/96445737/213225019-e8711362-85a8-4b50-93e8-b8f86e28d66e.png" width="400" height="200" />
   <img src="https://user-images.githubusercontent.com/96445737/213225091-fcc0b7f8-7a4d-45b6-8fb8-d4e052be6618.png" width="400" height="200" />

@@ -17,8 +17,9 @@ import { NavbarLayout } from "./router/NavbarLayout";
 import { PrivateRoute } from "./router/PrivateRoute";
 import { PublicRoute } from "./router/PublicRoute";
 import { SalebarLayout } from "./router/SalebarLayout";
-import "./index.css";
 import { AuthProvider } from "./contexts/AuthContext2";
+import { Toaster } from "react-hot-toast";
+import "./index.css";
 
 export const App = () => {
   return (
@@ -26,6 +27,22 @@ export const App = () => {
       <ShopProvider>
         <BrowserRouter>
           <div className="appDesign">
+            <Toaster
+              position="bottom-center"
+              containerStyle={{
+                bottom: 80,
+              }}
+              toastOptions={{
+                duration: 5000,
+                style: {
+                  border: "2px solid #2f3247",
+                  padding: ".5em",
+                  fontSize: "1em",
+                  color: "#000",
+                },
+              }}
+              
+            />
             <Routes>
               {/* PUBLIC ROUTES */}
               <Route path="/" element={<PublicRoute />}>
