@@ -1,18 +1,18 @@
 #
-<h1 align="center">Rocker Stocker APP</h1>
+<h1 align="center">:large_orange_diamond: Rocker Stocker APP :large_orange_diamond:</h1>
 
 ***
 **[:es: LEER EN ESPAÑOL](#rocker-stocker-es)**
  - **[Probar](#probar-rocket)**
- - **[Funcionalidades](#funcionalidades)**
- - **[Diseño adaptable](#diseño-adaptable)**
+ - **[Funcionalidades](#funcionalidades-heavy_check_mark)**
+ - **[Diseño adaptable](#diseño-adaptable-left_right_arrow)**
  
 #
 
 **[:uk: READ IN ENGLISH](#rocker-stocker-uk)**
  - **[Try](#try-it-rocket)**
- - **[Features](#features)**
- - **[Responsive design](#responsive-design)**
+ - **[Features](#features-heavy_check_mark)**
+ - **[Responsive design](#responsive-design-left_right_arrow)**
 ***
 # :es: Rocker Stocker 
 ## _Aplicación para la administración integral de un almacén_
