@@ -19,11 +19,17 @@ export const useForm = (initialForm) => {
         setErrors(validationsForm(form));
     };
 
+    const checkErrors = (e) => {
+        handleChange(e);
+        setErrors(validationsForm(form));
+    };
+
 
     return {
         form,
         errors,
         handleChange,
         handleBlur,
+        checkErrors
     };
 };

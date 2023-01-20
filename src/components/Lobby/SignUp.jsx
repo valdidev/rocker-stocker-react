@@ -2,7 +2,7 @@ import { useState } from "react";
 import { apiCall } from "../../api/axios";
 import { BsBoxArrowInUp } from "react-icons/bs";
 import { useForm } from "../../hooks/useForm";
-import "../../index.css";
+import { ButtonWithLoader } from "../../common/ButtonWithLoader/ButtonWithLoader";
 
 export const SignUp = ({ switchFlag }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +14,7 @@ export const SignUp = ({ switchFlag }) => {
     confirmPassword: "",
   };
 
-  const { form, errors, handleChange, handleBlur } = useForm(initialForm);
+  const { form, errors, handleChange, checkErrors } = useForm(initialForm);
 
   const bodyRegister = {
     email: form.email,
@@ -40,6 +40,8 @@ export const SignUp = ({ switchFlag }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    checkErrors(e);
+
     if (
       errors?.name !== "" ||
       errors.email !== "" ||
@@ -54,7 +56,6 @@ export const SignUp = ({ switchFlag }) => {
   return (
     <div className="form container formContainer">
       <h1 className="text-center">Sign up</h1>
-
       <form
         onSubmit={handleSubmit}
         className="lobbyForm lobbyForm_signup"
@@ -67,7 +68,6 @@ export const SignUp = ({ switchFlag }) => {
           name="name"
           value={form.name}
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
 
@@ -78,7 +78,6 @@ export const SignUp = ({ switchFlag }) => {
           name="email"
           value={form.email}
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
 
@@ -89,7 +88,6 @@ export const SignUp = ({ switchFlag }) => {
           name="password"
           value={form.password}
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
 
@@ -100,7 +98,6 @@ export const SignUp = ({ switchFlag }) => {
           name="confirmPassword"
           value={form.confirmPassword}
           onChange={handleChange}
-          onBlur={handleBlur}
           required
         />
 
@@ -117,20 +114,10 @@ export const SignUp = ({ switchFlag }) => {
             <p className="text-center text-danger">{errors.confirmPassword}</p>
           ))}
 
-        {isLoading ? (
-          <button className="btn-send btn btn-success py-2 w-50" type="button">
-            <span
-              className="spinner-border spinner-border-sm"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Send</span>
-          </button>
-        ) : (
-          <button className="btn-send btn btn-success py-2 w-50">
-            <BsBoxArrowInUp size="2em" />
-          </button>
-        )}
+        <ButtonWithLoader
+          isLoading={isLoading}
+          IconButton={<BsBoxArrowInUp size="2em" />}
+        />
       </form>
     </div>
   );
